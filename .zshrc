@@ -208,6 +208,7 @@ case $(basename "$(cat "/proc/$PPID/comm")") in
     ;;
 esac
 
+# alias
 alias vim='nvim'
 alias ls='lsd'
 
