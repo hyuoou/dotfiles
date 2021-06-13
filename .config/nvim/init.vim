@@ -83,18 +83,6 @@ call plug#begin()
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'arcticicestudio/nord-vim'
-" deoplete
-if has('nvim')
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-	Plug 'Shougo/deoplete.nvim'
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
-" deoplete source
-	Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-	Plug 'zchee/deoplete-clang'
 " filetree
 	Plug 'lambdalisue/fern.vim'
 " fern.vim fit status
@@ -109,7 +97,6 @@ let g:deoplete#enable_at_startup = 1
 	Plug 'prabirshrestha/asyncomplete-lsp.vim'
 	Plug 'prabirshrestha/vim-lsp'
 	Plug 'mattn/vim-lsp-settings'
-	Plug 'lighttiger2505/deoplete-vim-lsp'
 " run goimports
 	Plug 'mattn/vim-goimports'
 " lexima
@@ -139,7 +126,3 @@ let g:neoterm_default_mod = 'vertical belowright'
 let g:neoterm_autoinsert = 1
 nnoremap <C-o> :Tnew<CR>
 
-" deoplete-go config
-let g:deoplete#sources#go#gocode_binary = '$GOBIN/gocode'
-let g:deoplete#sources#go#package_dot = 1
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
