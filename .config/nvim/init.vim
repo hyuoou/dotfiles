@@ -61,7 +61,7 @@ set wrapscan
 " 検索語をハイライト表示
 set hlsearch
 " ESC連打でハイライト解除
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
 " ここまでコピペ
 
@@ -92,6 +92,9 @@ else
 	Plug 'roxma/vim-hug-neovim-rpc'
 endif
 let g:deoplete#enable_at_startup = 1
+" deoplete source
+	Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+	Plug 'zchee/deoplete-clang'
 " filetree
 	Plug 'lambdalisue/fern.vim'
 " fern.vim fit status
@@ -106,10 +109,13 @@ let g:deoplete#enable_at_startup = 1
 	Plug 'prabirshrestha/asyncomplete-lsp.vim'
 	Plug 'prabirshrestha/vim-lsp'
 	Plug 'mattn/vim-lsp-settings'
+	Plug 'lighttiger2505/deoplete-vim-lsp'
 " run goimports
 	Plug 'mattn/vim-goimports'
 " lexima
 	Plug 'cohama/lexima.vim'
+" terminal
+	Plug 'kassio/neoterm'
 call plug#end()
 
 set background=dark
@@ -128,3 +134,12 @@ let g:fern#renderer = 'nerdfont'
 " delete space
 autocmd BufWritePre * :%s/\s\+$//ge
 
+" neoterm config
+let g:neoterm_default_mod = 'vertical belowright'
+let g:neoterm_autoinsert = 1
+nnoremap <C-o> :Tnew<CR>
+
+" deoplete-go config
+let g:deoplete#sources#go#gocode_binary = '$GOBIN/gocode'
+let g:deoplete#sources#go#package_dot = 1
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
