@@ -63,8 +63,21 @@ set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
+" keymap
+inoremap <C-d> <Del>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
+
+nnoremap <C-a> <Home>
+nnoremap <C-e> <End>
+
 "プラグイン
 call plug#begin()
+" appearance
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'arcticicestudio/nord-vim'
@@ -93,6 +106,8 @@ let g:deoplete#enable_at_startup = 1
 	Plug 'mattn/vim-lsp-settings'
 " run goimports
 	Plug 'mattn/vim-goimports'
+" lexima
+	Plug 'cohama/lexima.vim'
 call plug#end()
 
 set background=dark
