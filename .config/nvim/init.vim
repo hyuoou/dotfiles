@@ -93,7 +93,7 @@ else
 endif
 let g:deoplete#enable_at_startup = 1
 " filetree
-	Plug 'lambdalisue/fern.vim' 
+	Plug 'lambdalisue/fern.vim'
 " fern.vim fit status
 	Plug 'lambdalisue/fern-git-status.vim'
 " fern.vim icon
@@ -124,4 +124,7 @@ nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
 
 " fern.vim show icon
 let g:fern#renderer = 'nerdfont'
+
+" delete space
+autocmd BufWritePre * :%s/\s\+$//ge
 
