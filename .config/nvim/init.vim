@@ -14,7 +14,6 @@ set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
 
-
 " 見た目系
 " 行番号を表示
 set number
@@ -40,7 +39,6 @@ nnoremap k gk
 " シンタックスハイライトの有効化
 syntax enable
 
-
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
 set list listchars=tab:\▸\-
@@ -50,7 +48,6 @@ set list listchars=tab:\▸\-
 set tabstop=4
 " 行頭でのTab文字の表示幅
 set shiftwidth=4
-
 
 " 検索系
 " 検索文字列が小文字の場合は大文字小文字を区別なく検索する
@@ -71,10 +68,43 @@ call plug#begin()
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'arcticicestudio/nord-vim'
+" deoplete
+if has('nvim')
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+" filetree
+	Plug 'lambdalisue/fern.vim' 
+" fern.vim fit status
+	Plug 'lambdalisue/fern-git-status.vim'
+" fern.vim icon
+	Plug 'lambdalisue/nerdfont.vim'
+	Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+	Plug 'antoinemadec/FixCursorHold.nvim'
+" lsp
+	Plug 'prabirshrestha/async.vim'
+	Plug 'prabirshrestha/asyncomplete.vim'
+	Plug 'prabirshrestha/asyncomplete-lsp.vim'
+	Plug 'prabirshrestha/vim-lsp'
+	Plug 'mattn/vim-lsp-settings'
+" run goimports
+	Plug 'mattn/vim-goimports'
 call plug#end()
 
 set background=dark
 colorscheme nord
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
+
+let g:cursorhold_updatetime = 100
+
+" Open fern.vim
+nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+
+" fern.vim show icon
+let g:fern#renderer = 'nerdfont'
 
