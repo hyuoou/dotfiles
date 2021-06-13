@@ -63,6 +63,8 @@ set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
+" ここまでコピペ
+
 " keymap
 inoremap <C-d> <Del>
 inoremap <C-a> <Home>
