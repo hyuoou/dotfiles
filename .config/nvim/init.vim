@@ -103,6 +103,11 @@ call plug#begin()
 	Plug 'cohama/lexima.vim'
 " terminal
 	Plug 'kassio/neoterm'
+" debug
+	Plug 'skywind3000/asyncrun.vim'
+" rainbow
+	Plug 'luochen1990/rainbow'
+	let g:rainbow_active = 1
 call plug#end()
 
 set background=dark
@@ -124,5 +129,11 @@ autocmd BufWritePre * :%s/\s\+$//ge
 " neoterm config
 let g:neoterm_default_mod = 'vertical belowright'
 let g:neoterm_autoinsert = 1
+let g:neoterm_size = 80
 nnoremap <C-o> :Tnew<CR>
+tnoremap <Esc> <C-\><C-n>
 
+" auto open quickfix
+augroup MyGroup
+	autocmd User AsyncRunStart call asyncrun#quickfix_toggle(18, 1)
+augroup END
