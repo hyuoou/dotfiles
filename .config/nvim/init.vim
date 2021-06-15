@@ -67,6 +67,7 @@ nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
 " keymap
 inoremap <C-d> <Del>
+inoremap <C-b> <BS>
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-h> <Left>
@@ -76,8 +77,13 @@ inoremap <C-l> <Right>
 
 nnoremap <C-a> <Home>
 nnoremap <C-e> <End>
+nnoremap <C-t> :Translate!
 
-"プラグイン
+vnoremap <C-a> <Home>
+vnoremap <C-e> <End>
+vnoremap <C-t> :Translate<CR>
+
+" plugin
 call plug#begin()
 " appearance
 	Plug 'vim-airline/vim-airline'
@@ -85,7 +91,7 @@ call plug#begin()
 	Plug 'arcticicestudio/nord-vim'
 " filetree
 	Plug 'lambdalisue/fern.vim'
-" fern.vim fit status
+" fern.vim git status
 	Plug 'lambdalisue/fern-git-status.vim'
 " fern.vim icon
 	Plug 'lambdalisue/nerdfont.vim'
@@ -107,13 +113,39 @@ call plug#begin()
 	Plug 'skywind3000/asyncrun.vim'
 " rainbow
 	Plug 'luochen1990/rainbow'
+" git
+	Plug 'tpope/vim-fugitive'
 	let g:rainbow_active = 1
+" Translation
+	Plug 'skanehira/translate.vim'
+	Plug 'vim-jp/vimdoc-ja'
+	set helplang=ja
 call plug#end()
 
+" appearance
 set background=dark
 colorscheme nord
 let g:airline#extensions#tabline#enabled=1
 let g:airline_powerline_fonts=1
+
+" vim-airline tab key
+nnoremap <C-u> :bp<CR>
+nnoremap <C-i> :bn<CR>
+
+" tab number
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_idx_format = {
+	\ '0': '0 ',
+	\ '1': '1 ',
+	\ '2': '2 ',
+	\ '3': '3 ',
+	\ '4': '4 ',
+	\ '5': '5 ',
+	\ '6': '6 ',
+	\ '7': '7 ',
+	\ '8': '8 ',
+	\ '9': '9 '
+	\}
 
 let g:cursorhold_updatetime = 100
 
@@ -130,10 +162,15 @@ autocmd BufWritePre * :%s/\s\+$//ge
 let g:neoterm_default_mod = 'vertical belowright'
 let g:neoterm_autoinsert = 1
 let g:neoterm_size = 80
-nnoremap <C-o> :Tnew<CR>
+nnoremap <C-p> :Ttoggle<CR>
+tnoremap <C-p> :Ttoggle<CR>
 tnoremap <Esc> <C-\><C-n>
 
 " auto open quickfix
 augroup MyGroup
-	autocmd User AsyncRunStart call asyncrun#quickfix_toggle(18, 1)
+	autocmd User AsyncRunStart call asyncrun#quickfix_toggle(20, 1)
 augroup END
+
+" debug
+nnoremap <C-o> :AsyncRun
+
