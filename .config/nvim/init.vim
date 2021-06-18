@@ -85,7 +85,7 @@ vnoremap <C-t> :Translate<CR>
 
 " plugin
 call plug#begin()
-" appearance
+" airline
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'arcticicestudio/nord-vim'
@@ -112,7 +112,7 @@ call plug#begin()
 " debug
 	Plug 'skywind3000/asyncrun.vim'
 " rainbow
-	Plug 'luochen1990/rainbow'
+"	Plug 'luochen1990/rainbow'
 " git
 	Plug 'tpope/vim-fugitive'
 	let g:rainbow_active = 1
@@ -120,19 +120,39 @@ call plug#begin()
 	Plug 'skanehira/translate.vim'
 	Plug 'vim-jp/vimdoc-ja'
 	set helplang=ja
+" spell check
+	Plug 'kamykn/spelunker.vim'
+	Plug 'kamykn/popup-menu.nvim'
+" dart
+	Plug 'dart-lang/dart-vim-plugin'
+" flutter
+	Plug 'thosakwe/vim-flutter'
+" indent
+	Plug 'Yggdroot/indentLine'
+" fzf
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim'
+" neovim nightly plugins "
+	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+	Plug 'p00f/nvim-ts-rainbow'
+	Plug 'tjdevries/colorbuddy.nvim'
+	Plug 'maaslalani/nordbuddy'
 call plug#end()
+
+set nospell
 
 " appearance
 set background=dark
+let g:airline_theme = 'nord'
 colorscheme nord
-let g:airline#extensions#tabline#enabled=1
-let g:airline_powerline_fonts=1
+lua require('colorbuddy').colorscheme('nordbuddy')
 
 " vim-airline tab key
 nnoremap <C-u> :bp<CR>
 nnoremap <C-i> :bn<CR>
 
-" tab number
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#buffer_idx_format = {
 	\ '0': '0 ',
@@ -174,3 +194,29 @@ augroup END
 " debug
 nnoremap <C-o> :AsyncRun
 
+" set filetype
+autocmd BufRead,BufNewFile *.c setfiletype c
+autocmd BufRead,BufNewFile *.go setfiletype go
+
+" lua config
+lua <<EOF
+-- treesitter
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+	highlight = {
+		enable = true,              -- false will disable the whole extension
+		disable = { "vue", "ruby" },  -- list of language that will be disabled
+	},
+}
+-- nvim-ts-rainbow
+require'nvim-treesitter.configs'.setup {
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+    max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+  }
+}
+EOF
+
+" fzf key
+nnoremap ff :Files<CR>
