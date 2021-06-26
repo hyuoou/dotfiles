@@ -43,7 +43,7 @@ syntax enable
 " 不可視文字を可視化(タブが「▸-」と表示される)
 set list listchars=tab:\▸\-
 " Tab文字を半角スペースにする
-" set expandtab
+"set expandtab
 " 行頭以外のTab文字の表示幅（スペースいくつ分）
 set tabstop=4
 " 行頭でのTab文字の表示幅
@@ -65,6 +65,9 @@ nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 
 " ここまでコピペ
 
+" clipboard
+set clipboard+=unnamedplus
+
 " keymap
 inoremap <C-d> <Del>
 inoremap <C-b> <BS>
@@ -74,6 +77,7 @@ inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
+inoremap <silent> jj <ESC>
 
 nnoremap <C-a> <Home>
 nnoremap <C-e> <End>
@@ -146,7 +150,6 @@ set background=dark
 let g:airline_theme = 'nord'
 colorscheme nord
 lua require('colorbuddy').colorscheme('nordbuddy')
-
 " vim-airline tab key
 nnoremap <C-u> :bp<CR>
 nnoremap <C-i> :bn<CR>
@@ -197,6 +200,7 @@ nnoremap <C-o> :AsyncRun
 " set filetype
 autocmd BufRead,BufNewFile *.c setfiletype c
 autocmd BufRead,BufNewFile *.go setfiletype go
+autocmd BufRead,BufNewFile *.cpp setfiletype c++
 
 " lua config
 lua <<EOF
@@ -220,3 +224,9 @@ EOF
 
 " fzf key
 nnoremap ff :Files<CR>
+
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight SpecialKey ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
+
