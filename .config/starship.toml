@@ -1,0 +1,12 @@
+format = """
+[┌ ](bold blue)$shell$time$directory$git_branch$git_status$go$python$cmd_duration
+[└](bold blue)$character"""
+
+[character]
+success_symbol = "[➜](bold blue) "
+error_symbol = "[➜](bold red) "
+
+[directory]
+style = "bold blue"
+read_only_style = "red"
+
