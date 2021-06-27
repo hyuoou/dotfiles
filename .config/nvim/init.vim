@@ -136,6 +136,8 @@ call plug#begin()
 " fzf
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
+" template
+	Plug 'mattn/vim-sonictemplate'
 " neovim nightly plugins "
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'p00f/nvim-ts-rainbow'
@@ -224,6 +226,9 @@ EOF
 
 " fzf key
 nnoremap ff :Files<CR>
+
+" template folder
+let g:sonictemplate_vim_template_dir = '$HOME/.config/nvim/sonictemplate'
 
 highlight Normal ctermbg=NONE guibg=NONE
 highlight NonText ctermbg=NONE guibg=NONE
