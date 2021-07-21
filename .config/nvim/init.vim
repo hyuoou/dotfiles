@@ -41,7 +41,7 @@ syntax enable
 
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
-set list listchars=tab:\▸\-
+set list listchars=tab:\>\-
 " Tab文字を半角スペースにする
 "set expandtab
 " 行頭以外のTab文字の表示幅（スペースいくつ分）
@@ -115,8 +115,6 @@ call plug#begin()
 	Plug 'kassio/neoterm'
 " debug
 	Plug 'skywind3000/asyncrun.vim'
-" rainbow
-"	Plug 'luochen1990/rainbow'
 " git
 	Plug 'tpope/vim-fugitive'
 	let g:rainbow_active = 1
@@ -124,9 +122,6 @@ call plug#begin()
 	Plug 'skanehira/translate.vim'
 	Plug 'vim-jp/vimdoc-ja'
 	set helplang=ja
-" spell check
-	Plug 'kamykn/spelunker.vim'
-	Plug 'kamykn/popup-menu.nvim'
 " dart
 	Plug 'dart-lang/dart-vim-plugin'
 " flutter
@@ -144,8 +139,6 @@ call plug#begin()
 	Plug 'tjdevries/colorbuddy.nvim'
 	Plug 'maaslalani/nordbuddy'
 call plug#end()
-
-set nospell
 
 " appearance
 set background=dark
