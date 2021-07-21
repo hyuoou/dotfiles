@@ -168,7 +168,7 @@ let g:airline#extensions#tabline#buffer_idx_format = {
 let g:cursorhold_updatetime = 100
 
 " Open fern.vim
-nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+nnoremap <C-f> :Fern . -reveal=% -drawer -toggle -width=40<CR>
 
 " fern.vim show icon
 let g:fern#renderer = 'nerdfont'
@@ -222,6 +222,7 @@ nnoremap ff :Files<CR>
 
 " template folder
 let g:sonictemplate_vim_template_dir = '$HOME/.config/nvim/sonictemplate'
+nnoremap <C-n> :Template atcoder<CR>
 
 highlight Normal ctermbg=NONE guibg=NONE
 highlight NonText ctermbg=NONE guibg=NONE
