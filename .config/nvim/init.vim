@@ -13,6 +13,3 @@ runtime init/appearance.vim
 
 " set filetype
 runtime init/filetype.vim
-
-" lua config
-runtime init/lua.vim
