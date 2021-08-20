@@ -27,6 +27,7 @@ nnoremap <C-f> :Fern . -reveal=% -drawer -toggle -width=40<CR>
 nnoremap <C-p> :Ttoggle<CR>
 tnoremap <C-p> :Ttoggle<CR>
 tnoremap <silent> jj <C-\><C-n>
+tnoremap  <Esc> <C-\><C-n>
 
 " debug
 nnoremap <C-o> :AsyncRun
