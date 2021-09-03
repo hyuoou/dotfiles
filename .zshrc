@@ -214,9 +214,15 @@ alias vim='nvim'
 alias ls='exa --icons'
 alias la='exa --all --icons'
 alias ll='exa -hl --git'
+alias lla='exa --all -hl --git'
 alias lt='exa --tree --icons'
 alias cat='bat'
 alias yay='paru'
+alias rm='gomi'
+alias yd='youtube-dl -o "$HOME/Downloads/youtube-dl/%(title)s.%(ext)s" -f bestvideo+bestaudio --merge-output-format mp4'
+clone() {
+	git clone https://github.com/"$1".git
+}
 
 ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline
 ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue,underline
