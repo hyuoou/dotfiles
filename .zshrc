@@ -54,12 +54,6 @@ bindkey '^[[1;5C' forward-word                                  #
 bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
-## Alias section
-alias cp="cp -i"                                                # Confirm before overwriting something
-alias df='df -h'                                                # Human-readable sizes
-alias free='free -m'                                            # Show sizes in MB
-alias gitu='git add . && git commit && git push'
-
 # Theming section
 autoload -U compinit colors zcalc
 compinit -d
@@ -219,6 +213,7 @@ alias lt='exa --tree --icons'
 alias cat='bat'
 alias yay='paru'
 alias rm='gomi'
+alias cp="cp -i"
 alias yd='youtube-dl -o "$HOME/Downloads/youtube-dl/%(title)s.%(ext)s" -f bestvideo+bestaudio --merge-output-format mp4'
 clone() {
 	git clone https://github.com/"$1".git
