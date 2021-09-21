@@ -9,4 +9,3 @@ error_symbol = "[➜](bold red) "
 [directory]
 style = "bold blue"
 read_only_style = "red"
-

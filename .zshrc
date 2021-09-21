@@ -218,6 +218,10 @@ alias yd='youtube-dl -o "$HOME/Downloads/youtube-dl/%(title)s.%(ext)s" -f bestvi
 clone() {
 	git clone https://github.com/"$1".git
 }
+alias wttr='() { curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-Tokyo}" }'
+mkcd () {
+	mkdir -p "$1" && cd "$1"
+}
 
 ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline
 ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue,underline
