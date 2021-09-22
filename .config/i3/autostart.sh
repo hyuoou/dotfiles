@@ -5,8 +5,6 @@ clipit &
 fcitx &
 imwheel -b 45 &
 nm-applet &
-pamac-tray &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
-ff-theme-util &
-setcursor &
+$HOME/.i3/gufw_icon.sh&
