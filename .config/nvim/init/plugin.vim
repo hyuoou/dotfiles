@@ -30,10 +30,6 @@ call plug#begin()
 " Translation
 	Plug 'skanehira/translate.vim'
 	Plug 'vim-jp/vimdoc-ja'
-" dart
-	Plug 'dart-lang/dart-vim-plugin'
-" flutter
-	Plug 'thosakwe/vim-flutter'
 " indent
 	Plug 'Yggdroot/indentLine'
 " fzf
@@ -43,9 +39,11 @@ call plug#begin()
 	Plug 'mattn/vim-sonictemplate'
 " markdown
 	Plug 'skanehira/preview-markdown.vim'
+" comment
+	Plug 'tpope/vim-commentary'
 " neovim nightly plugins "
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'p00f/nvim-ts-rainbow'
 	Plug 'tjdevries/colorbuddy.nvim'
-	Plug 'maaslalani/nordbuddy'
+	Plug 'maaslalani/nordbuddy', {'branch': 'main'}
 call plug#end()
