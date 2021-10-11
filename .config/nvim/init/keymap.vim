@@ -17,17 +17,18 @@ vnoremap <C-e> <End>
 vnoremap <C-t> :Translate<CR>
 
 " vim-airline tab key
-nnoremap <C-u> :bp<CR>
-nnoremap <C-i> :bn<CR>
+" nnoremap <C-u> :bp<CR>
+" nnoremap <C-i> :bn<CR>
+nmap <C-u> <Plug>AirlineSelectPrevTab
+nmap <C-i> <Plug>AirlineSelectNextTab
 
 " Open fern.vim
 nnoremap <C-f> :Fern . -reveal=% -drawer -toggle -width=40<CR>
 
 " neoterm config
 nnoremap <C-p> :Ttoggle<CR>
-tnoremap <C-p> :Ttoggle<CR>
 tnoremap <silent> jj <C-\><C-n>
-tnoremap  <Esc> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
 
 " debug
 nnoremap <C-o> :AsyncRun

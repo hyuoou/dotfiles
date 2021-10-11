@@ -11,8 +11,8 @@ call plug#begin()
 	Plug 'lambdalisue/nerdfont.vim'
 	Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 	Plug 'antoinemadec/FixCursorHold.nvim'
+	Plug 'ryanoasis/vim-devicons'
 " lsp
-	Plug 'prabirshrestha/async.vim'
 	Plug 'prabirshrestha/asyncomplete.vim'
 	Plug 'prabirshrestha/asyncomplete-lsp.vim'
 	Plug 'prabirshrestha/vim-lsp'
@@ -37,8 +37,6 @@ call plug#begin()
 	Plug 'junegunn/fzf.vim'
 " template
 	Plug 'mattn/vim-sonictemplate'
-" markdown
-	Plug 'skanehira/preview-markdown.vim'
 " comment
 	Plug 'tpope/vim-commentary'
 " neovim nightly plugins "
