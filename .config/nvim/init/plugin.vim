@@ -17,6 +17,9 @@ call plug#begin()
 	Plug 'prabirshrestha/asyncomplete-lsp.vim'
 	Plug 'prabirshrestha/vim-lsp'
 	Plug 'mattn/vim-lsp-settings'
+" snippets
+	Plug 'hrsh7th/vim-vsnip'
+	Plug 'hrsh7th/vim-vsnip-integ'
 " run goimports
 	Plug 'mattn/vim-goimports'
 " lexima
@@ -45,3 +48,4 @@ call plug#begin()
 	Plug 'tjdevries/colorbuddy.nvim'
 	Plug 'maaslalani/nordbuddy', {'branch': 'main'}
 call plug#end()
+

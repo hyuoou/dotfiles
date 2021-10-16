@@ -39,6 +39,9 @@ augroup END
 " sonictemplete
 let g:sonictemplate_vim_template_dir = '$HOME/.config/nvim/sonictemplate'
 
+" FixCursorHold
+let g:cursorhold_updatetime = 100
+
 lua <<EOF
 -- treesitter
 require'nvim-treesitter.configs'.setup {
