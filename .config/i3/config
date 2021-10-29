@@ -14,7 +14,8 @@ bindsym $mod+y border pixel 1
 bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
-font pango:Noto Sans CJK JP 10
+# font pango:Noto Sans CJK JP 10
+font pango:IBM Plex Sans JP 10
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -31,11 +32,13 @@ bindsym $mod+Tab     exec --no-startup-id rofi -show window
 bindsym $mod+Shift+e exec --no-startup-id rofi -show power
 
 # sound section
-bindsym $mod+Ctrl+m exec pavucontrol
+bindsym $mod+Shift+m exec pavucontrol
 
 # Start Applications
 bindsym $mod+o exec firefox
 bindsym $mod+f exec thunar
+# bindsym $mod+Ctrl+f exec alacritty -e ranger
+bindsym Shift+Ctrl+f exec alacritty -e ranger
 bindsym $mod+b exec biscuit
 bindsym Print exec --no-startup-id xfce4-screenshooter
 
@@ -158,6 +161,7 @@ for_window [class="Nitrogen"] floating enable sticky enable border normal
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Pamac-updater"] floating enable
 for_window [class="Pavucontrol"] floating enable
+for_window [class="Gnome-calculator"] floating enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -187,13 +191,15 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+0 exec --no-startup-id blurlock
+# bindsym $mod+0 exec --no-startup-id blurlock
+bindsym $mod+0 exec --no-startup-id light-locker-command -l
 
 # Autostart applications
 exec_always --no-startup-id $HOME/.i3/autostart.sh
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
+#	position top
 	font pango:SauceCodePro Nerd Font 10
 	status_command i3blocks -c ~/.config/i3blocks/config
 	colors {

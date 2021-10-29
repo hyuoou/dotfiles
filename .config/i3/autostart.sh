@@ -7,4 +7,6 @@ imwheel -b 45 &
 nm-applet &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
-$HOME/.i3/gufw_icon.sh&
+$HOME/.i3/gufw_icon.sh &
+light-locker --lock-on-suspend &
+
