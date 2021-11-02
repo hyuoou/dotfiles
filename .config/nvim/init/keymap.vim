@@ -24,6 +24,7 @@ nmap <C-i> <Plug>AirlineSelectNextTab
 
 " Open fern.vim
 nnoremap <C-f> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+nnoremap <silent> sf :Fern .<CR>
 
 " neoterm config
 nnoremap <C-p> :Ttoggle<CR>
