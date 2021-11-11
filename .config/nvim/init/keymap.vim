@@ -11,19 +11,19 @@ inoremap <silent> jj <ESC>
 nnoremap <C-a> <Home>
 nnoremap <C-e> <End>
 nnoremap <C-t> :Translate!
+nnoremap <C-w> :bdelete<CR>
 
 vnoremap <C-a> <Home>
 vnoremap <C-e> <End>
 vnoremap <C-t> :Translate<CR>
 
 " vim-airline tab key
-" nnoremap <C-u> :bp<CR>
-" nnoremap <C-i> :bn<CR>
-nmap <C-u> <Plug>AirlineSelectPrevTab
-nmap <C-i> <Plug>AirlineSelectNextTab
+nmap <C-j> <Plug>AirlineSelectPrevTab
+nmap <C-k> <Plug>AirlineSelectNextTab
 
 " Open fern.vim
-nnoremap <C-f> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+" nnoremap <C-f> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+nnoremap <silent> fs :Fern . -reveal=% -drawer -toggle -width=40<CR>
 nnoremap <silent> sf :Fern .<CR>
 
 " neoterm config
