@@ -10,6 +10,17 @@ alias yay='paru'
 alias rm='gomi'
 alias cp="cp -i"
 alias yd='youtube-dl -o "$HOME/Downloads/youtube-dl/%(title)s.%(ext)s" -f bestvideo+bestaudio --merge-output-format mp4'
+alias mozc='/usr/lib/mozc/mozc_tool --mode=config_dialog'
+alias w3md='w3m duckduckgo.com'
+
+# tmux alias
+alias t='tmux'
+alias tn='tmux new -s'
+alias tls='tmux ls'
+alias ta='tmux a -t'
+alias tk='tmux kill-session -t'
+alias tka='tmux kill-server'
+
 clone() {
 	git clone https://github.com/"$1".git
 }
@@ -19,5 +30,4 @@ wttr() {
 mkcd () {
 	mkdir -p "$1" && cd "$1"
 }
-
 
