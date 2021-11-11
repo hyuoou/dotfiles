@@ -11,7 +11,6 @@ inoremap <silent> jj <ESC>
 nnoremap <C-a> <Home>
 nnoremap <C-e> <End>
 nnoremap <C-t> :Translate!
-nnoremap <C-w> :bdelete<CR>
 
 vnoremap <C-a> <Home>
 vnoremap <C-e> <End>
