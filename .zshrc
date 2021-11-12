@@ -206,6 +206,7 @@ esac
 
 # aliases
 [ -f ~/.aliases ] && source ~/.aliases
+export BAT_THEME="Nord"
 
 ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline
 ZSH_HIGHLIGHT_STYLES[precommand]=fg=blue,underline
