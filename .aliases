@@ -21,6 +21,7 @@ alias tls='tmux ls'
 alias ta='tmux a -t'
 alias tk='tmux kill-session -t'
 alias tka='tmux kill-server'
+alias ts='tmux source ~/.tmux.conf'
 
 clone() {
 	git clone https://github.com/"$1".git
