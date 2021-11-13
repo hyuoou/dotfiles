@@ -24,6 +24,3 @@ export PATH=$PATH:$GOPATH/bin
 export CHROME_EXECUTABLE='/opt/google/chrome/google-chrome'
 . "$HOME/.cargo/env"
 
-
-export BAT_THEME="Nord"
-
