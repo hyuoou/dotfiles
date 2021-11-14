@@ -21,8 +21,8 @@ nmap <C-j> <Plug>AirlineSelectPrevTab
 nmap <C-k> <Plug>AirlineSelectNextTab
 
 " Go to definition
-nnoremap <silent> gr :LspPeekDefinition<CR>
-nnoremap <silent> gd :LspDefinition<CR>
+nnoremap <silent> gd :LspPeekDefinition<CR>
+nnoremap <silent> gr :LspDefinition<CR>
 
 " Open fern.vim
 nnoremap <silent> fs :Fern . -reveal=% -drawer -toggle -width=40<CR>
