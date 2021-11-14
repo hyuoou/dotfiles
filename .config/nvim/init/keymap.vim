@@ -1,5 +1,4 @@
 inoremap <C-d> <Del>
-inoremap <C-b> <BS>
 inoremap <C-a> <Home>
 inoremap <C-e> <End>
 inoremap <C-h> <Left>
@@ -41,7 +40,7 @@ tnoremap <silent> jj <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>
 
 " debug
-nnoremap <C-o> :AsyncRun
+nnoremap <C-b> :AsyncRun
 
 " fzf key
 nnoremap ff :Files<CR>
