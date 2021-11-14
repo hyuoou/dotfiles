@@ -40,7 +40,7 @@ tnoremap <silent> jj <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>
 
 " debug
-nnoremap <S-o> :AsyncRun
+nnoremap <silent> go :AsyncRun
 
 " fzf key
 nnoremap ff :Files<CR>

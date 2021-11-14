@@ -1,1 +1,1 @@
-nnoremap <S-o> :AsyncRun go run %<CR>
+nnoremap <silent> go :AsyncRun go run %<CR>
