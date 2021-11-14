@@ -20,8 +20,11 @@ vnoremap <C-t> :Translate<CR>
 nmap <C-j> <Plug>AirlineSelectPrevTab
 nmap <C-k> <Plug>AirlineSelectNextTab
 
+" Go to definition
+nnoremap <silent> gg :LspPeekDefinition<CR>
+nnoremap <silent> gd :LspDefinition<CR>
+
 " Open fern.vim
-" nnoremap <C-f> :Fern . -reveal=% -drawer -toggle -width=40<CR>
 nnoremap <silent> fs :Fern . -reveal=% -drawer -toggle -width=40<CR>
 nnoremap <silent> sf :Fern .<CR>
 

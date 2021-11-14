@@ -16,7 +16,6 @@ let g:airline#extensions#tabline#buffer_idx_format = {
 	\ '9': '9 '
 	\}
 
-
 " git
 let g:rainbow_active = 1
 
