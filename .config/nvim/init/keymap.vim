@@ -22,7 +22,7 @@ nmap <C-k> <Plug>AirlineSelectNextTab
 
 " Go to definition
 nnoremap <silent> gd :LspPeekDefinition<CR>
-nnoremap <silent> gr :LspDefinition<CR>
+nnoremap <silent> ge :LspDefinition<CR>
 
 " Open fern.vim
 nnoremap <silent> fs :Fern . -reveal=% -drawer -toggle -width=40<CR>
