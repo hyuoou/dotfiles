@@ -24,6 +24,9 @@ nmap <C-k> <Plug>AirlineSelectNextTab
 nnoremap <silent> gd :LspPeekDefinition<CR>
 nnoremap <silent> ge :LspDefinition<CR>
 
+" Rename the symbol
+nnoremap <silent> rr :LspRename<CR>
+
 " Open fern.vim
 nnoremap <silent> fs :Fern . -reveal=% -drawer -toggle -width=40<CR>
 nnoremap <silent> sf :Fern .<CR>
