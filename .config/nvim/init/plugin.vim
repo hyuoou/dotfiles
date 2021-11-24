@@ -1,9 +1,19 @@
 call plug#begin()
 " lsp
-	Plug 'prabirshrestha/asyncomplete.vim'
-	Plug 'prabirshrestha/asyncomplete-lsp.vim'
-	Plug 'prabirshrestha/vim-lsp'
-	Plug 'mattn/vim-lsp-settings'
+	" Plug 'prabirshrestha/asyncomplete.vim'
+	" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+	" Plug 'prabirshrestha/vim-lsp'
+	" Plug 'mattn/vim-lsp-settings'
+	Plug 'neovim/nvim-lspconfig'
+	Plug 'neovim/nvim-lspconfig'
+	Plug 'hrsh7th/cmp-nvim-lsp'
+	Plug 'hrsh7th/cmp-buffer'
+	Plug 'hrsh7th/cmp-path'
+	Plug 'hrsh7th/cmp-cmdline'
+	Plug 'hrsh7th/nvim-cmp'
+	Plug 'onsails/lspkind-nvim'
+	Plug 'kyazdani42/nvim-web-devicons'
+	Plug 'folke/trouble.nvim'
 " filetree
 	Plug 'lambdalisue/fern.vim'
 	Plug 'lambdalisue/fern-git-status.vim'
@@ -22,6 +32,7 @@ call plug#begin()
 " snippets
 	Plug 'hrsh7th/vim-vsnip'
 	Plug 'hrsh7th/vim-vsnip-integ'
+	Plug 'hrsh7th/cmp-vsnip'
 " treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'p00f/nvim-ts-rainbow'

@@ -20,15 +20,18 @@ nmap <C-j> <Plug>AirlineSelectPrevTab
 nmap <C-k> <Plug>AirlineSelectNextTab
 
 " Go to definition
-nnoremap <silent> gd :LspPeekDefinition<CR>
-nnoremap <silent> ge :LspDefinition<CR>
+" nnoremap <silent> gd :LspPeekDefinition<CR>
+" nnoremap <silent> ge :LspDefinition<CR>
 
-" Rename the symbol
-nnoremap <silent> rr :LspRename<CR>
+" " Rename the symbol
+" nnoremap <silent> rr :LspRename<CR>
 
-" Jump to diagnostic
-nnoremap <C-l> :LspNextDiagnostic<CR>
-nnoremap <C-h> :LspPreviousDiagnostic<CR>
+" " Jump to diagnostic
+" nnoremap <C-l> :LspNextDiagnostic<CR>
+" nnoremap <C-h> :LspPreviousDiagnostic<CR>
+
+" troubel
+nnoremap <silent> gx :TroubleToggle lsp_document_diagnostics<CR>
 
 " Open fern.vim
 nnoremap <silent> fs :Fern . -reveal=% -drawer -toggle -width=40<CR>
