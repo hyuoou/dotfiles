@@ -1,41 +1,37 @@
-" setting
 set fenc=utf-8
 set nobackup
+set nowritebackup
 set noswapfile
 set autoread
 set hidden
 set showcmd
 
-" 見た目系
 set number
 set cursorline
 set virtualedit=onemore
 set smartindent
-" set visualbell
 set showmatch
 set laststatus=2
-set wildmode=list:longest
-nnoremap j gj
-nnoremap k gk
 syntax enable
 
-" Tab系
-set list listchars=tab:\>\-
-" set expandtab
+nnoremap j gj
+nnoremap k gk
+nnoremap n nzz
+nnoremap N Nzz
+
+set list
+set listchars=tab:\>\-
 set tabstop=4
 set shiftwidth=4
 
-" 検索系
 set ignorecase
 set smartcase
 set incsearch
 set wrapscan
 set hlsearch
-nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <space>q :nohlsearch<CR>
 
-" clipboard
 set clipboard+=unnamedplus
 
-" delete space
 autocmd BufWritePre * :%s/\s\+$//ge
 

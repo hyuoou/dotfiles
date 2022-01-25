@@ -4,19 +4,19 @@ call plug#begin()
 	Plug 'mattn/vim-lsp-settings'
 	Plug 'prabirshrestha/asyncomplete.vim'
 	Plug 'prabirshrestha/asyncomplete-lsp.vim'
-" filetree
+" fern
 	Plug 'lambdalisue/fern.vim'
 	Plug 'lambdalisue/fern-git-status.vim'
 	Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+	Plug 'antoinemadec/FixCursorHold.nvim'
 " icon
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'lambdalisue/nerdfont.vim'
-	Plug 'antoinemadec/FixCursorHold.nvim'
 " theme
 	Plug 'arcticicestudio/nord-vim'
 	Plug 'tjdevries/colorbuddy.nvim'
-	Plug 'maaslalani/nordbuddy', {'branch': 'main'}
-" airline
+	Plug 'andersevenrud/nordic.nvim', {'branch': 'main'}
+" statusline
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 " snippets
@@ -28,8 +28,8 @@ call plug#begin()
 " fzf
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
-" Translation
-	Plug 'skanehira/translate.vim'
+" translation
+	Plug 'skanehira/denops-translate.vim', {'branch': 'main'}
 " document
 	Plug 'vim-jp/vimdoc-ja'
 " golang
@@ -38,18 +38,22 @@ call plug#begin()
 	Plug 'kassio/neoterm'
 " debug
 	Plug 'skywind3000/asyncrun.vim'
-" indent
-	Plug 'Yggdroot/indentLine'
 " template
 	Plug 'mattn/vim-sonictemplate'
 " comment
 	Plug 'tpope/vim-commentary'
 " markdown
 	Plug 'kat0h/bufpreview.vim'
+	Plug 'mattn/vim-maketable'
 " deno
 	Plug 'vim-denops/denops.vim', {'branch': 'main'}
-" lexima
+" autopair
 	Plug 'cohama/lexima.vim'
 " git
 	Plug 'tpope/vim-fugitive'
+" skk
+	Plug 'vim-skk/skkeleton', {'branch': 'main'}
+" undo
+	Plug 'mbbill/undotree'
 call plug#end()
+

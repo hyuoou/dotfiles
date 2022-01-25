@@ -11,5 +11,3 @@ runtime init/plugin-config.vim
 " appearance
 runtime init/appearance.vim
 
-" set filetype
-runtime init/filetype.vim

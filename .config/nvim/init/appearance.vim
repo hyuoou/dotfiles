@@ -1,6 +1,6 @@
 set background=dark
 colorscheme nord
-lua require('colorbuddy').colorscheme('nordbuddy')
+lua require('colorbuddy').colorscheme('nordic')
 
 highlight Normal ctermbg=NONE guibg=NONE
 highlight NonText ctermbg=NONE guibg=NONE
