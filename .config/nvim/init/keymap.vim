@@ -23,12 +23,12 @@ nmap <C-j> <Plug>AirlineSelectPrevTab
 nmap <C-k> <Plug>AirlineSelectNextTab
 
 " vim-lsp
-nnoremap <silent> K :LspHover<CR>
-nnoremap <silent> <space>K :LspPeekDefinition<CR>
-nnoremap ge :LspDefinition<CR>
-nnoremap <space>r :LspRename<CR>
-nnoremap <C-l> :LspNextDiagnostic<CR>
-nnoremap <C-h> :LspPreviousDiagnostic<CR>
+" nnoremap <silent> K :LspHover<CR>
+" nnoremap <silent> <space>K :LspPeekDefinition<CR>
+" nnoremap ge :LspDefinition<CR>
+" nnoremap <space>r :LspRename<CR>
+" nnoremap <C-l> :LspNextDiagnostic<CR>
+" nnoremap <C-h> :LspPreviousDiagnostic<CR>
 
 " Open fern.vim
 nnoremap <silent> sf :Fern .<CR>

@@ -1,9 +1,16 @@
 call plug#begin()
 " lsp
-	Plug 'prabirshrestha/vim-lsp'
-	Plug 'mattn/vim-lsp-settings'
-	Plug 'prabirshrestha/asyncomplete.vim'
-	Plug 'prabirshrestha/asyncomplete-lsp.vim'
+	Plug 'neovim/nvim-lspconfig'
+	Plug 'matsui54/denops-popup-preview.vim', {'branch': 'main'}
+" complete
+	Plug 'Shougo/ddc.vim', {'branch': 'main'}
+	Plug 'Shougo/pum.vim', {'branch': 'main'}
+	Plug 'Shougo/ddc-around', {'branch': 'main'}
+	Plug 'Shougo/ddc-sorter_rank', {'branch': 'main'}
+	Plug 'Shougo/ddc-matcher_head', {'branch': 'main'}
+	Plug 'Shougo/ddc-converter_remove_overlap', {'branch': 'main'}
+	Plug 'tani/ddc-fuzzy', {'branch': 'main'}
+	Plug 'Shougo/ddc-nvim-lsp', {'branch': 'main'}
 " fern
 	Plug 'lambdalisue/fern.vim'
 	Plug 'lambdalisue/fern-git-status.vim'
@@ -55,5 +62,7 @@ call plug#begin()
 	Plug 'vim-skk/skkeleton', {'branch': 'main'}
 " undo
 	Plug 'mbbill/undotree'
+" backslash
+	Plug 'lambdalisue/vim-backslash'
 call plug#end()
 

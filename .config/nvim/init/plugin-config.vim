@@ -90,5 +90,75 @@ require("nvim-treesitter.configs").setup {
 		},
 	},
 }
+-- nvim-lspconfig
+local opts = { noremap=true, silent=true }
+vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+local on_attach = function(client, bufnr)
+	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ge', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+end
+
+local servers = { 'clangd', 'gopls', 'bashls', 'vimls' }
+for _, lsp in pairs(servers) do
+	require('lspconfig')[lsp].setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+	}
+end
 EOF
+
+" ddc config
+call ddc#custom#patch_global({
+	\ 'backspaceCompletion': v:true,
+	\ 'completionMenu': 'pum.vim',
+	\ })
+
+call ddc#custom#patch_global('sources', ['nvim-lsp', 'vsnip', 'skkeleton', 'around'])
+call ddc#custom#patch_global('sourceOptions', {
+	\ '_': {
+	\ 	'ignoreCase': v:true,
+	\ 	'matchers': ['matcher_fuzzy'],
+	\ 	'sorters': ['sorter_fuzzy'],
+	\ 	'converter': ['converter_remove_overlap', 'converter_fuzzy']},
+	\ 'vsnip': {
+	\ 	'mark': 'VS',
+	\ 	'dup': v:true,
+	\ },
+	\ 'nvim-lsp': {
+	\ 	'mark': 'LSP',
+	\ 	'dup': v:true,
+	\ 	'isVolatile': v:true,
+	\ 	'minAutoCompleteLength': 1,
+	\ },
+	\ 'skkeleton': {
+	\ 	'mark': 'SKK',
+	\ 	'matchers': ['skkeleton'],
+	\ 	'sorters': [],
+	\ 	'minAutoCompleteLength': 1,
+	\ },
+	\ 'around': {
+	\ 	'mark': 'A',
+	\ 	'isVolatile': v:true,
+	\ }})
+
+" enable ddc
+call ddc#enable()
+call popup_preview#enable()
+
+" pum mapping
+let g:lexima_no_default_rules = v:true
+call lexima#set_default_rules()
+
+inoremap <silent><expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
+inoremap <silent><expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
+inoremap <silent><expr> <Esc> pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<Esc>'
+inoremap <silent><expr> <CR>  pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
+autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
 
