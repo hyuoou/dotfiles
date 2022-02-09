@@ -1,23 +1,51 @@
-" airline
-let g:airline_theme = 'nord'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#buffer_idx_format = {
-	\ '0': '0 ',
-	\ '1': '1 ',
-	\ '2': '2 ',
-	\ '3': '3 ',
-	\ '4': '4 ',
-	\ '5': '5 ',
-	\ '6': '6 ',
-	\ '7': '7 ',
-	\ '8': '8 ',
-	\ '9': '9 '
-	\}
+" lightline
+let g:lightline = {}
+let g:lightline.colorscheme = 'nord'
+let g:lightline.separator = {'left': "\ue0b0", 'right': "\ue0b2"}
+let g:lightline.subseparator = {'left': "\ue0b1", 'right': "\ue0b3"}
 
-" git
-let g:rainbow_active = 1
+let g:lightline.active = {}
+let g:lightline.active.left = [
+	\ ['mode', 'paste'],
+	\ ['gitbranch', 'readonly', 'filename', 'modified'],
+	\ ]
+let g:lightline.active.right = [
+	\ ['lsp_warnings', 'lsp_errors'],
+	\ ['lineinfo', 'percent'],
+	\ ['fileformat', 'fileencoding', 'filetype'],
+	\ ]
+
+let g:lightline.component = {}
+let g:lightline.component_function = {}
+let g:lightline.component_function.gitbranch = 'GetGitBranch'
+
+let g:lightline.tabline = {}
+let g:lightline.tabline.left = [['tabs']]
+let g:lightline.tabline.right = [[]]
+
+let g:lightline.tab = {}
+let g:lightline.tab.active = ['tabnum', 'filename', 'devicon', 'modified']
+let g:lightline.tab.inactive = ['tabnum', 'filename', 'devicon', 'modified']
+
+let g:lightline.tab_component_function = {}
+let g:lightline.tab_component_function.devicon = 'GetDeviIcon'
+
+function! GetDeviIcon(n) abort
+	let l:bufnr = tabpagebuflist(a:n)[tabpagewinnr(a:n) - 1]
+	return WebDevIconsGetFileTypeSymbol(bufname(l:bufnr))
+endfunction
+
+function! GetGitBranch() abort
+	if gitbranch#name() != ''
+		return ' '.gitbranch#name()
+	endif
+	return ''
+endfunction
+
+let g:lightline#lsp#indicator_warnings = 'W:'
+let g:lightline#lsp#indicator_errors = 'E:'
+call lightline#lsp#register()
+autocmd DiagnosticChanged * call lightline#update()
 
 " vimdoc-ja
 set helplang=ja
@@ -56,17 +84,6 @@ call skkeleton#register_kanatable('rom', {
 " vsnip
 let g:vsnip_snippet_dir = '$HOME/.config/nvim/vsnip'
 
-" undotree
-if !exists('g:undotree_SplitWidth')
-	let g:undotree_SplitWidth = 40
-endif
-if !exists('g:undotree_DiffpanelHeight')
-	let g:undotree_DiffpanelHeight = 20
-endif
-if !exists('g:undotree_SetFocusWhenToggle')
-	let g:undotree_SetFocusWhenToggle = 1
-endif
-
 lua <<EOF
 -- treesitter
 require("nvim-treesitter.configs").setup {
@@ -86,12 +103,12 @@ require("nvim-treesitter.configs").setup {
 			"#5060BB",
 			"#179387",
 			"#88c0d0",
-			"#5e81ac"
+			"#4e81ac",
 		},
 	},
 }
 -- nvim-lspconfig
-local opts = { noremap=true, silent=true }
+local opts = {noremap=true, silent=true}
 vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
@@ -100,7 +117,7 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ge', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+--	vim.api.nvim_buf_set_keymap(bfile, 'n', 'ge', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 end

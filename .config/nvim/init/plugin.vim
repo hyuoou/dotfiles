@@ -24,8 +24,9 @@ call plug#begin()
 	Plug 'tjdevries/colorbuddy.nvim'
 	Plug 'andersevenrud/nordic.nvim', {'branch': 'main'}
 " statusline
-	Plug 'vim-airline/vim-airline'
-	Plug 'vim-airline/vim-airline-themes'
+	Plug 'itchyny/lightline.vim'
+	Plug 'itchyny/vim-gitbranch'
+	Plug 'josa42/nvim-lightline-lsp'
 " snippets
 	Plug 'hrsh7th/vim-vsnip'
 	Plug 'hrsh7th/vim-vsnip-integ'
@@ -56,12 +57,8 @@ call plug#begin()
 	Plug 'vim-denops/denops.vim', {'branch': 'main'}
 " autopair
 	Plug 'cohama/lexima.vim'
-" git
-	Plug 'tpope/vim-fugitive'
 " skk
 	Plug 'vim-skk/skkeleton', {'branch': 'main'}
-" undo
-	Plug 'mbbill/undotree'
 " backslash
 	Plug 'lambdalisue/vim-backslash'
 call plug#end()
