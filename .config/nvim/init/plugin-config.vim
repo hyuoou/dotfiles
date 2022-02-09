@@ -103,7 +103,7 @@ require("nvim-treesitter.configs").setup {
 			"#5060BB",
 			"#179387",
 			"#88c0d0",
-			"#4e81ac",
+			"#5e81ac",
 		},
 	},
 }
