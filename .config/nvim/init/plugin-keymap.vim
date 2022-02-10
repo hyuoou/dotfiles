@@ -2,18 +2,16 @@
 nmap <C-t> <Plug>(Translate)
 vmap <C-t> <Plug>(VTranslate)
 
-" Open fern.vim
+" fern.vim
 nnoremap <silent> sf :Fern .<CR>
 nnoremap <silent> fs :Fern . -reveal=% -drawer -toggle -width=40<CR>
 
 " neoterm
 nnoremap <silent> <C-p> :Ttoggle<CR>
+tnoremap <silent> <C-p> <C-\><C-n>:Ttoggle<CR>
 
 " fzf
 nnoremap <silent> ff :Files<CR>
-
-" undotree
-nnoremap <space>u :UndotreeToggle<CR>
 
 " vsnip
 imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'

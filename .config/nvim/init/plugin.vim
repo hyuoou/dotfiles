@@ -12,9 +12,9 @@ call plug#begin()
 	Plug 'tani/ddc-fuzzy', {'branch': 'main'}
 	Plug 'Shougo/ddc-nvim-lsp', {'branch': 'main'}
 " fern
-	Plug 'lambdalisue/fern.vim'
-	Plug 'lambdalisue/fern-git-status.vim'
-	Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+	Plug 'lambdalisue/fern.vim', {'on': 'Fern'}
+	Plug 'lambdalisue/fern-git-status.vim', {'on': 'Fern'}
+	Plug 'lambdalisue/fern-renderer-nerdfont.vim', {'on': 'Fern'}
 	Plug 'antoinemadec/FixCursorHold.nvim'
 " icon
 	Plug 'ryanoasis/vim-devicons'
@@ -33,7 +33,7 @@ call plug#begin()
 " treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'p00f/nvim-ts-rainbow'
-" fzf
+" fuzzyfinder
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
 " translation
@@ -41,18 +41,18 @@ call plug#begin()
 " document
 	Plug 'vim-jp/vimdoc-ja'
 " golang
-	Plug 'mattn/vim-goimports'
+	Plug 'mattn/vim-goimports', {'for': 'go'}
 " terminal
-	Plug 'kassio/neoterm'
+	Plug 'kassio/neoterm', {'on': 'Ttoggle'}
 " debug
-	Plug 'skywind3000/asyncrun.vim'
+	Plug 'skywind3000/asyncrun.vim', {'on': 'AsyncRun'}
 " template
-	Plug 'mattn/vim-sonictemplate'
+	Plug 'mattn/vim-sonictemplate', {'on': 'Template'}
 " comment
 	Plug 'tpope/vim-commentary'
 " markdown
-	Plug 'kat0h/bufpreview.vim'
-	Plug 'mattn/vim-maketable'
+	Plug 'kat0h/bufpreview.vim', {'on': 'PreviewMarkdown'}
+	Plug 'mattn/vim-maketable', {'on': 'MakeTable'}
 " deno
 	Plug 'vim-denops/denops.vim', {'branch': 'main'}
 " autopair
@@ -60,6 +60,6 @@ call plug#begin()
 " skk
 	Plug 'vim-skk/skkeleton', {'branch': 'main'}
 " backslash
-	Plug 'lambdalisue/vim-backslash'
+	Plug 'lambdalisue/vim-backslash', {'for': 'vim'}
 call plug#end()
 
