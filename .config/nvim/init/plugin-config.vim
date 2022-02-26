@@ -50,13 +50,24 @@ autocmd DiagnosticChanged * call lightline#update()
 " vimdoc-ja
 set helplang=ja
 
+" silicon
+let g:silicon = {
+	\ 'theme': 'Nord',
+	\ 'font':  'SauceCodePro Nerd Font'
+	\ }
+let g:silicon['output'] = '~/Pictures/silicon/silicon-{time:%Y-%m-%d-%H:%M:%S}.png'
+
 " neoterm
 let g:neoterm_default_mod = 'vertical belowright'
 let g:neoterm_autoinsert = 1
 let g:neoterm_size = 80
+nnoremap <silent> <C-p> :Ttoggle<CR>
+tnoremap <silent> <C-p> <C-\><C-n>:Ttoggle<CR>
 
 " fern
 let g:fern#renderer = 'nerdfont'
+nnoremap <silent> sf :Fern .<CR>
+nnoremap <silent> fs :Fern . -reveal=% -drawer -toggle -width=40<CR>
 
 " quickfix
 augroup MyGroup
@@ -80,9 +91,6 @@ call skkeleton#register_kanatable('rom', {
 	\'jj': 'escape',
 	\';': 'henkanPoint',
 	\})
-
-" vsnip
-let g:vsnip_snippet_dir = '$HOME/.config/nvim/vsnip'
 
 lua <<EOF
 -- treesitter
@@ -108,7 +116,7 @@ require("nvim-treesitter.configs").setup {
 	},
 }
 -- nvim-lspconfig
-local opts = {noremap=true, silent=true}
+local opts = { noremap=true, silent=true }
 vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
@@ -129,6 +137,24 @@ for _, lsp in pairs(servers) do
 	}
 end
 EOF
+
+" fzf
+nnoremap <silent> ff :Files<CR>
+
+" translate.vim
+nmap <C-t> <Plug>(Translate)
+vmap <C-t> <Plug>(VTranslate)
+
+" skkeleton
+imap <C-s> <Plug>(skkeleton-toggle)
+cmap <C-s> <Plug>(skkeleton-toggle)
+
+" vsnip
+let g:vsnip_snippet_dir = '$HOME/.config/nvim/vsnip'
+imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
 
 " ddc config
 call ddc#custom#patch_global({
@@ -162,19 +188,21 @@ call ddc#custom#patch_global('sourceOptions', {
 	\ 'around': {
 	\ 	'mark': 'A',
 	\ 	'isVolatile': v:true,
-	\ }})
+	\ },
+	\ })
 
 " enable ddc
 call ddc#enable()
 call popup_preview#enable()
 
 " pum mapping
+let g:lexima_map_escape = '<Plug>(lexima-escape)'
 let g:lexima_no_default_rules = v:true
 call lexima#set_default_rules()
 
 inoremap <silent><expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
 inoremap <silent><expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
-inoremap <silent><expr> <Esc> pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<Esc>'
+inoremap <silent><expr> <Esc> pum#visible() ? '<Cmd>call pum#map#cancel()<CR>' : '<Plug>(lexima-escape)'
 inoremap <silent><expr> <CR>  pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
 autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
 

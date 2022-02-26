@@ -26,6 +26,8 @@ set incsearch
 set wrapscan
 set hlsearch
 
+set pumheight=15
+
 set clipboard+=unnamedplus
 
 autocmd BufWritePre * :%s/\s\+$//ge

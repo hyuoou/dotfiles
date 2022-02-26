@@ -36,7 +36,7 @@ call plug#begin()
 " fuzzyfinder
 	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 	Plug 'junegunn/fzf.vim'
-" translation
+" translate
 	Plug 'skanehira/denops-translate.vim', {'branch': 'main'}
 " document
 	Plug 'vim-jp/vimdoc-ja'
@@ -61,5 +61,7 @@ call plug#begin()
 	Plug 'vim-skk/skkeleton', {'branch': 'main'}
 " backslash
 	Plug 'lambdalisue/vim-backslash', {'for': 'vim'}
+" silicon
+	Plug 'segeljakt/vim-silicon', {'on': 'Silicon'}
 call plug#end()
 

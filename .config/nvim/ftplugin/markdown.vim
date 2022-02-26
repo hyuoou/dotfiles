@@ -1,2 +1,3 @@
-nnoremap <C-n> :Template base<CR>
+" Template
+nnoremap <silent> <C-n> :Template base<CR>
 
