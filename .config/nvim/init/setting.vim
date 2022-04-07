@@ -13,10 +13,11 @@ set smartindent
 set showmatch
 set laststatus=2
 set showtabline=2
+set noshowmode
 syntax enable
 
 set list
-set listchars=tab:\>\-
+set listchars=tab:>-,space:·
 set tabstop=4
 set shiftwidth=4
 
@@ -27,8 +28,26 @@ set wrapscan
 set hlsearch
 
 set pumheight=15
-
 set clipboard+=unnamedplus
 
-autocmd BufWritePre * :%s/\s\+$//ge
+augroup MyAutoCmd
+	autocmd!
+	autocmd BufWritePre * :%s/\s\+$//ge
+augroup END
+
+let g:did_install_default_menus = 1
+let g:did_install_syntax_menu   = 1
+let g:did_indent_on             = 1
+let g:did_load_filetypes        = 1
+let g:loaded_2html_plugin       = 1
+let g:loaded_gzip               = 1
+let g:loaded_man                = 1
+let g:loaded_matchit            = 1
+let g:loaded_matchparen         = 1
+let g:loaded_netrwPlugin        = 1
+let g:loaded_shada_plugin       = 1
+let g:loaded_spellfile_plugin   = 1
+let g:loaded_tarPlugin          = 1
+let g:loaded_zipPlugin          = 1
+let g:skip_loading_mswin        = 1
 

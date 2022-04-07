@@ -1,8 +1,10 @@
 {
-	"std": {
-		"prefix": "std",
-		"body": [
-			"std::"
-		]
-	}
+  "std": {
+    "prefix": ["std"],
+    "body": ["std::"]
+  },
+  "cout": {
+    "prefix": ["cout"],
+    "body": ["cout << $1 << endl"]
+  }
 }

@@ -4,10 +4,9 @@ nnoremap <C-a> ^
 nnoremap <C-e> $
 nnoremap - <C-x>
 nnoremap + <C-a>
-nnoremap <silent> st :tabnew<CR>
-nnoremap <silent> <C-k> :tabnext<CR>
-nnoremap <silent> <C-j> :tabprevious<CR>
-nnoremap <silent> <space>q :nohlsearch<CR>
+nnoremap <silent> <C-k> <Cmd>bnext<CR>
+nnoremap <silent> <C-j> <Cmd>bprevious<CR>
+nnoremap <silent> <space>q <Cmd>nohlsearch<CR>
 
 inoremap <C-a> <Home>
 inoremap <C-e> <End>

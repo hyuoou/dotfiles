@@ -1,17 +1,38 @@
-call plug#begin()
+call plug#begin('~/.cache/vim-plug/')
 " lsp
 	Plug 'neovim/nvim-lspconfig'
-	Plug 'matsui54/denops-popup-preview.vim', {'branch': 'main'}
-" complete
+" ddc.vim
 	Plug 'Shougo/ddc.vim', {'branch': 'main'}
 	Plug 'Shougo/pum.vim', {'branch': 'main'}
 	Plug 'Shougo/ddc-around', {'branch': 'main'}
-	Plug 'Shougo/ddc-sorter_rank', {'branch': 'main'}
-	Plug 'Shougo/ddc-matcher_head', {'branch': 'main'}
 	Plug 'Shougo/ddc-converter_remove_overlap', {'branch': 'main'}
 	Plug 'tani/ddc-fuzzy', {'branch': 'main'}
 	Plug 'Shougo/ddc-nvim-lsp', {'branch': 'main'}
-" fern
+	Plug 'LumaKernel/ddc-file', {'branch': 'main'}
+	Plug 'LumaKernel/ddc-tabnine', {'branch': 'main'}
+	Plug 'matsui54/denops-popup-preview.vim', {'branch': 'main'}
+" ddu.vim
+	Plug 'Shougo/ddu.vim', {'branch': 'main'}
+" ddu ui
+	Plug 'Shougo/ddu-ui-ff', {'branch': 'main'}
+" ddu source
+	Plug 'Shougo/ddu-source-file_rec', {'branch': 'main'}
+	Plug 'Shougo/ddu-source-file_old', {'branch': 'main'}
+	Plug 'Shougo/ddu-source-line', {'branch': 'main'}
+	Plug 'Shougo/ddu-source-action', {'branch': 'main'}
+	Plug 'Shougo/ddu-source-file', {'branch': 'main'}
+	Plug 'shun/ddu-source-buffer', {'branch': 'main'}
+	Plug 'shun/ddu-source-rg', {'branch': 'main'}
+	Plug 'gamoutatsumi/ddu-source-nvim-lsp'
+	Plug 'matsui54/ddu-source-file_external', {'branch': 'main'}
+	Plug 'matsui54/ddu-source-command_history', {'branch': 'main'}
+" ddu filter
+	Plug 'Shougo/ddu-filter-matcher_substring', {'branch': 'main'}
+" ddu kind
+	Plug 'Shougo/ddu-kind-file', {'branch': 'main'}
+" ddu command
+	Plug 'Shougo/ddu-commands.vim', {'branch': 'main'}
+" filer
 	Plug 'lambdalisue/fern.vim', {'on': 'Fern'}
 	Plug 'lambdalisue/fern-git-status.vim', {'on': 'Fern'}
 	Plug 'lambdalisue/fern-renderer-nerdfont.vim', {'on': 'Fern'}
@@ -22,20 +43,17 @@ call plug#begin()
 " theme
 	Plug 'arcticicestudio/nord-vim'
 	Plug 'tjdevries/colorbuddy.nvim'
-	Plug 'andersevenrud/nordic.nvim', {'branch': 'main'}
 " statusline
 	Plug 'itchyny/lightline.vim'
 	Plug 'itchyny/vim-gitbranch'
 	Plug 'josa42/nvim-lightline-lsp'
+	Plug 'mengelbrecht/lightline-bufferline'
 " snippets
 	Plug 'hrsh7th/vim-vsnip'
 	Plug 'hrsh7th/vim-vsnip-integ'
 " treesitter
 	Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 	Plug 'p00f/nvim-ts-rainbow'
-" fuzzyfinder
-	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-	Plug 'junegunn/fzf.vim'
 " translate
 	Plug 'skanehira/denops-translate.vim', {'branch': 'main'}
 " document
@@ -63,5 +81,9 @@ call plug#begin()
 	Plug 'lambdalisue/vim-backslash', {'for': 'vim'}
 " silicon
 	Plug 'segeljakt/vim-silicon', {'on': 'Silicon'}
+" git
+	Plug 'kdheepak/lazygit.nvim', {'branch': 'main', 'on': 'LazyGit'}
+" surround
+	Plug 'tpope/vim-surround'
 call plug#end()
 
