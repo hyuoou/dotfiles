@@ -1,4 +1,4 @@
 " debug
-nnoremap <silent> go :AsyncRun go build<CR>
-nnoremap <silent> gO :AsyncRun go run %<CR>
+nnoremap <silent> go <Cmd>AsyncRun go build<CR>
+nnoremap <silent> gO <Cmd>AsyncRun go run %<CR>
 

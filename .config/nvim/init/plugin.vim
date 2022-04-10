@@ -3,13 +3,20 @@ call plug#begin('~/.cache/vim-plug/')
 	Plug 'neovim/nvim-lspconfig'
 " ddc.vim
 	Plug 'Shougo/ddc.vim', {'branch': 'main'}
+" pum.vim
 	Plug 'Shougo/pum.vim', {'branch': 'main'}
+" ddc source
 	Plug 'Shougo/ddc-around', {'branch': 'main'}
-	Plug 'Shougo/ddc-converter_remove_overlap', {'branch': 'main'}
-	Plug 'tani/ddc-fuzzy', {'branch': 'main'}
 	Plug 'Shougo/ddc-nvim-lsp', {'branch': 'main'}
+	Plug 'Shougo/ddc-mocword', {'branch': 'main'}
 	Plug 'LumaKernel/ddc-file', {'branch': 'main'}
 	Plug 'LumaKernel/ddc-tabnine', {'branch': 'main'}
+	Plug 'matsui54/ddc-buffer', {'branch': 'main'}
+	Plug 'delphinus/ddc-tmux', {'branch': 'main'}
+" ddc filter
+	Plug 'Shougo/ddc-converter_remove_overlap', {'branch': 'main'}
+	Plug 'tani/ddc-fuzzy', {'branch': 'main'}
+" ddc popup
 	Plug 'matsui54/denops-popup-preview.vim', {'branch': 'main'}
 " ddu.vim
 	Plug 'Shougo/ddu.vim', {'branch': 'main'}
@@ -26,6 +33,7 @@ call plug#begin('~/.cache/vim-plug/')
 	Plug 'gamoutatsumi/ddu-source-nvim-lsp'
 	Plug 'matsui54/ddu-source-file_external', {'branch': 'main'}
 	Plug 'matsui54/ddu-source-command_history', {'branch': 'main'}
+	Plug 'matsui54/ddu-source-help', {'branch': 'main'}
 " ddu filter
 	Plug 'Shougo/ddu-filter-matcher_substring', {'branch': 'main'}
 " ddu kind
@@ -61,6 +69,7 @@ call plug#begin('~/.cache/vim-plug/')
 " golang
 	Plug 'mattn/vim-goimports', {'for': 'go'}
 " terminal
+	Plug 'Shougo/deol.nvim', {'on': 'Deol'}
 	Plug 'kassio/neoterm', {'on': 'Ttoggle'}
 " debug
 	Plug 'skywind3000/asyncrun.vim', {'on': 'AsyncRun'}
@@ -83,6 +92,7 @@ call plug#begin('~/.cache/vim-plug/')
 	Plug 'segeljakt/vim-silicon', {'on': 'Silicon'}
 " git
 	Plug 'kdheepak/lazygit.nvim', {'branch': 'main', 'on': 'LazyGit'}
+	Plug 'lambdalisue/gin.vim', {'branch': 'main'}
 " surround
 	Plug 'tpope/vim-surround'
 call plug#end()

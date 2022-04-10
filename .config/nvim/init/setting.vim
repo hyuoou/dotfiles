@@ -33,6 +33,7 @@ set clipboard+=unnamedplus
 augroup MyAutoCmd
 	autocmd!
 	autocmd BufWritePre * :%s/\s\+$//ge
+	autocmd FileType gitcommit setlocal spell
 augroup END
 
 let g:did_install_default_menus = 1

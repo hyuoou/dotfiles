@@ -59,9 +59,9 @@ set helplang=ja
 " silicon
 let g:silicon = {
 	\ 'theme': 'Nord',
-	\ 'font':  'SauceCodePro Nerd Font'
+	\ 'font':  'SauceCodePro Nerd Font',
+	\ 'output': '~/Pictures/silicon/silicon-{time:%Y-%m-%d-%H:%M:%S}.png'
 	\ }
-let g:silicon['output'] = '~/Pictures/silicon/silicon-{time:%Y-%m-%d-%H:%M:%S}.png'
 
 " neoterm
 let g:neoterm_default_mod = 'vertical belowright'
@@ -155,7 +155,7 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 end
 
-local servers = { 'clangd', 'gopls', 'bashls', 'vimls', 'rust_analyzer' }
+local servers = { 'clangd', 'cmake', 'gopls', 'bashls', 'vimls', 'rust_analyzer' }
 for _, lsp in pairs(servers) do
 	require('lspconfig')[lsp].setup {
 		on_attach = on_attach,
@@ -186,7 +186,10 @@ call ddc#custom#patch_global({
 	\ 'completionMenu': 'pum.vim',
 	\ })
 
-call ddc#custom#patch_global('sources', ['nvim-lsp', 'tabnine', 'vsnip', 'skkeleton', 'around', 'file'])
+call ddc#custom#patch_global(
+	\ 'sources', ['nvim-lsp', 'tabnine', 'vsnip', 'buffer', 'tmux', 'skkeleton', 'around', 'file']
+	\ )
+
 call ddc#custom#patch_global('sourceOptions', {
 	\ '_': {
 	\ 	'ignoreCase': v:true,
@@ -224,7 +227,39 @@ call ddc#custom#patch_global('sourceOptions', {
 	\ 	'maxItems': 5,
 	\ 	'isVolatile': v:true,
 	\ },
+	\ 'mocword': {
+	\ 	'mark': 'mocword',
+	\ 	'minAutoCompleteLength': 3,
+	\ 	'isVolatile': v:true,
+	\ },
+	\ 'buffer': {
+	\ 	'mark': 'B',
+	\ 	'maxItems': 5,
+	\ 	'minAutoCompleteLength': 3,
+	\ },
+	\ 'tmux': {
+	\ 	'mark': 'T',
+	\ 	'maxItems': 5,
+	\ 	'minAutoCompleteLength': 3,
+	\ },
 	\ })
+
+call ddc#custom#patch_global('sourceParams', {
+	\ 'buffer': {
+	\ 	'requireSameFiletype': v:false,
+	\ 	'limitBytes': 5000000,
+	\ 	'fromAltBuf': v:true,
+	\ 	'forceCollect': v:true,
+	\ },
+	\ 'tmux': {
+	\ 	'executable': '/usr/bin/tmux'
+	\ },
+	\ })
+
+call ddc#custom#patch_filetype(
+	\ ['markdown', 'gitcommit'], 'sources',
+	\ ['mocword', 'skkeleton', 'around']
+	\ )
 
 " enable ddc
 call ddc#enable()
@@ -241,6 +276,7 @@ inoremap <silent><expr> <Esc> pum#visible() ? '<Cmd>call pum#map#cancel()<CR>'  
 inoremap <silent><expr> <CR>  pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
 autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
 
+" ddu config
 call ddu#custom#patch_global({
 	\ 'ui': 'ff',
 	\ 'uiParams': {
@@ -259,13 +295,16 @@ call ddu#custom#patch_global({
 	\ 	'command_history': {
 	\ 		'defaultAction': 'execute',
 	\ 	},
+	\ 	'help': {
+	\ 		'defaultAction': 'open',
+	\ 	},
 	\ },
 	\ 'sourceParams': {
 	\ 	'file_external': {'cmd': ['git', 'ls-files', '-co', '--exclude-standard']},
 	\ },
 	\ 'kindOptions': {
 	\ 	'file': {
-	\ 		'defaultAction': 'open',
+	\		'defaultAction': 'open',
 	\ 	},
 	\ 	'action': {
 	\ 		'defaultAction': 'do',
@@ -299,7 +338,7 @@ function! s:ddu_filter_my_settings() abort
 		\ <Cmd>close<CR><Cmd>call ddu#ui#ff#do_action('quit')<CR>
 endfunction
 
-command! DduRgLive call s:ddu_rg_live()
+command! DduLiveRg call s:ddu_rg_live()
 function! s:ddu_rg_live() abort
 	call ddu#start({
 	\ 'volatile': v:true,
@@ -319,8 +358,8 @@ function! s:ddu_rg_live() abort
 	\ })
 endfunction
 
-command! DduGhq call s:ddu_file_external()
-function! s:ddu_file_external() abort
+command! DduGhq call s:ddu_ghq_list()
+function! s:ddu_ghq_list() abort
 	call ddu#start({
 	\ 'sources': [{'name': 'file_external'}],
 	\ 'sourceParams': {
@@ -332,15 +371,16 @@ function! s:ddu_file_external() abort
 	\ })
 endfunction
 
-command! Cnf Ddu file_rec -source-option-path=/home/hyuoou/.config/nvim
+command! Cnf Ddu file_rec -source-option-path=~/.config/nvim
 
 nnoremap <silent> ff <Cmd>Ddu file_rec<CR>
 nnoremap <silent> ;o <Cmd>Ddu file_old<CR>
 nnoremap <silent> ;d <Cmd>Ddu nvim_lsp_diagnostic_all<CR>
 nnoremap <silent> ;b <Cmd>Ddu buffer<CR>
 nnoremap <silent> ;g <Cmd>DduRg<CR>
-nnoremap <silent> ;l <Cmd>DduRgLive<CR>
+nnoremap <silent> ;l <Cmd>DduLiveRg<CR>
 nnoremap <silent> ;f <Cmd>Ddu file_external<CR>
+nnoremap <silent> ;h <Cmd>Ddu help -ui-param-startFilter=v:true<CR>
 nnoremap <silent> /  <Cmd>Ddu line -ui-param-startFilter=v:true<CR>
 nnoremap <silent> ;; <Cmd>Ddu command_history<CR>
 
