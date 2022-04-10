@@ -358,8 +358,8 @@ function! s:ddu_rg_live() abort
 	\ })
 endfunction
 
-command! DduGhq call s:ddu_ghq_list()
-function! s:ddu_ghq_list() abort
+command! DduGhq call s:ddu_file_external()
+function! s:ddu_file_external() abort
 	call ddu#start({
 	\ 'sources': [{'name': 'file_external'}],
 	\ 'sourceParams': {
@@ -371,7 +371,7 @@ function! s:ddu_ghq_list() abort
 	\ })
 endfunction
 
-command! Cnf Ddu file_rec -source-option-path=~/.config/nvim
+command! Cnf Ddu file_rec -source-option-path=/home/hyuoou/.config/nvim
 
 nnoremap <silent> ff <Cmd>Ddu file_rec<CR>
 nnoremap <silent> ;o <Cmd>Ddu file_old<CR>
