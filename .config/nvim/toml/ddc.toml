@@ -1,0 +1,168 @@
+[[plugins]]
+repo = 'Shougo/ddc.vim'
+depends = ['denops.vim', 'pum.vim', 'lexima.vim']
+on_event = ['InsertEnter', 'CursorHold']
+hook_source = '''
+  call ddc#custom#patch_global({
+    \ 'backspaceCompletion': v:true,
+    \ 'completionMenu': 'pum.vim',
+    \ })
+
+  call ddc#custom#patch_global(
+    \ 'sources', ['nvim-lsp', 'tabnine', 'vsnip', 'buffer', 'tmux', 'skkeleton', 'around', 'file']
+    \ )
+
+  call ddc#custom#patch_global('sourceOptions', {
+    \ '_': {
+    \   'ignoreCase': v:true,
+    \   'matchers': ['matcher_fuzzy'],
+    \   'sorters': ['sorter_fuzzy'],
+    \   'converter': ['converter_remove_overlap', 'converter_fuzzy']},
+    \ 'vsnip': {
+    \   'mark': 'VS',
+    \   'dup': v:true,
+    \ },
+    \ 'nvim-lsp': {
+    \   'mark': 'LSP',
+    \   'dup': v:true,
+    \   'isVolatile': v:true,
+    \   'minAutoCompleteLength': 1,
+    \   'forceCompletionPattern': '\.\w*|:\w*|->\w*',
+    \ },
+    \ 'skkeleton': {
+    \   'mark': 'SKK',
+    \   'matchers': ['skkeleton'],
+    \   'sorters': [],
+    \   'minAutoCompleteLength': 1,
+    \ },
+    \ 'around': {
+    \   'mark': 'A',
+    \   'isVolatile': v:true,
+    \ },
+    \ 'file': {
+    \   'mark': 'F',
+    \   'isVolatile': v:true,
+    \   'forceCompletionPattern': '\S/\S*',
+    \ },
+    \ 'tabnine': {
+    \   'mark': 'TN',
+    \   'maxItems': 5,
+    \   'isVolatile': v:true,
+    \ },
+    \ 'mocword': {
+    \   'mark': 'mocword',
+    \   'minAutoCompleteLength': 3,
+    \   'isVolatile': v:true,
+    \ },
+    \ 'buffer': {
+    \   'mark': 'B',
+    \   'maxItems': 5,
+    \   'minAutoCompleteLength': 3,
+    \ },
+    \ 'tmux': {
+    \   'mark': 'T',
+    \   'maxItems': 5,
+    \   'minAutoCompleteLength': 3,
+    \ },
+    \ })
+
+  call ddc#custom#patch_global('sourceParams', {
+    \ 'buffer': {
+    \   'requireSameFiletype': v:false,
+    \   'limitBytes': 5000000,
+    \   'fromAltBuf': v:true,
+    \   'forceCollect': v:true,
+    \ },
+    \ 'tmux': {
+    \   'executable': '/usr/bin/tmux'
+    \ },
+    \ })
+
+  call ddc#custom#patch_filetype(
+    \ ['markdown', 'gitcommit'], 'sources',
+    \ ['mocword', 'skkeleton', 'around']
+    \ )
+
+  call ddc#enable()
+
+  inoremap <silent><expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
+  inoremap <silent><expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
+  inoremap <silent><expr> <Esc> pum#visible() ? '<Cmd>call pum#map#cancel()<CR>'  : '<Plug>(lexima-escape)'
+  inoremap <silent><expr> <CR>  pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
+'''
+
+[[plugins]]
+repo = 'Shougo/pum.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-nvim-lsp'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-mocword'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'LumaKernel/ddc-file'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'LumaKernel/ddc-tabnine'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'matsui54/ddc-buffer'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'delphinus/ddc-tmux'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'matsui54/denops-popup-preview.vim'
+on_source = 'ddc.vim'
+hook_source = '''
+  call popup_preview#enable()
+'''
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip'
+on_source = 'ddc.vim'
+hook_add = '''
+  let g:vsnip_snippet_dir = '$HOME/.config/nvim/vsnip'
+  imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+  smap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
+  imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+  smap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'
+'''
+
+[[plugins]]
+repo = 'hrsh7th/vim-vsnip-integ'
+on_source = 'ddc.vim'
+hook_source = '''
+  autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
+'''
+
+[[plugins]]
+repo = 'cohama/lexima.vim'
+on_event = 'InsertEnter'
+hook_add = '''
+  let g:lexima_map_escape = '<Plug>(lexima-escape)'
+  let g:lexima_no_default_rules = v:true
+'''
+hook_source = '''
+  call lexima#set_default_rules()
+'''
+
+[[plugins]]
+repo = 'Shougo/ddc-converter_remove_overlap'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'tani/ddc-fuzzy'
+on_source = 'ddc.vim'
+

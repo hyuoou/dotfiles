@@ -1,4 +1,3 @@
-set background=dark
 colorscheme nord
 lua require('colorbuddy').colorscheme('nord')
 

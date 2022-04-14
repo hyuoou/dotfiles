@@ -1,0 +1,168 @@
+[[plugins]]
+repo = 'Shougo/ddu.vim'
+depends = 'denops.vim'
+on_func = 'ddu#start'
+hook_add = '''
+  command! Cnf Ddu file_rec -source-option-path=/home/hyuoou/.config/nvim
+  nnoremap <silent> ff <Cmd>Ddu file_rec<CR>
+  nnoremap <silent> ;o <Cmd>Ddu file_old<CR>
+  nnoremap <silent> ;d <Cmd>Ddu nvim_lsp_diagnostic_all<CR>
+  nnoremap <silent> ;b <Cmd>Ddu buffer<CR>
+  nnoremap <silent> ;g <Cmd>DduLiveRg<CR>
+  nnoremap <silent> ;f <Cmd>Ddu file_external<CR>
+  nnoremap <silent> ;h <Cmd>Ddu help -ui-param-startFilter=v:true<CR>
+  nnoremap <silent> /  <Cmd>Ddu line -ui-param-startFilter=v:true<CR>
+  nnoremap <silent> ;; <Cmd>Ddu command_history<CR>
+'''
+hook_source = '''
+  call ddu#custom#patch_global({
+    \ 'ui': 'ff',
+    \ 'uiParams': {
+    \   'ff': {
+    \     'split': 'floating',
+    \     'previewHeight': 25,
+    \   },
+    \ },
+    \ 'sourceOptions': {
+    \   '_': {
+    \     'matchers': ["matcher_substring"],
+    \     'ignoreCase': v:true,
+    \   },
+    \   'command_history': {
+    \     'defaultAction': 'execute',
+    \   },
+    \   'help': {
+    \     'defaultAction': 'open',
+    \   },
+    \ },
+    \ 'sourceParams': {
+    \   'file_external': {'cmd': ['git', 'ls-files', '-co', '--exclude-standard']},
+    \ },
+    \ 'kindOptions': {
+    \   'file': {
+    \   'defaultAction': 'open',
+    \   },
+    \   'action': {
+    \     'defaultAction': 'do',
+    \   },
+    \ },
+    \ })
+
+  command! DduLiveRg call s:ddu_rg_live()
+  function! s:ddu_rg_live() abort
+    call ddu#start({
+    \ 'volatile': v:true,
+    \ 'sources': [{
+    \   'name': 'rg',
+    \   'options': {'matchers': []},
+    \ }],
+    \ 'ui{arams}': {'ff': {
+    \   'ignoreEmpty': v:false,
+    \   'autoResize': v:false,
+    \ }},
+    \ 'uiParams': {
+    \   'ff': {
+    \     'startFilter': v:true,
+    \   },
+    \ },
+    \ })
+  endfunction
+
+  command! DduGhq call s:ddu_file_external()
+  function! s:ddu_file_external() abort
+    call ddu#start({
+    \ 'sources': [{'name': 'file_external'}],
+    \ 'sourceParams': {
+    \   'file_external': {'cmd': ['ghq', 'list', '-p']},
+    \ },
+    \ 'sourceOptions': {
+    \   'file_external': {'defaultAction': 'cd'},
+    \ },
+    \ })
+  endfunction
+'''
+[plugins.ftplugin]
+ddu-ff = '''
+  nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
+  nnoremap <buffer><silent> <Space> <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+  nnoremap <buffer><silent> i <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
+  nnoremap <buffer><silent> q <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+  nnoremap <buffer><silent> p <Cmd>call ddu#ui#ff#do_action('preview')<CR>
+  nnoremap <buffer><silent> c <Cmd>call ddu#ui#ff#do_action('chooseAction')<CR>
+  nnoremap <buffer><silent> d <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
+  nnoremap <buffer><silent> e <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<CR>
+  nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+  nnoremap <buffer><silent> <C-p> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+'''
+ddu-ff-filter = '''
+  inoremap <buffer><silent> <CR> <Esc><Cmd>close<CR>
+  nnoremap <buffer><silent> <CR> <Cmd>close<CR>
+  nnoremap <buffer><silent> <Esc>
+    \ <Cmd>close<CR><Cmd>call ddu#ui#ff#do_action('quit')<CR>
+  nnoremap <buffer><silent> <C-p>
+    \ <Cmd>close<CR><Cmd>call ddu#ui#ff#do_action('quit')<CR>
+  nnoremap <buffer><silent> q
+    \ <Cmd>close<CR><Cmd>call ddu#ui#ff#do_action('quit')<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/ddu-ui-ff'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_rec'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file_old'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-line'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-action'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-source-file'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'shun/ddu-source-buffer'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'shun/ddu-source-rg'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'gamoutatsumi/ddu-source-nvim-lsp'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-file_external'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-command_history'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'matsui54/ddu-source-help'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_substring'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo  = 'Shougo/ddu-kind-file'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Shougo/ddu-commands.vim'
+depends = 'ddu.vim'
+on_cmd = 'Ddu'
+

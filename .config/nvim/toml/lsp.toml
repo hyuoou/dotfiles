@@ -1,0 +1,28 @@
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+on_ft = ['cpp', 'cmake', 'go', 'sh', 'vim']
+hook_source = '''
+lua << EOF
+  local opts = { noremap=true, silent=true }
+  vim.api.nvim_set_keymap('n', '<C-h>', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<C-l>', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+  local on_attach = function(client, bufnr)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ge', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  end
+
+  local servers = { 'clangd', 'cmake', 'gopls', 'bashls', 'vimls' }
+  for _, lsp in pairs(servers) do
+    require('lspconfig')[lsp].setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+  end
+EOF
+'''
+

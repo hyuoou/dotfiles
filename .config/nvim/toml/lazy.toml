@@ -1,0 +1,70 @@
+[[plugins]]
+repo = 'mattn/vim-goimports'
+on_ft = 'go'
+
+[[plugins]]
+repo = 'kassio/neoterm'
+on_cmd = 'Ttoggle'
+hook_add = '''
+  let g:neoterm_default_mod = 'vertical belowright'
+  let g:neoterm_autoinsert = 1
+  let g:neoterm_size = 80
+  nnoremap <silent> <C-p> <Cmd>Ttoggle<CR>
+'''
+[plugins.ftplugin]
+neoterm = '''
+  tnoremap <buffer><silent> jj <C-\><C-n>
+  tnoremap <buffer><silent> <C-p> <Cmd>Ttoggle<CR>
+'''
+
+[[plugins]]
+repo = 'skywind3000/asyncrun.vim'
+on_cmd = 'AsyncRun'
+hook_add = '''
+  autocmd MyAutoCmd User AsyncRunStart call asyncrun#quickfix_toggle(20, 1)
+'''
+
+[[plugins]]
+repo = 'mattn/vim-sonictemplate'
+on_cmd = 'Template'
+hook_add = '''
+  let g:sonictemplate_vim_template_dir = '$HOME/.config/nvim/template'
+'''
+
+[[plugins]]
+repo = 'kat0h/bufpreview.vim'
+on_cmd = 'PreviewMarkdown'
+
+[[plugins]]
+repo = 'mattn/vim-maketable'
+on_cmd = 'MakeTable'
+
+[[plugins]]
+repo = 'lambdalisue/vim-backslash'
+on_ft = 'vim'
+
+[[plugins]]
+repo = 'segeljakt/vim-silicon'
+on_cmd = 'Silicon'
+hook_add = '''
+  let g:silicon = {}
+  let g:silicon['theme'] = 'Nord'
+  let g:silicon['font'] = 'SauceCodePro Nerd Font'
+  let g:silicon['output'] = '~/Pictures/silicon/silicon-{time:%Y-%m-%d-%H:%M:%S}.png'
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+on_ft = ['cpp', 'go', 'sh', 'vim', 'toml']
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+on_ft = ['cpp', 'go', 'sh', 'vim', 'toml']
+
+[[plugins]]
+repo = 'z0mbix/vim-shfmt'
+on_ft = 'sh'
+hook_add = '''
+  let g:shfmt_fmt_on_save = 1
+'''
+

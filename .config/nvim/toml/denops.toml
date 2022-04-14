@@ -1,0 +1,37 @@
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+on_event = 'CursorHold'
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+on_source = 'ddc.vim'
+on_map = {ic = '<Plug>(skkeleton-toggle)'}
+hook_add = '''
+  imap <C-s> <Plug>(skkeleton-toggle)
+  cmap <C-s> <Plug>(skkeleton-toggle)
+'''
+hook_source = '''
+call skkeleton#config({
+  \ 'eggLikeNewline': v:true,
+  \ })
+call skkeleton#register_kanatable('rom', {
+  \ 'jj': 'escape',
+  \ ';': 'henkanPoint',
+  \ })
+'''
+
+[[plugins]]
+repo = 'skanehira/denops-translate.vim'
+on_map = ['<Plug>(Translate)', '<Plug>(VTranslate)']
+on_cmd = 'Translate'
+depends = 'denops.vim'
+hook_add = '''
+  nmap <C-t> <Plug>(Translate)
+  vmap <C-t> <Plug>(VTranslate)
+'''
+
+[[plugins]]
+repo = 'lambdalisue/gin.vim'
+on_cmd = ['Gin', 'GinStatus', 'GinBranch']
+depends = 'denops.vim'
+

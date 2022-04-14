@@ -1,0 +1,71 @@
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+on_event = 'VimEnter'
+hook_add = '''
+  let g:lightline = {}
+  let g:lightline.colorscheme = 'nord'
+  let g:lightline.separator = {'left': "\ue0b0", 'right': "\ue0b2"}
+  let g:lightline.subseparator = {'left': "\ue0b1", 'right': "\ue0b3"}
+
+  let g:lightline.active = {}
+  let g:lightline.active.left = [
+    \ ['mode', 'paste'],
+    \ ['gitbranch', 'readonly', 'filename', 'modified'],
+    \ ]
+  let g:lightline.active.right = [
+    \ ['lsp_warnings', 'lsp_errors'],
+    \ ['lineinfo', 'percent'],
+    \ ['fileformat', 'fileencoding', 'filetype'],
+    \ ]
+
+  let g:lightline.component_function = {
+    \ 'gitbranch': 'GetGitBranch'
+    \ }
+
+  let g:lightline.tabline = {
+    \ 'left': [['buffers']],
+    \ 'right': [[]],
+    \ }
+
+  let g:lightline.component_expand = {
+    \ 'buffers': 'lightline#bufferline#buffers'
+    \ }
+
+  let g:lightline.component_type = {
+    \ 'buffers': 'tabsel'
+    \ }
+'''
+
+[[plugins]]
+repo = 'itchyny/vim-gitbranch'
+on_source = 'lightline.vim'
+hook_source = '''
+  function! GetGitBranch() abort
+    if gitbranch#name() != ''
+      return ' '.gitbranch#name()
+    else
+      return ''
+    endif
+  endfunction
+'''
+
+[[plugins]]
+repo = 'josa42/nvim-lightline-lsp'
+on_source = 'lightline.vim'
+hook_source = '''
+  let g:lightline#lsp#indicator_warnings = 'W:'
+  let g:lightline#lsp#indicator_errors = 'E:'
+  call lightline#lsp#register()
+  autocmd MyAutoCmd DiagnosticChanged * call lightline#update()
+'''
+
+[[plugins]]
+repo = 'mengelbrecht/lightline-bufferline'
+on_source = 'lightline.vim'
+hook_add = '''
+  let g:lightline#bufferline#show_number = 2
+  let g:lightline#bufferline#enable_devicons = 1
+  let g:lightline#bufferline#unnamed = '[No Name]'
+  let g:lightline#bufferline#icon_position = 'right'
+'''
+
