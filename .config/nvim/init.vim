@@ -30,7 +30,7 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath+=' .. s:dein_repo_dir
 
-let g:dein#install_github_api_token = '$GITHUB_GRAPH_API'
+let g:dein#install_github_api_token = $GITHUB_GRAPHQL_API
 
 let g:dein#inline_vimrcs = ['setting.vim', 'keymap.vim', 'colorscheme.vim']
 call map(g:dein#inline_vimrcs, {_, val -> s:base_dir . val})

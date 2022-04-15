@@ -35,3 +35,7 @@ repo = 'lambdalisue/gin.vim'
 on_cmd = ['Gin', 'GinStatus', 'GinBranch']
 depends = 'denops.vim'
 
+# [[plugins]]
+# repo = 'kat0h/bufpreview.vim'
+# on_cmd = 'PreviewMarkdown'
+

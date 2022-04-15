@@ -15,3 +15,6 @@ repo = 'vim-jp/vimdoc-ja'
 hook_add = '''
   set helplang=ja
 '''
+
+[[plugins]]
+repo = 'nathom/filetype.nvim'

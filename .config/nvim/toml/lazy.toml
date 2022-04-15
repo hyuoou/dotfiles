@@ -32,10 +32,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'kat0h/bufpreview.vim'
-on_cmd = 'PreviewMarkdown'
-
-[[plugins]]
 repo = 'mattn/vim-maketable'
 on_cmd = 'MakeTable'
 
@@ -55,11 +51,11 @@ hook_add = '''
 
 [[plugins]]
 repo = 'tpope/vim-surround'
-on_ft = ['cpp', 'go', 'sh', 'vim', 'toml']
+on_map = ['S', 'cs', 'ds']
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
-on_ft = ['cpp', 'go', 'sh', 'vim', 'toml']
+on_map = ['gc', 'gcc']
 
 [[plugins]]
 repo = 'z0mbix/vim-shfmt'
@@ -67,4 +63,9 @@ on_ft = 'sh'
 hook_add = '''
   let g:shfmt_fmt_on_save = 1
 '''
+
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_cmd = ['MarkdownPreview']
+build = 'sh -c "cd app && yarn install"'
 

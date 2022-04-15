@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-on_ft = ['cpp', 'cmake', 'go', 'sh', 'vim']
+on_ft = ['cpp', 'go', 'sh', 'vim']
 hook_source = '''
 lua << EOF
   local opts = { noremap=true, silent=true }
@@ -16,7 +16,7 @@ lua << EOF
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   end
 
-  local servers = { 'clangd', 'cmake', 'gopls', 'bashls', 'vimls' }
+  local servers = { 'clangd', 'gopls', 'bashls', 'vimls' }
   for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
       on_attach = on_attach,
@@ -25,4 +25,3 @@ lua << EOF
   end
 EOF
 '''
-

@@ -39,7 +39,7 @@ hook_add = '''
 [[plugins]]
 repo = 'itchyny/vim-gitbranch'
 on_source = 'lightline.vim'
-hook_source = '''
+hook_add = '''
   function! GetGitBranch() abort
     if gitbranch#name() != ''
       return ' '.gitbranch#name()

@@ -15,7 +15,6 @@ set laststatus=2
 set showtabline=2
 set noshowmode
 set background=dark
-syntax enable
 
 set list
 set listchars=tab:>-,space:·
@@ -27,6 +26,7 @@ set smartcase
 set incsearch
 set wrapscan
 set hlsearch
+syntax enable
 
 set pumheight=15
 set clipboard+=unnamedplus
@@ -47,5 +47,6 @@ let g:loaded_spellfile_plugin   = 1
 let g:loaded_tarPlugin          = 1
 let g:loaded_tutor_mode_plugin  = 1
 let g:loaded_zipPlugin          = 1
+let g:loaded_fzf                = 1
 let g:skip_loading_mswin        = 1
 
