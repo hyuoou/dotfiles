@@ -55,7 +55,6 @@ execute 'set runtimepath+=' .. s:dein_repo_dir
 
 let g:dein#install_github_api_token = $GITHUB_GRAPHQL_API
 
-" let g:dein#inline_vimrcs = ['sets.vim', 'keys.vim', 'color.vim']
 let g:dein#inline_vimrcs = ['sets.vim', 'keys.vim']
 call map(g:dein#inline_vimrcs, {_, val -> s:base_dir . val})
 

@@ -19,9 +19,3 @@ hook_add = '''
   colorscheme tokyonight
 '''
 
-# [[plugins]]
-# repo = 'arcticicestudio/nord-vim'
-
-# [[plugins]]
-# repo = 'tjdevries/colorbuddy.nvim'
-

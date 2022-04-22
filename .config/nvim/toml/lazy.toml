@@ -68,3 +68,7 @@ repo = 'iamcco/markdown-preview.nvim'
 on_cmd = ['MarkdownPreview']
 build = 'sh -c "cd app && yarn install"'
 
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'
+on_cmd = ['ColorizerToggle']
+
