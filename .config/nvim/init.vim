@@ -1,12 +1,35 @@
+" default plugin
+let g:did_install_default_menus = 1
+let g:did_install_syntax_menu   = 1
+let g:did_indent_on             = 1
+let g:did_load_filetypes        = 1
+let g:loaded_2html_plugin       = 1
+let g:loaded_gzip               = 1
+let g:loaded_man                = 1
+let g:loaded_matchit            = 1
+let g:loaded_matchparen         = 1
+let g:loaded_netrwPlugin        = 1
+let g:loaded_remote_plugins     = 1
+let g:loaded_shada_plugin       = 1
+let g:loaded_spellfile_plugin   = 1
+let g:loaded_tarPlugin          = 1
+let g:loaded_tutor_mode_plugin  = 1
+let g:loaded_zipPlugin          = 1
+let g:loaded_fzf                = 1
+let g:skip_loading_mswin        = 1
+
+" autocmd
+augroup MyAutoCmd
+  autocmd!
+  autocmd BufWritePre * %s/\s\+$//ge
+  autocmd FileType gitcommit setlocal spell
+  autocmd FileType qf setlocal nolist
+augroup END
+
+" dein.vim config
 if &compatible
   set nocompatible
 endif
-
-augroup MyAutoCmd
-  autocmd!
-  autocmd BufWritePre * :%s/\s\+$//ge
-  autocmd FileType gitcommit setlocal spell
-augroup END
 
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -32,7 +55,8 @@ execute 'set runtimepath+=' .. s:dein_repo_dir
 
 let g:dein#install_github_api_token = $GITHUB_GRAPHQL_API
 
-let g:dein#inline_vimrcs = ['setting.vim', 'keymap.vim', 'colorscheme.vim']
+" let g:dein#inline_vimrcs = ['sets.vim', 'keys.vim', 'color.vim']
+let g:dein#inline_vimrcs = ['sets.vim', 'keys.vim']
 call map(g:dein#inline_vimrcs, {_, val -> s:base_dir . val})
 
 let g:dein#auto_recache          = v:true

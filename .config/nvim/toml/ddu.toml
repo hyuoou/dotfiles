@@ -117,8 +117,7 @@ on_source = 'ddu.vim'
 repo = 'Shougo/ddu-source-file_old'
 on_source = 'ddu.vim'
 
-[[plugins]]
-repo = 'Shougo/ddu-source-line'
+[[plugins]] repo = 'Shougo/ddu-source-line'
 on_source = 'ddu.vim'
 
 [[plugins]]

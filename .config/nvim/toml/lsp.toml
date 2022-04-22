@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-on_ft = ['cpp', 'go', 'sh', 'vim']
+on_ft = ['c', 'cpp', 'go', 'sh', 'vim']
 hook_source = '''
 lua << EOF
   local opts = { noremap=true, silent=true }

@@ -5,12 +5,6 @@ repo = 'Shougo/dein.vim'
 repo = 'kyazdani42/nvim-web-devicons'
 
 [[plugins]]
-repo = 'arcticicestudio/nord-vim'
-
-[[plugins]]
-repo = 'tjdevries/colorbuddy.nvim'
-
-[[plugins]]
 repo = 'vim-jp/vimdoc-ja'
 hook_add = '''
   set helplang=ja
@@ -18,3 +12,16 @@ hook_add = '''
 
 [[plugins]]
 repo = 'nathom/filetype.nvim'
+
+[[plugins]]
+repo = 'folke/tokyonight.nvim'
+hook_add = '''
+  colorscheme tokyonight
+'''
+
+# [[plugins]]
+# repo = 'arcticicestudio/nord-vim'
+
+# [[plugins]]
+# repo = 'tjdevries/colorbuddy.nvim'
+

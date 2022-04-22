@@ -3,18 +3,17 @@ repo = 'mattn/vim-goimports'
 on_ft = 'go'
 
 [[plugins]]
-repo = 'kassio/neoterm'
-on_cmd = 'Ttoggle'
+repo = 'akinsho/toggleterm.nvim'
+on_cmd = 'ToggleTerm'
 hook_add = '''
-  let g:neoterm_default_mod = 'vertical belowright'
-  let g:neoterm_autoinsert = 1
-  let g:neoterm_size = 80
-  nnoremap <silent> <C-p> <Cmd>Ttoggle<CR>
+  nnoremap <silent> <C-p> <Cmd>ToggleTerm size=80 direction=vertical<CR>
+  nnoremap <silent> <C-f> <Cmd>ToggleTerm direction=float<CR>
 '''
 [plugins.ftplugin]
-neoterm = '''
+toggleterm = '''
   tnoremap <buffer><silent> jj <C-\><C-n>
-  tnoremap <buffer><silent> <C-p> <Cmd>Ttoggle<CR>
+  tnoremap <buffer><silent> <C-p> <Cmd>ToggleTerm<CR>
+  nnoremap <buffer><silent> <Esc> <Cmd>ToggleTerm<CR>
 '''
 
 [[plugins]]

@@ -4,7 +4,7 @@ on_event = 'BufRead'
 hook_source = '''
 lua << EOF
   require'nvim-treesitter.configs'.setup {
-    ensure_installed = 'all',
+    ensure_installed = "all",
     highlight = {
       enable = true,
     },
@@ -32,4 +32,3 @@ hook_post_update = '''
 [[plugins]]
 repo = 'p00f/nvim-ts-rainbow'
 on_source = 'nvim-treesitter'
-

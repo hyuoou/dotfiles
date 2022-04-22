@@ -79,7 +79,7 @@ hook_source = '''
     \ })
 
   call ddc#custom#patch_filetype(
-    \ ['markdown', 'gitcommit'], 'sources',
+    \ ['gitcommit', 'markdown'], 'sources',
     \ ['mocword', 'skkeleton', 'around']
     \ )
 

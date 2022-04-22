@@ -3,23 +3,23 @@ repo = 'itchyny/lightline.vim'
 on_event = 'VimEnter'
 hook_add = '''
   let g:lightline = {}
-  let g:lightline.colorscheme = 'nord'
+  let g:lightline.colorscheme = 'tokyonight'
   let g:lightline.separator = {'left': "\ue0b0", 'right': "\ue0b2"}
   let g:lightline.subseparator = {'left': "\ue0b1", 'right': "\ue0b3"}
 
   let g:lightline.active = {}
   let g:lightline.active.left = [
     \ ['mode', 'paste'],
-    \ ['gitbranch', 'readonly', 'filename', 'modified'],
+    \ ['gitbranch', 'filename', 'modified', 'readonly'],
     \ ]
   let g:lightline.active.right = [
-    \ ['lsp_warnings', 'lsp_errors'],
+    \ ['lsp_errors', 'lsp_warnings', 'lsp_info', 'lsp_hints'],
     \ ['lineinfo', 'percent'],
     \ ['fileformat', 'fileencoding', 'filetype'],
     \ ]
 
   let g:lightline.component_function = {
-    \ 'gitbranch': 'GetGitBranch'
+    \ 'gitbranch': 'GetGitBranch',
     \ }
 
   let g:lightline.tabline = {
@@ -53,8 +53,10 @@ hook_add = '''
 repo = 'josa42/nvim-lightline-lsp'
 on_source = 'lightline.vim'
 hook_source = '''
+  let g:lightline#lsp#indicator_errors   = 'E:'
   let g:lightline#lsp#indicator_warnings = 'W:'
-  let g:lightline#lsp#indicator_errors = 'E:'
+  let g:lightline#lsp#indicator_infos    = 'I:'
+  let g:lightline#lsp#indicator_hints    = 'H:'
   call lightline#lsp#register()
   autocmd MyAutoCmd DiagnosticChanged * call lightline#update()
 '''
@@ -67,5 +69,16 @@ hook_add = '''
   let g:lightline#bufferline#enable_devicons = 1
   let g:lightline#bufferline#unnamed = '[No Name]'
   let g:lightline#bufferline#icon_position = 'right'
+
+  nmap <Space>1 <Plug>lightline#bufferline#delete(1)
+  nmap <Space>2 <Plug>lightline#bufferline#delete(2)
+  nmap <Space>3 <Plug>lightline#bufferline#delete(3)
+  nmap <Space>4 <Plug>lightline#bufferline#delete(4)
+  nmap <Space>5 <Plug>lightline#bufferline#delete(5)
+  nmap <Space>6 <Plug>lightline#bufferline#delete(6)
+  nmap <Space>7 <Plug>lightline#bufferline#delete(7)
+  nmap <Space>8 <Plug>lightline#bufferline#delete(8)
+  nmap <Space>9 <Plug>lightline#bufferline#delete(9)
+  nmap <Space>0 <Plug>lightline#bufferline#delete(10)
 '''
 

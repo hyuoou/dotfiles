@@ -7,12 +7,12 @@ hook_add = '''
 '''
 [plugins.ftplugin]
 fern = '''
-  nmap <buffer><silent> y       <Plug>(fern-action-clipboard-copy)
-  nmap <buffer><silent> m       <Plug>(fern-action-clipboard-move)
-  nmap <buffer><silent> p       <Plug>(fern-action-clipboard-paste)
-  nmap <buffer><silent> D       <Plug>(fern-action-remove)
-  nmap <buffer><silent> r       <Plug>(fern-action-rename:bottom)
-  nmap <buffer><silent> <Space> <Plug>(fern-action-mark)
+  nmap <buffer><silent> y <Plug>(fern-action-clipboard-copy)
+  nmap <buffer><silent> m <Plug>(fern-action-clipboard-move)
+  nmap <buffer><silent> P <Plug>(fern-action-clipboard-paste)
+  nmap <buffer><silent> D <Plug>(fern-action-remove)
+  nmap <buffer><silent> r <Plug>(fern-action-rename:bottom)
+  nmap <buffer><silent> x <Plug>(fern-action-mark)
 '''
 
 [[plugins]]
