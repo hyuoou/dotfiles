@@ -9,7 +9,7 @@ hook_source = '''
     \ })
 
   call ddc#custom#patch_global(
-    \ 'sources', ['nvim-lsp', 'tabnine', 'vsnip', 'buffer', 'tmux', 'skkeleton', 'around', 'file']
+    \ 'sources', ['nvim-lsp', 'tabnine', 'vsnip', 'buffer', 'tmux', 'around', 'file']
     \ )
 
   call ddc#custom#patch_global('sourceOptions', {
@@ -17,7 +17,7 @@ hook_source = '''
     \   'ignoreCase': v:true,
     \   'matchers': ['matcher_fuzzy'],
     \   'sorters': ['sorter_fuzzy'],
-    \   'converter': ['converter_remove_overlap', 'converter_fuzzy']},
+    \   'converter': ['converter_fuzzy', 'converter_remove_overlap']},
     \ 'vsnip': {
     \   'mark': 'VS',
     \   'dup': v:true,
@@ -33,7 +33,6 @@ hook_source = '''
     \   'mark': 'SKK',
     \   'matchers': ['skkeleton'],
     \   'sorters': [],
-    \   'minAutoCompleteLength': 1,
     \ },
     \ 'around': {
     \   'mark': 'A',
@@ -80,19 +79,41 @@ hook_source = '''
 
   call ddc#custom#patch_filetype(
     \ ['gitcommit', 'markdown'], 'sources',
-    \ ['mocword', 'skkeleton', 'around']
+    \ ['mocword', 'around']
     \ )
 
   call ddc#enable()
 
-  inoremap <silent><expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
-  inoremap <silent><expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
-  inoremap <silent><expr> <Esc> pum#visible() ? '<Cmd>call pum#map#cancel()<CR>'  : '<Plug>(lexima-escape)'
-  inoremap <silent><expr> <CR>  pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
+  autocmd MyAutoCmd User skkeleton-enable-pre call s:skkeleton_pre()
+  function! s:skkeleton_pre() abort
+    let s:prev_buffer_config = ddc#custom#get_buffer()
+    call ddc#custom#patch_buffer({
+    \ 'sources': ['skkeleton'],
+    \ 'completionMenu': 'native',
+    \ })
+  endfunction
+
+  autocmd MyAutoCmd User skkeleton-disable-pre call s:skkeleton_post()
+  function! s:skkeleton_post() abort
+    call ddc#custom#set_buffer(s:prev_buffer_config)
+  endfunction
+
+  inoremap <silent><expr> <C-n>   pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
+  inoremap <silent><expr> <C-p>   pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
+  inoremap <silent><expr> <Esc>   pum#visible() ? '<Cmd>call pum#map#cancel()<CR>'  : '<Plug>(lexima-escape)'
+  inoremap <silent><expr> <CR>    pum#visible() ? '<Cmd>call pum#map#confirm()<CR>' : lexima#expand('<LT>CR>', 'i')
 '''
 
 [[plugins]]
 repo = 'Shougo/pum.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-converter_remove_overlap'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'tani/ddc-fuzzy'
+on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'Shougo/ddc-around'
@@ -144,7 +165,7 @@ hook_add = '''
 repo = 'hrsh7th/vim-vsnip-integ'
 on_source = 'ddc.vim'
 hook_source = '''
-  autocmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
+  autocmd MyAutoCmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
 '''
 
 [[plugins]]
@@ -160,12 +181,4 @@ hook_source = '''
   call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'markdown'})
   call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'markdown'})
 '''
-
-[[plugins]]
-repo = 'Shougo/ddc-converter_remove_overlap'
-on_source = 'ddc.vim'
-
-[[plugins]]
-repo = 'tani/ddc-fuzzy'
-on_source = 'ddc.vim'
 
