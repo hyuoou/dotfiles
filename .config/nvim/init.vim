@@ -24,6 +24,7 @@ augroup MyAutoCmd
   autocmd BufWritePre * %s/\s\+$//ge
   autocmd FileType gitcommit setlocal spell
   autocmd FileType qf setlocal nolist
+  autocmd BufRead $HOME/.config/i3/config set filetype=i3config
 augroup END
 
 " dein.vim config

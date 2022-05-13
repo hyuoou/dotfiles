@@ -1,6 +1,7 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-on_ft = ['c', 'cpp', 'go', 'sh', 'vim', 'rust']
+on_ft = ['c', 'cpp', 'go', 'sh', 'vim', 'rust', 'typescript', 'haskell']
+on_cmd = ['LspRestart']
 hook_source = '''
 lua << EOF
   local opts = {noremap=true, silent=true}
@@ -16,7 +17,7 @@ lua << EOF
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   end
 
-  local servers = {'clangd', 'gopls', 'bashls', 'vimls', 'rust_analyzer'}
+  local servers = {'clangd', 'gopls', 'bashls', 'vimls', 'rust_analyzer', 'denols', 'hls'}
   for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
       on_attach = on_attach,

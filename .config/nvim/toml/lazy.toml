@@ -68,10 +68,12 @@ hook_add = '''
 
 [[plugins]]
 repo = 'tpope/vim-surround'
+on_event = ['CursorHold']
 on_map = ['S', 'cs', 'ds']
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
+on_event = ['CursorHold']
 on_map = ['gc', 'gcc']
 
 [[plugins]]
@@ -89,9 +91,10 @@ build = 'sh -c "cd app && yarn install"'
 [[plugins]]
 repo = 'norcalli/nvim-colorizer.lua'
 on_cmd = ['ColorizerToggle']
+
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
-on_ft = ['rust']
+on_ft = ['rust', 'haskell']
 hook_source = '''
 lua << EOF
   require('indent_blankline').setup {
@@ -99,3 +102,4 @@ lua << EOF
   }
 EOF
 '''
+
