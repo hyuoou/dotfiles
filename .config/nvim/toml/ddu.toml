@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'Shougo/ddu.vim'
-depends = 'denops.vim'
+depends = ['denops.vim', 'nvim-treesitter']
 on_func = 'ddu#start'
 hook_add = '''
   command! Cnf Ddu file_rec -source-option-path=/home/hyuoou/.config/nvim
@@ -88,16 +88,17 @@ hook_source = '''
     \ })
   endfunction
 '''
+
 [plugins.ftplugin]
 ddu-ff = '''
   nnoremap <buffer><silent> <CR>  <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
   nnoremap <buffer><silent> x     <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
   nnoremap <buffer><silent> i     <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
-  nnoremap <buffer><silent> q     <Cmd>call ddu#ui#ff#do_action('quit')<CR>
   nnoremap <buffer><silent> p     <Cmd>call ddu#ui#ff#do_action('preview')<CR>
   nnoremap <buffer><silent> c     <Cmd>call ddu#ui#ff#do_action('chooseAction')<CR>
   nnoremap <buffer><silent> d     <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
   nnoremap <buffer><silent> e     <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<CR>
+  nnoremap <buffer><silent> q     <Cmd>call ddu#ui#ff#do_action('quit')<CR>
   nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
   nnoremap <buffer><silent> <C-p> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
 '''

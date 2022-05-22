@@ -1,7 +1,6 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 on_ft = ['c', 'cpp', 'go', 'sh', 'vim', 'rust', 'typescript', 'haskell']
-on_cmd = ['LspRestart']
 hook_source = '''
 lua << EOF
   local opts = {noremap=true, silent=true}

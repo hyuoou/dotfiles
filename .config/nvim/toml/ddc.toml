@@ -9,61 +9,66 @@ hook_source = '''
     \ })
 
   call ddc#custom#patch_global(
-    \ 'sources', ['nvim-lsp', 'tabnine', 'vsnip', 'buffer', 'tmux', 'around', 'file']
+    \ 'sources', ['nvim-lsp', 'vsnip', 'tabnine', 'buffer', 'tmux', 'around', 'file']
     \ )
 
   call ddc#custom#patch_global(
     \ 'autoCompleteEvents', ['InsertEnter', 'TextChangedI', 'TextChangedP', 'CmdlineEnter', 'CmdlineChanged']
     \ )
 
+  call ddc#custom#patch_global('filterParams', {
+    \ 'splitMode': 'word'
+    \ })
+
   call ddc#custom#patch_global('sourceOptions', {
     \ '_': {
     \   'ignoreCase': v:true,
     \   'matchers': ['matcher_fuzzy'],
     \   'sorters': ['sorter_fuzzy'],
-    \   'converter': ['converter_fuzzy', 'converter_remove_overlap']},
+    \   'converters': ['converter_remove_overlap', 'converter_fuzzy']
+    \ },
     \ 'vsnip': {
-    \   'mark': 'VS',
+    \   'mark': 'vsnip',
     \   'dup': v:true,
     \ },
     \ 'nvim-lsp': {
     \   'mark': 'LSP',
     \   'dup': v:true,
     \   'isVolatile': v:true,
-    \   'minAutoCompleteLength': 1,
     \   'forceCompletionPattern': '\.\w*|:\w*|->\w*',
     \ },
     \ 'skkeleton': {
-    \   'mark': 'SKK',
+    \   'mark': 'skkeleton',
     \   'matchers': ['skkeleton'],
     \   'sorters': [],
     \ },
     \ 'around': {
-    \   'mark': 'A',
+    \   'mark': 'around',
     \   'isVolatile': v:true,
+    \   'minAutoCompleteLength': 3,
     \ },
     \ 'file': {
-    \   'mark': 'F',
+    \   'mark': 'file',
     \   'isVolatile': v:true,
     \   'forceCompletionPattern': '\S/\S*',
     \ },
     \ 'tabnine': {
-    \   'mark': 'TN',
+    \   'mark': 'tabnine',
     \   'maxItems': 5,
     \   'isVolatile': v:true,
     \ },
     \ 'mocword': {
     \   'mark': 'mocword',
-    \   'minAutoCompleteLength': 3,
     \   'isVolatile': v:true,
+    \   'minAutoCompleteLength': 3,
     \ },
     \ 'buffer': {
-    \   'mark': 'B',
+    \   'mark': 'buffer',
     \   'maxItems': 5,
     \   'minAutoCompleteLength': 3,
     \ },
     \ 'tmux': {
-    \   'mark': 'T',
+    \   'mark': 'tmux',
     \   'maxItems': 5,
     \   'minAutoCompleteLength': 3,
     \ },
@@ -144,6 +149,7 @@ hook_source = '''
       call ddc#custom#set_buffer({})
     endif
   endfunction
+
 
   inoremap <silent><expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
   inoremap <silent><expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'

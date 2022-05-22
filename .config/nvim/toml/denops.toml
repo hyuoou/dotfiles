@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'vim-denops/denops.vim'
-on_event = 'CursorHold'
+on_event = ['CursorHold']
 
 [[plugins]]
 repo = 'vim-skk/skkeleton'
@@ -22,9 +22,9 @@ hook_source = '''
 
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
+depends = 'denops.vim'
 on_map = ['<Plug>(Translate)', '<Plug>(VTranslate)']
 on_cmd = 'Translate'
-depends = 'denops.vim'
 hook_add = '''
   nmap <C-t> <Plug>(Translate)
   vmap <C-t> <Plug>(VTranslate)
@@ -32,8 +32,8 @@ hook_add = '''
 
 [[plugins]]
 repo = 'lambdalisue/gin.vim'
-on_cmd = ['Gin', 'GinStatus', 'GinBranch', 'GinDiff']
 depends = 'denops.vim'
+on_cmd = ['Gin', 'GinStatus', 'GinBranch', 'GinDiff']
 hook_add = '''
   autocmd MyAutoCmd FileType diff setlocal nolist
   command! GinCommit Gin commit

@@ -9,11 +9,16 @@ hook_add = '''
   nnoremap <silent> <C-p> <Cmd>1ToggleTerm size=80 direction=vertical<CR>
   nnoremap <silent> <C-f> <Cmd>1ToggleTerm direction=float<CR>
 
-  nnoremap <silent> t1    <Cmd>1ToggleTerm direction=float<CR>
-  nnoremap <silent> t2    <Cmd>2ToggleTerm direction=float<CR>
-  nnoremap <silent> t3    <Cmd>3ToggleTerm direction=float<CR>
-  nnoremap <silent> t4    <Cmd>4ToggleTerm direction=float<CR>
-  nnoremap <silent> t5    <Cmd>5ToggleTerm direction=float<CR>
+  nnoremap <silent> t1 <Cmd>1ToggleTerm direction=float<CR>
+  nnoremap <silent> t2 <Cmd>2ToggleTerm direction=float<CR>
+  nnoremap <silent> t3 <Cmd>3ToggleTerm direction=float<CR>
+  nnoremap <silent> t4 <Cmd>4ToggleTerm direction=float<CR>
+  nnoremap <silent> t5 <Cmd>5ToggleTerm direction=float<CR>
+'''
+hook_source = '''
+lua << EOF
+  require('toggleterm').setup{}
+EOF
 '''
 [plugins.ftplugin]
 toggleterm = '''
@@ -99,6 +104,24 @@ hook_source = '''
 lua << EOF
   require('indent_blankline').setup {
     show_and_of_line = true,
+  }
+EOF
+'''
+
+[[plugins]]
+repo = 'delphinus/skkeleton_indicator.nvim'
+on_source = 'skkeleton'
+hook_source = '''
+lua << EOF
+  vim.api.nvim_exec([[
+    hi SkkeletonIndicatorHira guifg=#000000 guibg=#7aa2f7 gui=bold
+    hi SkkeletonIndicatorKata guifg=#000000 guibg=#f7768e gui=bold
+    hi SkkeletonIndicatorHankata guifg=#000000 guibg=#bb9af7 gui=bold
+    hi SkkeletonIndicatorZenkaku guifg=#000000 guibg=#89ddff gui=bold
+  ]], false)
+
+  require('skkeleton_indicator').setup {
+    alwaysShown = false,
   }
 EOF
 '''
