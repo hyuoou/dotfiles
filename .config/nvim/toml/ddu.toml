@@ -4,15 +4,15 @@ depends = ['denops.vim', 'nvim-treesitter']
 on_func = 'ddu#start'
 hook_add = '''
   command! Cnf Ddu file_rec -source-option-path=/home/hyuoou/.config/nvim
-  nnoremap <silent> ff <Cmd>Ddu file_rec<CR>
-  nnoremap <silent> ;f <Cmd>Ddu file<CR>
-  nnoremap <silent> ;o <Cmd>Ddu file_old<CR>
+  nnoremap <silent> ff <Cmd>call ddu#start({'sources': [{'name': 'file_rec'}], 'uiParams': {'ff': {'autoAction': {'name': 'preview'}}}})<CR>
+  nnoremap <silent> ;f <Cmd>call ddu#start({'sources': [{'name': 'file'}], 'uiParams': {'ff': {'autoAction': {'name': 'preview'}}}})<CR>
+  nnoremap <silent> ;o <Cmd>call ddu#start({'sources': [{'name': 'file_old'}], 'uiParams': {'ff': {'autoAction': {'name': 'preview'}}}})<CR>
   nnoremap <silent> ;d <Cmd>Ddu nvim_lsp_diagnostic_all<CR>
   nnoremap <silent> ;b <Cmd>Ddu buffer<CR>
   nnoremap <silent> ;g <Cmd>DduLiveRg<CR>
   nnoremap <silent> ;h <Cmd>Ddu help -ui-param-startFilter=v:true<CR>
   nnoremap <silent> fg <Cmd>Ddu file_external<CR>
-  nnoremap <silent> /  <Cmd>Ddu line -ui-param-startFilter=v:true<CR>
+  nnoremap <silent> /  <Cmd>call ddu#start({'sources': [{'name': 'line'}], 'uiParams': {'ff': {'startFilter': v:true, 'autoAction': {'name': 'preview'}}}})<CR>
   nnoremap <silent> ;; <Cmd>Ddu command_history<CR>
 '''
 hook_source = '''
@@ -71,6 +71,7 @@ hook_source = '''
     \ 'uiParams': {
     \   'ff': {
     \     'startFilter': v:true,
+    \     'autoAction': {'name': 'preview'}
     \   }},
     \ })
   endfunction

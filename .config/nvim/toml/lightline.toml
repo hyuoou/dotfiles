@@ -55,7 +55,7 @@ on_source = 'lightline.vim'
 hook_source = '''
   let g:lightline#lsp#indicator_errors   = 'E:'
   let g:lightline#lsp#indicator_warnings = 'W:'
-  let g:lightline#lsp#indicator_infos    = 'I:'
+  let g:lightline#lsp#indicator_info     = 'I:'
   let g:lightline#lsp#indicator_hints    = 'H:'
   call lightline#lsp#register()
   autocmd MyAutoCmd DiagnosticChanged * call lightline#update()

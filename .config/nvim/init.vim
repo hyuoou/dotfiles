@@ -25,6 +25,8 @@ augroup MyAutoCmd
   autocmd FileType gitcommit setlocal spell
   autocmd FileType qf setlocal nolist
   autocmd BufRead $HOME/.config/i3/config set filetype=i3config
+  autocmd BufRead $HOME/.aliases set filetype=sh
+  autocmd BufNewFile,BufRead *.fs,*.fsx,*.fsi set filetype=fsharp
 augroup END
 
 " dein.vim config
@@ -61,9 +63,8 @@ call map(g:dein#inline_vimrcs, {_, val -> s:base_dir . val})
 
 let g:dein#auto_recache          = v:true
 let g:dein#lazy_rplugins         = v:true
-let g:dein#install_progress_type = 'floating'
 let g:dein#install_check_diff    = v:true
-let g:dein#enable_notification   = v:true
+let g:dein#install_progress_type = 'floating'
 
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)

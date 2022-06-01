@@ -28,56 +28,56 @@ hook_source = '''
     \   'converters': ['converter_remove_overlap', 'converter_fuzzy']
     \ },
     \ 'vsnip': {
-    \   'mark': 'vsnip',
+    \   'mark': '[vsnip]',
     \   'dup': v:true,
     \ },
     \ 'nvim-lsp': {
-    \   'mark': 'LSP',
+    \   'mark': '[LSP]',
     \   'dup': v:true,
     \   'isVolatile': v:true,
     \   'forceCompletionPattern': '\.\w*|:\w*|->\w*',
     \ },
     \ 'skkeleton': {
-    \   'mark': 'skkeleton',
+    \   'mark': '[skkeleton]',
     \   'matchers': ['skkeleton'],
     \   'sorters': [],
     \ },
     \ 'around': {
-    \   'mark': 'around',
+    \   'mark': '[around]',
     \   'isVolatile': v:true,
     \   'minAutoCompleteLength': 3,
     \ },
     \ 'file': {
-    \   'mark': 'file',
+    \   'mark': '[file]',
     \   'isVolatile': v:true,
     \   'forceCompletionPattern': '\S/\S*',
     \ },
     \ 'tabnine': {
-    \   'mark': 'tabnine',
+    \   'mark': '[tabnine]',
     \   'maxItems': 5,
     \   'isVolatile': v:true,
     \ },
     \ 'mocword': {
-    \   'mark': 'mocword',
+    \   'mark': '[mocword]',
     \   'isVolatile': v:true,
     \   'minAutoCompleteLength': 3,
     \ },
     \ 'buffer': {
-    \   'mark': 'buffer',
+    \   'mark': '[buffer]',
     \   'maxItems': 5,
     \   'minAutoCompleteLength': 3,
     \ },
     \ 'tmux': {
-    \   'mark': 'tmux',
+    \   'mark': '[tmux]',
     \   'maxItems': 5,
     \   'minAutoCompleteLength': 3,
     \ },
     \ 'cmdline': {
-    \   'mark': 'cmdline',
+    \   'mark': '[cmdline]',
     \   'dup': v:true,
     \ },
     \ 'cmdline-history': {
-    \   'mark': 'history',
+    \   'mark': '[history]',
     \ },
     \ })
 

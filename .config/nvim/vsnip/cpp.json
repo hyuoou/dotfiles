@@ -17,5 +17,13 @@
       "",
       "#endif"
     ]
+  },
+  "mainfn": {
+    "prefix": ["mainfn"],
+    "body": [
+      "int main() {",
+      "\t$1",
+      "}"
+    ]
   }
 }
