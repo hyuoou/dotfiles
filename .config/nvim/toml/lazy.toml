@@ -58,10 +58,6 @@ repo = 'mattn/vim-maketable'
 on_cmd = 'MakeTable'
 
 [[plugins]]
-repo = 'lambdalisue/vim-backslash'
-on_ft = 'vim'
-
-[[plugins]]
 repo = 'segeljakt/vim-silicon'
 on_cmd = 'Silicon'
 hook_add = '''
@@ -73,13 +69,14 @@ hook_add = '''
 
 [[plugins]]
 repo = 'tpope/vim-surround'
-on_event = ['CursorHold']
-on_map = ['S', 'cs', 'ds']
+on_event = ['BufRead']
 
 [[plugins]]
-repo = 'tpope/vim-commentary'
-on_event = ['CursorHold']
-on_map = ['gc', 'gcc']
+repo = 'numToStr/Comment.nvim'
+on_event = ['BufRead']
+hook_source = '''
+  lua require('Comment').setup()
+'''
 
 [[plugins]]
 repo = 'z0mbix/vim-shfmt'
@@ -109,24 +106,6 @@ EOF
 '''
 
 [[plugins]]
-repo = 'delphinus/skkeleton_indicator.nvim'
-on_source = 'skkeleton'
-hook_source = '''
-lua << EOF
-  vim.api.nvim_exec([[
-    hi SkkeletonIndicatorHira guifg=#000000 guibg=#7aa2f7 gui=bold
-    hi SkkeletonIndicatorKata guifg=#000000 guibg=#f7768e gui=bold
-    hi SkkeletonIndicatorHankata guifg=#000000 guibg=#bb9af7 gui=bold
-    hi SkkeletonIndicatorZenkaku guifg=#000000 guibg=#89ddff gui=bold
-  ]], false)
-
-  require('skkeleton_indicator').setup {
-    alwaysShown = false,
-  }
-EOF
-'''
-
-[[plugins]]
 repo = 'antoinemadec/FixCursorHold.nvim'
 hook_add = '''
   let g:cursorhold_updatetime = 100
@@ -138,3 +117,4 @@ on_ft = ['rust']
 hook_add = '''
   let g:rustfmt_autosave = 1
 '''
+

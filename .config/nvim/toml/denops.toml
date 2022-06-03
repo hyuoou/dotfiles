@@ -21,6 +21,24 @@ hook_source = '''
 '''
 
 [[plugins]]
+repo = 'delphinus/skkeleton_indicator.nvim'
+on_source = 'skkeleton'
+hook_source = '''
+lua << EOF
+  vim.api.nvim_exec([[
+    hi SkkeletonIndicatorHira guifg=#000000 guibg=#7aa2f7 gui=bold
+    hi SkkeletonIndicatorKata guifg=#000000 guibg=#f7768e gui=bold
+    hi SkkeletonIndicatorHankata guifg=#000000 guibg=#bb9af7 gui=bold
+    hi SkkeletonIndicatorZenkaku guifg=#000000 guibg=#89ddff gui=bold
+  ]], false)
+
+  require('skkeleton_indicator').setup {
+    alwaysShown = false,
+  }
+EOF
+'''
+
+[[plugins]]
 repo = 'skanehira/denops-translate.vim'
 depends = 'denops.vim'
 on_map = ['<Plug>(Translate)', '<Plug>(VTranslate)']
@@ -38,8 +56,4 @@ hook_add = '''
   autocmd MyAutoCmd FileType diff setlocal nolist
   command! GinCommit Gin commit
 '''
-
-# [[plugins]]
-# repo = 'kat0h/bufpreview.vim'
-# on_cmd = 'PreviewMarkdown'
 
