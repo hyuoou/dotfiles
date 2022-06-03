@@ -11,9 +11,6 @@ lua << EOF
     yati = {
       enable = true,
     },
-    autotag = {
-      enable = true,
-    },
     rainbow = {
       enable = true,
       extended_mode = true,
@@ -42,8 +39,4 @@ on_source = 'nvim-treesitter'
 [[plugins]]
 repo = 'yioneko/nvim-yati'
 on_source = 'nvim-treesitter'
-
-[[plugins]]
-repo = 'windwp/nvim-ts-autotag'
-on_source = 'nvim-treeitter'
 
