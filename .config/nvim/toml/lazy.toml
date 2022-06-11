@@ -118,3 +118,7 @@ hook_add = '''
   let g:rustfmt_autosave = 1
 '''
 
+[[plugins]]
+repo = 'skanehira/denops-twihi.vim'
+on_cmd = ['Twihi*']
+

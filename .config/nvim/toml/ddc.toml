@@ -126,7 +126,7 @@ hook_source = '''
     if !exists('b:prev_buffer_config')
       let b:prev_buffer_config = ddc#custom#get_buffer()
     endif
-    call ddc#custom#patch_buffer('cmdlineSources', ['cmdline', 'cmdline-history', 'around'])
+    call ddc#custom#patch_buffer('cmdlineSources', ['cmdline', 'cmdline-history', 'around', 'file'])
 
     autocmd MyAutoCmd User DDCCmdlineLeave ++once call CommandlinePost()
     autocmd MyAutoCmd InsertEnter <buffer> ++once call CommandlinePost()
@@ -204,12 +204,12 @@ on_source = 'ddc.vim'
 repo = 'Shougo/ddc-cmdline-history'
 on_source = 'ddc.vim'
 
-[[plugins]]
-repo = 'matsui54/denops-popup-preview.vim'
-on_source = 'ddc.vim'
-hook_source = '''
-  call popup_preview#enable()
-'''
+# [[plugins]]
+# repo = 'matsui54/denops-popup-preview.vim'
+# on_source = 'ddc.vim'
+# hook_source = '''
+#   call popup_preview#enable()
+# '''
 
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip'

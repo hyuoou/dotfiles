@@ -1,34 +1,71 @@
+# default shell
 shell:
     program: /bin/zsh
 
-# Colors (Nord)
+# colorscheme
+schemes:
+    nord: &nord
+        # Default colors
+        primary:
+            background: '#2E3440'
+            foreground: '#D8DEE9'
+
+        # Normal colors
+        normal:
+            black:   '#3B4252'
+            red:     '#BF616A'
+            green:   '#A3BE8C'
+            yellow:  '#EBCB8B'
+            blue:    '#81A1C1'
+            magenta: '#B48EAD'
+            cyan:    '#88C0D0'
+            white:   '#E5E9F0'
+
+        # Bright colors
+        bright:
+            black:   '#4C566A'
+            red:     '#BF616A'
+            green:   '#A3BE8C'
+            yellow:  '#EBCB8B'
+            blue:    '#81A1C1'
+            magenta: '#B48EAD'
+            cyan:    '#8FBCBB'
+            white:   '#ECEFF4'
+
+    tokyonight: &storm
+        # Default colors
+        primary:
+            background: '0x24283b'
+            foreground: '0xc0caf5'
+
+        # Normal colors
+        normal:
+            black:   '0x1D202F'
+            red:     '0xf7768e'
+            green:   '0x9ece6a'
+            yellow:  '0xe0af68'
+            blue:    '0x7aa2f7'
+            magenta: '0xbb9af7'
+            cyan:    '0x7dcfff'
+            white:   '0xa9b1d6'
+
+        # Bright colors
+        bright:
+            black:   '0x414868'
+            red:     '0xf7768e'
+            green:   '0x9ece6a'
+            yellow:  '0xe0af68'
+            blue:    '0x7aa2f7'
+            magenta: '0xbb9af7'
+            cyan:    '0x7dcfff'
+            white:   '0xc0caf5'
+
+        indexed_color:
+          - { index: 16, color: '0xff9e64' }
+          - { index: 17, color: '0xdb4b4b' }
+
 colors:
-   # Default colors
-   primary:
-     background: '#2E3440'
-     foreground: '#D8DEE9'
-
-   # Normal colors
-   normal:
-     black:   '#3B4252'
-     red:     '#BF616A'
-     green:   '#A3BE8C'
-     yellow:  '#EBCB8B'
-     blue:    '#81A1C1'
-     magenta: '#B48EAD'
-     cyan:    '#88C0D0'
-     white:   '#E5E9F0'
-
-   # Bright colors
-   bright:
-     black:   '#4C566A'
-     red:     '#BF616A'
-     green:   '#A3BE8C'
-     yellow:  '#EBCB8B'
-     blue:    '#81A1C1'
-     magenta: '#B48EAD'
-     cyan:    '#8FBCBB'
-     white:   '#ECEFF4'
+    *storm
 
 # font
 font:
@@ -46,8 +83,8 @@ font:
         family: SauceCodePro Nerd Font
         style:  Bold Italic
 
-window:
-    opacity: 0.85
+# window:
+#     opacity: 0.85
 
 env:
     TERM: xterm-256color

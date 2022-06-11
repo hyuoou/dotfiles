@@ -16,7 +16,7 @@ lua << EOF
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Space>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
   end
 
-  local servers = {'clangd', 'gopls', 'bashls', 'vimls', 'rust_analyzer'}
+  local servers = {'clangd', 'golangci_lint_ls', 'gopls', 'bashls', 'vimls', 'rust_analyzer'}
   for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
       on_attach = on_attach,

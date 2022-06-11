@@ -1,6 +1,24 @@
+#!/usr/bin/env bash
+
+# vim alias
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
+alias vimdiff='nvim -R -d'
+alias cnf='cd $HOME/.config/nvim'
+
+# cd alias
+alias cd....='cd ../..'
+
+# git alias
+alias g='git'
+alias ga='git add'
+alias gaa='git add -A'
+alias gcm='git commit'
+alias gps='git push'
+alias gpl='git pull'
+
+# rust command
 alias ls='exa --icons'
 alias la='exa --all --icons'
 alias ll='exa -hl --git'
@@ -10,6 +28,9 @@ alias lta='exa --all --tree --icons'
 alias cat='bat'
 alias yay='paru'
 alias grep='rg'
+alias find='fd'
+
+# aliases
 alias rm='gomi'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -24,7 +45,6 @@ alias mkdir='mkdir -p'
 
 # tmux alias
 alias t='tmux'
-alias tn='tmux new -s'
 alias tls='tmux ls'
 alias ta='tmux a -t'
 alias tk='tmux kill-session -t'
@@ -40,16 +60,14 @@ get() {
 wttr() {
 	curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-Tokyo}"
 }
-mkcd () {
-	mkdir -p "$1" && cd "$1"
+mkcd() {
+	mkdir -p "$1" && cd "$1" || return
 }
 qrcode() {
 	curl qrcode.show/"$1"
 }
-
-fgh() {
+fzghq() {
 	local dir
 	dir=$(ghq list -p | fzf +m)
-	cd "${dir}"
+	cd "${dir}" || return
 }
-
