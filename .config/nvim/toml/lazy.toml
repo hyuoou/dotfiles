@@ -1,8 +1,4 @@
 [[plugins]]
-repo = 'mattn/vim-goimports'
-on_ft = 'go'
-
-[[plugins]]
 repo = 'akinsho/toggleterm.nvim'
 on_cmd = '*ToggleTerm'
 hook_add = '''
@@ -54,10 +50,6 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'mattn/vim-maketable'
-on_cmd = 'MakeTable'
-
-[[plugins]]
 repo = 'segeljakt/vim-silicon'
 on_cmd = 'Silicon'
 hook_add = '''
@@ -68,8 +60,11 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'tpope/vim-surround'
+repo = 'kylechui/nvim-surround'
 on_event = ['BufRead']
+hook_source = '''
+  lua require('nvim-surround').setup()
+'''
 
 [[plugins]]
 repo = 'numToStr/Comment.nvim'
@@ -77,18 +72,6 @@ on_event = ['BufRead']
 hook_source = '''
   lua require('Comment').setup()
 '''
-
-[[plugins]]
-repo = 'z0mbix/vim-shfmt'
-on_ft = 'sh'
-hook_add = '''
-  let g:shfmt_fmt_on_save = 1
-'''
-
-[[plugins]]
-repo = 'iamcco/markdown-preview.nvim'
-on_cmd = ['MarkdownPreview']
-build = 'sh -c "cd app && yarn install"'
 
 [[plugins]]
 repo = 'norcalli/nvim-colorizer.lua'
@@ -110,15 +93,4 @@ repo = 'antoinemadec/FixCursorHold.nvim'
 hook_add = '''
   let g:cursorhold_updatetime = 100
 '''
-
-[[plugins]]
-repo = 'rust-lang/rust.vim'
-on_ft = ['rust']
-hook_add = '''
-  let g:rustfmt_autosave = 1
-'''
-
-[[plugins]]
-repo = 'skanehira/denops-twihi.vim'
-on_cmd = ['Twihi*']
 

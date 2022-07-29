@@ -9,13 +9,14 @@ let g:loaded_man                = 1
 let g:loaded_matchit            = 1
 let g:loaded_matchparen         = 1
 let g:loaded_netrwPlugin        = 1
-let g:loaded_remote_plugins     = 1
+" let g:loaded_remote_plugins     = 1
 let g:loaded_shada_plugin       = 1
 let g:loaded_spellfile_plugin   = 1
 let g:loaded_tarPlugin          = 1
 let g:loaded_tutor_mode_plugin  = 1
 let g:loaded_zipPlugin          = 1
 let g:loaded_fzf                = 1
+let g:loaded_skim               = 1
 let g:skip_loading_mswin        = 1
 
 " autocmd
@@ -87,8 +88,8 @@ if dein#check_install()
   call dein#install()
 endif
 
+command! DeinUpdate call dein#check_update(v:true)
+
 filetype plugin indent on
 syntax enable
-
-command! DeinUpdate call dein#check_update(v:true)
 

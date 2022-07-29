@@ -4,15 +4,15 @@ depends = ['denops.vim', 'nvim-treesitter']
 on_func = 'ddu#start'
 hook_add = '''
   command! Cnf Ddu file_rec -source-option-path=/home/hyuoou/.config/nvim
-  nnoremap <silent> ff <Cmd>call ddu#start({'sources': [{'name': 'file_rec'}], 'uiParams': {'ff': {'autoAction': {'name': 'preview'}}}})<CR>
-  nnoremap <silent> ;f <Cmd>call ddu#start({'sources': [{'name': 'file'}], 'uiParams': {'ff': {'autoAction': {'name': 'preview'}}}})<CR>
-  nnoremap <silent> ;o <Cmd>call ddu#start({'sources': [{'name': 'file_old'}], 'uiParams': {'ff': {'autoAction': {'name': 'preview'}}}})<CR>
+  nnoremap <silent> ff <Cmd>Ddu file_rec<CR>
+  nnoremap <silent> ;f <Cmd>Ddu file<CR>
+  nnoremap <silent> ;o <Cmd>Ddu file_old<CR>
   nnoremap <silent> ;d <Cmd>Ddu nvim_lsp_diagnostic_all<CR>
   nnoremap <silent> ;b <Cmd>Ddu buffer<CR>
   nnoremap <silent> ;g <Cmd>DduLiveRg<CR>
   nnoremap <silent> ;h <Cmd>Ddu help -ui-param-startFilter=v:true<CR>
   nnoremap <silent> fg <Cmd>Ddu file_external<CR>
-  nnoremap <silent> /  <Cmd>call ddu#start({'sources': [{'name': 'line'}], 'uiParams': {'ff': {'startFilter': v:true, 'autoAction': {'name': 'preview'}}}})<CR>
+  nnoremap <silent> /  <Cmd>Ddu line -ui--ui-param-startFilter=v:true<CR>
   nnoremap <silent> ;; <Cmd>Ddu command_history<CR>
 '''
 hook_source = '''
@@ -21,8 +21,9 @@ hook_source = '''
     \ 'uiParams': {
     \   'ff': {
     \     'split': 'floating',
-    \     'previewHeight': 25,
+    \     'previewHeight': 27,
     \     'floatingBorder': 'single',
+    \     'autoAction': {'name': 'preview'},
     \   },
     \ },
     \ 'filterParams': {
@@ -71,7 +72,6 @@ hook_source = '''
     \ 'uiParams': {
     \   'ff': {
     \     'startFilter': v:true,
-    \     'autoAction': {'name': 'preview'}
     \   }},
     \ })
   endfunction
@@ -93,25 +93,23 @@ hook_source = '''
 [plugins.ftplugin]
 ddu-ff = '''
   nnoremap <buffer><silent> <CR>  <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
-  nnoremap <buffer><silent> x     <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>
+  nnoremap <buffer><silent> x     <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>j
+  nnoremap <buffer><silent> v     <Cmd>call ddu#ui#ff#do_action('toggleAllItems')<CR>
   nnoremap <buffer><silent> i     <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
   nnoremap <buffer><silent> p     <Cmd>call ddu#ui#ff#do_action('preview')<CR>
   nnoremap <buffer><silent> c     <Cmd>call ddu#ui#ff#do_action('chooseAction')<CR>
-  nnoremap <buffer><silent> d     <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
+  nnoremap <buffer><silent> D     <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
   nnoremap <buffer><silent> e     <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<CR>
   nnoremap <buffer><silent> q     <Cmd>call ddu#ui#ff#do_action('quit')<CR>
   nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
-  nnoremap <buffer><silent> <C-p> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
 '''
 ddu-ff-filter = '''
-  inoremap <buffer><silent> <CR> <Esc><Cmd>close<CR>
-  nnoremap <buffer><silent> <CR> <Cmd>close<CR>
+  inoremap <buffer><silent> <CR> <Esc><Cmd>call ddu#ui#ff#close()<CR>
+  nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#close()<CR>
   nnoremap <buffer><silent> <Esc>
-    \ <Cmd>close<CR><Cmd>call ddu#ui#ff#do_action('quit')<CR>
-  nnoremap <buffer><silent> <C-p>
-    \ <Cmd>close<CR><Cmd>call ddu#ui#ff#do_action('quit')<CR>
+    \ <Cmd>call ddu#ui#ff#close()<CR><Cmd>call ddu#ui#ff#do_action('quit')<CR>
   nnoremap <buffer><silent> q
-    \ <Cmd>close<CR><Cmd>call ddu#ui#ff#do_action('quit')<CR>
+    \ <Cmd>call ddu#ui#ff#close()<CR><Cmd>call ddu#ui#ff#do_action('quit')<CR>
 '''
 
 [[plugins]]

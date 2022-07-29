@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-on_ft = ['c', 'cpp', 'go', 'sh', 'vim', 'rust', 'fsharp']
+on_ft = ['c', 'cpp', 'go', 'sh', 'vim', 'rust', 'fsharp', 'dart']
 hook_source = '''
 lua << EOF
   local opts = {noremap=true, silent=true}
@@ -16,7 +16,7 @@ lua << EOF
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Space>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
   end
 
-  local servers = {'clangd', 'golangci_lint_ls', 'gopls', 'bashls', 'vimls', 'rust_analyzer'}
+  local servers = {'clangd', 'golangci_lint_ls', 'gopls', 'bashls', 'vimls', 'rust_analyzer', 'dartls'}
   for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
       on_attach = on_attach,
@@ -25,39 +25,5 @@ lua << EOF
   end
 EOF
   command! LspFormat lua vim.lsp.buf.format {async = true}<CR>
-'''
-
-# Fsharp lsp config
-[[plugins]]
-repo = 'ionide/Ionide-vim'
-depends = ['FixCursorHold.nvim']
-on_ft = 'fsharp'
-hook_add = '''
-  let g:fsharp#lsp_auto_setup = 0
-  let g:fsharp#backend = "nvim"
-  let g:fsharp#fsi_keymap = "custom"
-  let g:fsharp#fsi_keymap_send = "<Space>i"
-  let g:fsharp#fsi_keymap_toggle = "<Space>e"
-'''
-hook_source = '''
-lua << EOF
-  local opts = {noremap=true, silent=true}
-  vim.api.nvim_set_keymap('n', '<C-h>', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-  vim.api.nvim_set_keymap('n', '<C-l>', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-  local on_attach = function(client, bufnr)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ge', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Space>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  end
-
-  require 'ionide'.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-EOF
 '''
 

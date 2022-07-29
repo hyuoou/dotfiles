@@ -1,0 +1,66 @@
+# fsharp
+[[plugins]]
+repo = 'ionide/Ionide-vim'
+depends = ['FixCursorHold.nvim']
+on_ft = ['fsharp']
+hook_add = '''
+  let g:fsharp#lsp_auto_setup = 0
+  let g:fsharp#backend = "nvim"
+  let g:fsharp#fsi_keymap = "custom"
+  let g:fsharp#fsi_keymap_send = "<Space>i"
+  let g:fsharp#fsi_keymap_toggle = "<Space>e"
+'''
+hook_source = '''
+lua << EOF
+  local opts = {noremap=true, silent=true}
+  vim.api.nvim_set_keymap('n', '<C-h>', '<Cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+  vim.api.nvim_set_keymap('n', '<C-l>', '<Cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+  local on_attach = function(client, bufnr)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'ge', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Space>r', '<Cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  end
+
+  require 'ionide'.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+EOF
+'''
+
+# rust
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = ['rust']
+hook_add = '''
+  let g:rustfmt_autosave = 1
+  let g:rustfmt_command = '$HOME/.cargo/bin/cargo-fmt'
+'''
+
+# go
+[[plugins]]
+repo = 'mattn/vim-goimports'
+on_ft = 'go'
+
+# shellscript
+[[plugins]]
+repo = 'z0mbix/vim-shfmt'
+on_ft = 'sh'
+hook_add = '''
+  let g:shfmt_fmt_on_save = 1
+'''
+
+# markdown
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_cmd = ['MarkdownPreview']
+build = 'sh -c "cd app && yarn install"'
+
+[[plugins]]
+repo = 'mattn/vim-maketable'
+on_cmd = 'MakeTable'
+
