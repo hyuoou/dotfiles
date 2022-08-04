@@ -12,7 +12,7 @@ hook_add = '''
   nnoremap <silent> ;g <Cmd>DduLiveRg<CR>
   nnoremap <silent> ;h <Cmd>Ddu help -ui-param-startFilter=v:true<CR>
   nnoremap <silent> fg <Cmd>Ddu file_external<CR>
-  nnoremap <silent> /  <Cmd>Ddu line -ui--ui-param-startFilter=v:true<CR>
+  nnoremap <silent> /  <Cmd>Ddu line -ui-param-startFilter=v:true<CR>
   nnoremap <silent> ;; <Cmd>Ddu command_history<CR>
 '''
 hook_source = '''
