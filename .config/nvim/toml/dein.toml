@@ -17,5 +17,6 @@ repo = 'nathom/filetype.nvim'
 repo = 'folke/tokyonight.nvim'
 hook_add = '''
   colorscheme tokyonight
+  " let g:tokyonight_style = "night"
 '''
 

@@ -1,0 +1,122 @@
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+on_event = ['CursorHold']
+
+[[plugins]]
+repo = 'akinsho/toggleterm.nvim'
+on_cmd = '*ToggleTerm'
+hook_add = '''
+  nnoremap <silent> <C-p> <Cmd>1ToggleTerm size=80 direction=vertical<CR>
+  nnoremap <silent> <C-f> <Cmd>1ToggleTerm direction=float<CR>
+
+  nnoremap <silent> t1 <Cmd>1ToggleTerm direction=float<CR>
+  nnoremap <silent> t2 <Cmd>2ToggleTerm direction=float<CR>
+  nnoremap <silent> t3 <Cmd>3ToggleTerm direction=float<CR>
+  nnoremap <silent> t4 <Cmd>4ToggleTerm direction=float<CR>
+  nnoremap <silent> t5 <Cmd>5ToggleTerm direction=float<CR>
+'''
+hook_source = '''
+lua << EOF
+  require('toggleterm').setup{}
+EOF
+'''
+[plugins.ftplugin]
+toggleterm = '''
+  tnoremap <buffer><silent> t1 <Cmd>ToggleTerm<CR><Cmd>1ToggleTerm direction=float<CR>
+  tnoremap <buffer><silent> t2 <Cmd>ToggleTerm<CR><Cmd>2ToggleTerm direction=float<CR>
+  tnoremap <buffer><silent> t3 <Cmd>ToggleTerm<CR><Cmd>3ToggleTerm direction=float<CR>
+  tnoremap <buffer><silent> t4 <Cmd>ToggleTerm<CR><Cmd>4ToggleTerm direction=float<CR>
+  tnoremap <buffer><silent> t5 <Cmd>ToggleTerm<CR><Cmd>5ToggleTerm direction=float<CR>
+
+  nnoremap <buffer><silent> t1 <Cmd>ToggleTerm<CR><Cmd>1ToggleTerm direction=float<CR>
+  nnoremap <buffer><silent> t2 <Cmd>ToggleTerm<CR><Cmd>2ToggleTerm direction=float<CR>
+  nnoremap <buffer><silent> t3 <Cmd>ToggleTerm<CR><Cmd>3ToggleTerm direction=float<CR>
+  nnoremap <buffer><silent> t4 <Cmd>ToggleTerm<CR><Cmd>4ToggleTerm direction=float<CR>
+  nnoremap <buffer><silent> t5 <Cmd>ToggleTerm<CR><Cmd>5ToggleTerm direction=float<CR>
+
+  tnoremap <buffer><silent> <C-p> <Cmd>ToggleTerm<CR>
+  nnoremap <buffer><silent> <C-p> <Cmd>ToggleTerm<CR>
+  nnoremap <buffer><silent> <Esc> <Cmd>ToggleTerm<CR>
+'''
+
+[[plugins]]
+repo = 'kylechui/nvim-surround'
+on_event = ['BufNewFile', 'BufRead']
+hook_source = '''
+  lua require('nvim-surround').setup()
+'''
+
+[[plugins]]
+repo = 'numToStr/Comment.nvim'
+on_event = ['BufNewFile', 'BufRead']
+hook_source = '''
+  lua require('Comment').setup()
+'''
+
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'
+on_cmd = ['ColorizerToggle']
+
+[[plugins]]
+repo = 'lukas-reineke/indent-blankline.nvim'
+on_ft = ['rust']
+hook_source = '''
+lua << EOF
+  require('indent_blankline').setup {
+    show_and_of_line = true,
+  }
+EOF
+'''
+
+[[plugins]]
+repo = 'famiu/bufdelete.nvim'
+on_event = ['VimEnter']
+
+[[plugins]]
+repo = 'lewis6991/gitsigns.nvim'
+on_event = ['VimEnter']
+hook_source = '''
+lua << EOF
+  require('gitsigns').setup()
+EOF
+'''
+
+[[plugins]]
+repo = 'TimUntersberger/neogit'
+depends = ['plenary.nvim']
+on_cmd = ['Neogit']
+hook_source = '''
+lua << EOF
+  require('neogit').setup {
+    integrations = {
+      diffview = true,
+    },
+  }
+EOF
+  autocmd MyAutoCmd FileType Neogit* setlocal nolist
+'''
+
+[[plugins]]
+repo = 'sindrets/diffview.nvim'
+depends = ['plenary.nvim']
+on_source = ['neogit']
+
+[[plugins]]
+repo = 'delphinus/skkeleton_indicator.nvim'
+on_source = 'skkeleton'
+hook_source = '''
+lua << EOF
+  vim.api.nvim_exec([[
+    hi SkkeletonIndicatorEiji guifg=#000000 guibg=#24283b gui=bold
+    hi SkkeletonIndicatorHira guifg=#000000 guibg=#7aa2f7 gui=bold
+    hi SkkeletonIndicatorKata guifg=#000000 guibg=#f7768e gui=bold
+    hi SkkeletonIndicatorHankata guifg=#000000 guibg=#bb9af7 gui=bold
+    hi SkkeletonIndicatorZenkaku guifg=#000000 guibg=#89ddff gui=bold
+  ]], false)
+require('skkeleton_indicator').setup {
+    alwaysShown = false,
+    fadeOutMs = 1000,
+  }
+EOF
+'''
+

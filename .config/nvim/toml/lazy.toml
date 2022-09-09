@@ -1,41 +1,4 @@
 [[plugins]]
-repo = 'akinsho/toggleterm.nvim'
-on_cmd = '*ToggleTerm'
-hook_add = '''
-  nnoremap <silent> <C-p> <Cmd>1ToggleTerm size=80 direction=vertical<CR>
-  nnoremap <silent> <C-f> <Cmd>1ToggleTerm direction=float<CR>
-
-  nnoremap <silent> t1 <Cmd>1ToggleTerm direction=float<CR>
-  nnoremap <silent> t2 <Cmd>2ToggleTerm direction=float<CR>
-  nnoremap <silent> t3 <Cmd>3ToggleTerm direction=float<CR>
-  nnoremap <silent> t4 <Cmd>4ToggleTerm direction=float<CR>
-  nnoremap <silent> t5 <Cmd>5ToggleTerm direction=float<CR>
-'''
-hook_source = '''
-lua << EOF
-  require('toggleterm').setup{}
-EOF
-'''
-[plugins.ftplugin]
-toggleterm = '''
-  tnoremap <buffer><silent> t1 <Cmd>ToggleTerm<CR><Cmd>1ToggleTerm direction=float<CR>
-  tnoremap <buffer><silent> t2 <Cmd>ToggleTerm<CR><Cmd>2ToggleTerm direction=float<CR>
-  tnoremap <buffer><silent> t3 <Cmd>ToggleTerm<CR><Cmd>3ToggleTerm direction=float<CR>
-  tnoremap <buffer><silent> t4 <Cmd>ToggleTerm<CR><Cmd>4ToggleTerm direction=float<CR>
-  tnoremap <buffer><silent> t5 <Cmd>ToggleTerm<CR><Cmd>5ToggleTerm direction=float<CR>
-
-  nnoremap <buffer><silent> t1 <Cmd>ToggleTerm<CR><Cmd>1ToggleTerm direction=float<CR>
-  nnoremap <buffer><silent> t2 <Cmd>ToggleTerm<CR><Cmd>2ToggleTerm direction=float<CR>
-  nnoremap <buffer><silent> t3 <Cmd>ToggleTerm<CR><Cmd>3ToggleTerm direction=float<CR>
-  nnoremap <buffer><silent> t4 <Cmd>ToggleTerm<CR><Cmd>4ToggleTerm direction=float<CR>
-  nnoremap <buffer><silent> t5 <Cmd>ToggleTerm<CR><Cmd>5ToggleTerm direction=float<CR>
-
-  tnoremap <buffer><silent> <C-p> <Cmd>ToggleTerm<CR>
-  nnoremap <buffer><silent> <C-p> <Cmd>ToggleTerm<CR>
-  nnoremap <buffer><silent> <Esc> <Cmd>ToggleTerm<CR>
-'''
-
-[[plugins]]
 repo = 'skywind3000/asyncrun.vim'
 on_cmd = 'AsyncRun'
 hook_add = '''
@@ -57,35 +20,6 @@ hook_add = '''
   let g:silicon['theme'] = 'Nord'
   let g:silicon['font'] = 'SauceCodePro Nerd Font'
   let g:silicon['output'] = '~/Pictures/silicon/silicon-{time:%Y-%m-%d-%H:%M:%S}.png'
-'''
-
-[[plugins]]
-repo = 'kylechui/nvim-surround'
-on_event = ['BufRead']
-hook_source = '''
-  lua require('nvim-surround').setup()
-'''
-
-[[plugins]]
-repo = 'numToStr/Comment.nvim'
-on_event = ['BufRead']
-hook_source = '''
-  lua require('Comment').setup()
-'''
-
-[[plugins]]
-repo = 'norcalli/nvim-colorizer.lua'
-on_cmd = ['ColorizerToggle']
-
-[[plugins]]
-repo = 'lukas-reineke/indent-blankline.nvim'
-on_ft = ['rust', 'fsharp']
-hook_source = '''
-lua << EOF
-  require('indent_blankline').setup {
-    show_and_of_line = true,
-  }
-EOF
 '''
 
 [[plugins]]

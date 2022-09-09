@@ -27,7 +27,6 @@ augroup MyAutoCmd
   autocmd FileType qf setlocal nolist
   autocmd BufRead $HOME/.config/i3/config set filetype=i3config
   autocmd BufRead $HOME/.aliases set filetype=sh
-  autocmd BufNewFile,BufRead *.fs,*.fsx,*.fsi set filetype=fsharp
 augroup END
 
 " dein.vim config
@@ -51,6 +50,8 @@ let s:treesitter_toml = s:toml_dir .. '/treesitter.toml'
 let s:fern_toml       = s:toml_dir .. '/fern.toml'
 let s:lightline_toml  = s:toml_dir .. '/lightline.toml'
 let s:lsp_toml        = s:toml_dir .. '/lsp.toml'
+let s:lang_toml       = s:toml_dir .. '/lang.toml'
+let s:lua_toml        = s:toml_dir .. '/lua.toml'
 
 if !isdirectory(s:dein_repo_dir)
   call system('git clone https://github.com/Shougo/dein.vim ' .. s:dein_repo_dir)
@@ -79,6 +80,8 @@ if dein#load_state(s:dein_dir)
   call dein#load_toml(s:fern_toml,       {'lazy': 1})
   call dein#load_toml(s:lightline_toml,  {'lazy': 1})
   call dein#load_toml(s:lsp_toml,        {'lazy': 1})
+  call dein#load_toml(s:lang_toml,       {'lazy': 1})
+  call dein#load_toml(s:lua_toml,        {'lazy': 1})
 
   call dein#end()
   call dein#save_state()

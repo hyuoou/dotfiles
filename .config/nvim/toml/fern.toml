@@ -13,7 +13,7 @@ fern = '''
   nmap <buffer><silent> P <Plug>(fern-action-clipboard-paste)
   nmap <buffer><silent> D <Plug>(fern-action-remove)
   nmap <buffer><silent> r <Plug>(fern-action-rename:bottom)
-  nmap <buffer><silent> x <Plug>(fern-action-mark)
+  nmap <buffer><silent> x <Plug>(fern-action-mark)<Down>
   nmap <buffer><silent> q <Cmd>bdelete<CR>
 '''
 

@@ -41,6 +41,7 @@ hook_source = '''
     \   'mark': '[skkeleton]',
     \   'matchers': ['skkeleton'],
     \   'sorters': [],
+    \   'isVolatile': v:true,
     \ },
     \ 'around': {
     \   'mark': '[around]',
@@ -74,6 +75,7 @@ hook_source = '''
     \ },
     \ 'cmdline': {
     \   'mark': '[cmdline]',
+    \   'forceCompletionPattern': '\S/\S*',
     \   'dup': v:true,
     \ },
     \ 'cmdline-history': {
@@ -93,20 +95,16 @@ hook_source = '''
     \ },
     \ })
 
-  call ddc#custom#patch_filetype(
-    \ ['gitcommit', 'markdown'], 'sources',
-    \ ['mocword', 'around']
-    \ )
+  call ddc#custom#patch_filetype(['NeogitCommitMessage', 'gitcommit', 'markdown'], {
+    \ 'sources': ['mocword', 'around', 'file'],
+    \ })
 
   call ddc#enable()
 
   autocmd MyAutoCmd User skkeleton-enable-pre call s:skkeleton_pre()
   function! s:skkeleton_pre() abort
     let s:prev_buffer_config = ddc#custom#get_buffer()
-    call ddc#custom#patch_buffer({
-    \ 'sources': ['skkeleton'],
-    \ 'completionMenu': 'native',
-    \ })
+    call ddc#custom#patch_buffer('sources', ['skkeleton'])
   endfunction
 
   autocmd MyAutoCmd User skkeleton-disable-pre call s:skkeleton_post()

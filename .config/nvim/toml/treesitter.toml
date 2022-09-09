@@ -3,6 +3,7 @@ repo = 'nvim-treesitter/nvim-treesitter'
 on_event = 'BufRead'
 hook_source = '''
 lua << EOF
+  local rainbow = { "#E8BA36", "#54A857", "#359FF4", "#5060BB", "#179387", "#88C0D0", "#5E81AC" }
   require'nvim-treesitter.configs'.setup {
     ensure_installed = "all",
     highlight = {
@@ -15,17 +16,12 @@ lua << EOF
       enable = true,
       extended_mode = true,
       max_file_lines = 1000,
-      colors = {
-        "#E8BA36",
-        "#54A857",
-        "#359FF4",
-        "#5060BB",
-        "#179387",
-        "#88c0d0",
-        "#5e81ac",
-      },
+      colors = rainbow,
     },
   }
+  for i, c in ipairs(rainbow) do
+    vim.cmd(("hi rainbowcol%d guifg=%s"):format(i, c))
+  end
 EOF
 '''
 hook_post_update = '''

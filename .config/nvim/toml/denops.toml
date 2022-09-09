@@ -24,41 +24,12 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'delphinus/skkeleton_indicator.nvim'
-on_source = 'skkeleton'
-hook_source = '''
-lua << EOF
-  vim.api.nvim_exec([[
-    hi SkkeletonIndicatorHira guifg=#000000 guibg=#7aa2f7 gui=bold
-    hi SkkeletonIndicatorKata guifg=#000000 guibg=#f7768e gui=bold
-    hi SkkeletonIndicatorHankata guifg=#000000 guibg=#bb9af7 gui=bold
-    hi SkkeletonIndicatorZenkaku guifg=#000000 guibg=#89ddff gui=bold
-  ]], false)
-
-  require('skkeleton_indicator').setup {
-    alwaysShown = false,
-    fadeOutMs = 5000,
-  }
-EOF
-'''
-
-[[plugins]]
 repo = 'skanehira/denops-translate.vim'
 depends = 'denops.vim'
-on_event = ['BufRead']
-on_map = ['<Plug>(Translate)', '<Plua>(VTranslate)']
-on_cmd = 'Translate'
+on_event = ['BufNewFile', 'BufRead']
 hook_add = '''
   nmap <C-t> <Plug>(Translate)
-  vmap <C-t> <Plug>(VTranslate)
-'''
-
-[[plugins]]
-repo = 'lambdalisue/gin.vim'
-depends = 'denops.vim'
-on_cmd = ['Gin', 'GinStatus', 'GinDiff']
-hook_add = '''
-  autocmd MyAutoCmd FileType diff setlocal nolist
+  vmap <C-t> <Plug>(Translate)
 '''
 
 [[plugins]]

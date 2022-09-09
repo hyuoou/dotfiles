@@ -19,6 +19,7 @@ set background=dark
 
 set list
 set listchars=tab:>-,space:·
+" set expandtab
 set tabstop=4
 set shiftwidth=4
 
