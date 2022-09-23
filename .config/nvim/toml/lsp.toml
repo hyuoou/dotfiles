@@ -1,8 +1,7 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 on_ft = ['c', 'cpp', 'go', 'sh', 'vim', 'rust', 'python', 'dart']
-hook_source = '''
-lua << EOF
+lua_source = '''
   local opts = { noremap=true, silent=true }
   vim.keymap.set('n', '<C-h>', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', '<C-l>', vim.diagnostic.goto_next, opts)
@@ -24,6 +23,5 @@ lua << EOF
       capabilities = capabilities,
     }
   end
-EOF
 '''
 

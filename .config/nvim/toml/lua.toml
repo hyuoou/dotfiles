@@ -1,4 +1,7 @@
 [[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+
+[[plugins]]
 repo = 'nvim-lua/plenary.nvim'
 on_event = ['CursorHold']
 
@@ -15,10 +18,8 @@ hook_add = '''
   nnoremap <silent> t4 <Cmd>4ToggleTerm direction=float<CR>
   nnoremap <silent> t5 <Cmd>5ToggleTerm direction=float<CR>
 '''
-hook_source = '''
-lua << EOF
+lua_source = '''
   require('toggleterm').setup{}
-EOF
 '''
 [plugins.ftplugin]
 toggleterm = '''
@@ -42,15 +43,15 @@ toggleterm = '''
 [[plugins]]
 repo = 'kylechui/nvim-surround'
 on_event = ['BufNewFile', 'BufRead']
-hook_source = '''
-  lua require('nvim-surround').setup()
+lua_source = '''
+  require('nvim-surround').setup()
 '''
 
 [[plugins]]
 repo = 'numToStr/Comment.nvim'
 on_event = ['BufNewFile', 'BufRead']
-hook_source = '''
-  lua require('Comment').setup()
+lua_source = '''
+  require('Comment').setup()
 '''
 
 [[plugins]]
@@ -60,12 +61,10 @@ on_cmd = ['ColorizerToggle']
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
 on_ft = ['rust']
-hook_source = '''
-lua << EOF
+lua_source = '''
   require('indent_blankline').setup {
     show_and_of_line = true,
   }
-EOF
 '''
 
 [[plugins]]
@@ -75,10 +74,8 @@ on_event = ['VimEnter']
 [[plugins]]
 repo = 'lewis6991/gitsigns.nvim'
 on_event = ['VimEnter']
-hook_source = '''
-lua << EOF
+lua_source = '''
   require('gitsigns').setup()
-EOF
 '''
 
 [[plugins]]
@@ -100,12 +97,22 @@ EOF
 repo = 'sindrets/diffview.nvim'
 depends = ['plenary.nvim']
 on_source = ['neogit']
+lua_source = '''
+  local actions = require('diffview.actions')
+  require('diffview').setup({
+    keymaps = {
+      file_panel = {
+        ["j"] = actions.select_next_entry,
+        ["k"] = actions.select_prev_entry,
+      },
+    },
+  })
+'''
 
 [[plugins]]
 repo = 'delphinus/skkeleton_indicator.nvim'
 on_source = 'skkeleton'
-hook_source = '''
-lua << EOF
+lua_source = '''
   vim.api.nvim_exec([[
     hi SkkeletonIndicatorEiji guifg=#000000 guibg=#24283b gui=bold
     hi SkkeletonIndicatorHira guifg=#000000 guibg=#7aa2f7 gui=bold
@@ -117,6 +124,5 @@ require('skkeleton_indicator').setup {
     alwaysShown = false,
     fadeOutMs = 1000,
   }
-EOF
 '''
 

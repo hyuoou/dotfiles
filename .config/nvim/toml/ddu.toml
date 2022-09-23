@@ -21,8 +21,8 @@ hook_source = '''
     \ 'uiParams': {
     \   'ff': {
     \     'split': 'floating',
-    \     'previewHeight': 27,
     \     'floatingBorder': 'single',
+    \     'previewHeight': 27,
     \   },
     \ },
     \ 'filterParams': {

@@ -1,6 +1,7 @@
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 on_event = 'VimEnter'
+depends = ['vim-gitbranch', 'nvim-lightline-lsp', 'lightline-bufferline', 'nvim-web-devicons']
 hook_add = '''
   let g:lightline = {}
   let g:lightline.colorscheme = 'tokyonight'
@@ -38,7 +39,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'itchyny/vim-gitbranch'
-on_source = 'lightline.vim'
 hook_add = '''
   function! GetGitBranch() abort
     if gitbranch#name() != ''
@@ -51,7 +51,6 @@ hook_add = '''
 
 [[plugins]]
 repo = 'josa42/nvim-lightline-lsp'
-on_source = 'lightline.vim'
 hook_source = '''
   let g:lightline#lsp#indicator_errors   = 'E:'
   let g:lightline#lsp#indicator_warnings = 'W:'
@@ -63,7 +62,6 @@ hook_source = '''
 
 [[plugins]]
 repo = 'mengelbrecht/lightline-bufferline'
-on_source = 'lightline.vim'
 hook_add = '''
   let g:lightline#bufferline#show_number = 2
   let g:lightline#bufferline#enable_devicons = 1
