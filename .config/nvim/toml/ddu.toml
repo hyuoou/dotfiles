@@ -111,10 +111,28 @@ ddu-ff-filter = '''
     \ <Cmd>call ddu#ui#ff#close()<CR><Cmd>call ddu#ui#ff#do_action('quit')<CR>
 '''
 
+# ddu ui
 [[plugins]]
 repo = 'Shougo/ddu-ui-ff'
 on_source = 'ddu.vim'
 
+# ddu filter
+[[plugins]]
+repo = 'Shougo/ddu-filter-matcher_substring'
+on_source = 'ddu.vim'
+
+# ddu kind
+[[plugins]]
+repo  = 'Shougo/ddu-kind-file'
+on_source = 'ddu.vim'
+
+# ddu command
+[[plugins]]
+repo = 'Shougo/ddu-commands.vim'
+depends = 'ddu.vim'
+on_cmd = 'Ddu'
+
+# ddu sources
 [[plugins]]
 repo = 'Shougo/ddu-source-file_rec'
 on_source = 'ddu.vim'
@@ -158,17 +176,4 @@ on_source = 'ddu.vim'
 [[plugins]]
 repo = 'matsui54/ddu-source-help'
 on_source = 'ddu.vim'
-
-[[plugins]]
-repo = 'Shougo/ddu-filter-matcher_substring'
-on_source = 'ddu.vim'
-
-[[plugins]]
-repo  = 'Shougo/ddu-kind-file'
-on_source = 'ddu.vim'
-
-[[plugins]]
-repo = 'Shougo/ddu-commands.vim'
-depends = 'ddu.vim'
-on_cmd = 'Ddu'
 

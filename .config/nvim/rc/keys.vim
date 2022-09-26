@@ -14,7 +14,7 @@ nnoremap <Space>j 3<C-w>+
 nnoremap <Space>k 3<C-w>-
 nnoremap <Space>l 5<C-w>>
 
-inoremap <C-a> <Home>
+inoremap <C-a> <Home><S-Right>
 inoremap <C-e> <End>
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>

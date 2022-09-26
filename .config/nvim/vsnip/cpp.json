@@ -19,10 +19,19 @@
     ]
   },
   "mainfn": {
-    "prefix": ["mainfn"],
+    "prefix": ["mfn"],
     "body": [
-      "int main() {",
+      "int main(int argc, char* argv[]) {",
       "\t$1",
+      "\treturn 0;",
+      "}"
+    ]
+  },
+  "function": {
+    "prefix": ["fn"],
+    "body": [
+      "${1:type} ${2:name}(${3:args}) {",
+      "\t${4:body}",
       "}"
     ]
   }
