@@ -3,7 +3,7 @@ repo = 'Shougo/ddu.vim'
 depends = ['denops.vim', 'nvim-treesitter']
 on_func = 'ddu#start'
 hook_add = '''
-  command! Cnf Ddu file_rec -source-option-path=/home/hyuoou/.config/nvim
+  command! Cnf Ddu file_rec -source-option-path=/home/hyuoou/.config/nvim -ui-param-startFilter=v:true
   nnoremap <silent> ff <Cmd>Ddu file_rec<CR>
   nnoremap <silent> ;f <Cmd>Ddu file<CR>
   nnoremap <silent> ;o <Cmd>Ddu file_old<CR>

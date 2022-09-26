@@ -40,7 +40,7 @@ on_cmd = ['Twihi*']
 [[plugins]]
 repo = 'yuki-yano/fuzzy-motion.vim'
 depends = 'denops.vim'
-on_cmd = ['FuzzyMotion']
+on_cmd = 'FuzzyMotion'
 hook_add = '''
   nnoremap <Space><Space> <Cmd>FuzzyMotion<CR>
 '''

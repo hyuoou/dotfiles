@@ -13,7 +13,7 @@ set smartindent
 set showmatch
 set laststatus=3
 set showtabline=2
-" set cmdheight=0
+set cmdheight=0
 set noshowmode
 set background=dark
 
