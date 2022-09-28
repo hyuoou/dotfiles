@@ -30,7 +30,7 @@
   "function": {
     "prefix": ["fn"],
     "body": [
-      "${1:type} ${2:name}(${3:args}) {",
+      "${1:type} ${2:funcName}(${3:args}) {",
       "\t${4:body}",
       "}"
     ]

@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-on_ft = ['c', 'cpp', 'go', 'sh', 'vim', 'rust', 'python', 'dart']
+on_ft = ['c', 'cpp', 'go', 'python', 'rust', 'sh', 'vim']
 lua_source = '''
   local opts = { noremap=true, silent=true }
   vim.keymap.set('n', '<C-h>', vim.diagnostic.goto_prev, opts)
@@ -16,7 +16,7 @@ lua_source = '''
     vim.keymap.set('n', '<Space>r', vim.lsp.buf.rename, bufopts)
   end
 
-  local servers = { 'clangd', 'golangci_lint_ls', 'gopls', 'bashls', 'vimls', 'rust_analyzer', 'pyright', 'dartls' }
+  local servers = { 'bashls', 'clangd', 'golangci_lint_ls', 'gopls', 'pyright', 'rust_analyzer', 'vimls' }
   for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup {
       on_attach = on_attach,
@@ -24,4 +24,3 @@ lua_source = '''
     }
   end
 '''
-

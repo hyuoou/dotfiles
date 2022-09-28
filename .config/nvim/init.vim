@@ -1,4 +1,4 @@
-" default plugin
+" disable default plugins
 let g:did_install_default_menus = 1
 let g:did_install_syntax_menu   = 1
 let g:did_indent_on             = 1
@@ -23,7 +23,6 @@ let g:skip_loading_mswin        = 1
 augroup MyAutoCmd
   autocmd!
   autocmd BufWritePre * %s/\s\+$//ge
-  autocmd FileType gitcommit setlocal spell
   autocmd FileType qf setlocal nolist
   autocmd BufRead $HOME/.config/i3/config set filetype=i3config
   autocmd BufRead $HOME/.aliases set filetype=sh

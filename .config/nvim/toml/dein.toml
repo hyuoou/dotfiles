@@ -7,8 +7,8 @@ hook_add = '''
   set helplang=ja
 '''
 
-[[plugins]]
-repo = 'nathom/filetype.nvim'
+# [[plugins]]
+# repo = 'nathom/filetype.nvim'
 
 [[plugins]]
 repo = 'lewis6991/impatient.nvim'
