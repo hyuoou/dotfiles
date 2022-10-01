@@ -32,3 +32,5 @@ set hlsearch
 set pumheight=15
 set clipboard+=unnamedplus
 
+set updatetime=100
+

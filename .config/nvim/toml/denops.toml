@@ -39,9 +39,9 @@ on_cmd = ['Twihi*']
 
 [[plugins]]
 repo = 'yuki-yano/fuzzy-motion.vim'
-depends = 'denops.vim'
-on_cmd = 'FuzzyMotion'
+depends = ['denops.vim', 'vim-auto-hide-cmdline']
+on_map = ['<Plug>(ahc)']
 hook_add = '''
-  nnoremap <Space><Space> <Cmd>FuzzyMotion<CR>
+  nmap <Space><Space> <Plug>(ahc)<Cmd>FuzzyMotion<CR>
 '''
 
