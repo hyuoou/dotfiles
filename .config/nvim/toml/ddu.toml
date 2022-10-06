@@ -18,13 +18,29 @@ hook_add = '''
   nnoremap <silent> ;; <Cmd>Ddu command_history<CR>
 '''
 hook_source = '''
+  let column = &columns
+  let line = &lines
+  let height = min([line - 10, 45])
+  let row = (line - height) / 2
+  let width = min([column / 2 - 5, 80])
+  let col = column / 2 - width
+
   call ddu#custom#patch_global({
     \ 'ui': 'ff',
     \ 'uiParams': {
     \   'ff': {
+    \     'autoAction': {'name': 'preview'},
     \     'split': 'floating',
     \     'floatingBorder': 'single',
-    \     'previewHeight': 27,
+    \     'previewFloating': v:true,
+    \     'previewFloatingBorder': 'single',
+    \     'previewVertical': v:true,
+    \     'previewHeight': height,
+    \     'previewWidth': width + 12,
+    \     'winCol': col,
+    \     'winRow': row - 1,
+    \     'winWidth': width - 10,
+    \     'winHeight': height,
     \   },
     \ },
     \ 'filterParams': {
@@ -45,6 +61,7 @@ hook_source = '''
     \   },
     \ },
     \ 'sourceParams': {
+    \   'file_rec': {'ignoredDirectories': ['.git', 'target']},
     \   'file_external': {'cmd': ['git', 'ls-files', '-co', '--exclude-standard']},
     \   'rg': {'args': ['--column', '--no-heading', '--color', 'never', '--json']}
     \ },
