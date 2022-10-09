@@ -78,33 +78,33 @@ hook_source = '''
   command! DduLiveRg call s:ddu_rg_live()
   function! s:ddu_rg_live() abort
     call ddu#start({
-    \ 'volatile': v:true,
-    \ 'sources': [{
-    \   'name': 'rg',
-    \   'options': {'matchers': []},
-    \ }],
-    \ 'ui{arams}': {'ff': {
-    \   'ignoreEmpty': v:false,
-    \   'autoResize': v:false,
-    \ }},
-    \ 'uiParams': {
-    \   'ff': {
-    \     'startFilter': v:true,
-    \   }},
-    \ })
+      \ 'volatile': v:true,
+      \ 'sources': [{
+      \   'name': 'rg',
+      \   'options': {'matchers': []},
+      \ }],
+      \ 'ui{arams}': {'ff': {
+      \   'ignoreEmpty': v:false,
+      \   'autoResize': v:false,
+      \ }},
+      \ 'uiParams': {
+      \   'ff': {
+      \     'startFilter': v:true,
+      \   }},
+      \ })
   endfunction
 
   command! DduGhq call s:ddu_file_external()
   function! s:ddu_file_external() abort
     call ddu#start({
-    \ 'sources': [{'name': 'file_external'}],
-    \ 'sourceParams': {
-    \   'file_external': {'cmd': ['ghq', 'list', '-p']},
-    \ },
-    \ 'sourceOptions': {
-    \   'file_external': {'defaultAction': 'cd'},
-    \ },
-    \ })
+      \ 'sources': [{'name': 'file_external'}],
+      \ 'sourceParams': {
+      \   'file_external': {'cmd': ['ghq', 'list', '-p']},
+      \ },
+      \ 'sourceOptions': {
+      \   'file_external': {'defaultAction': 'cd'},
+      \ },
+      \ })
   endfunction
 '''
 
