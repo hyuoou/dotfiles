@@ -1,4 +1,4 @@
-rofi.modi : drun,window,power:~/.config/rofi/power.sh
+rofi.modi : drun,window,run,power:~/.config/rofi/power.sh
 rofi.sidebar-mode : true
 rofi.font : SauceCodePro Nerd Font Medium 12
 rofi.theme : ~/.config/rofi/theme/nord2.rasi
@@ -7,3 +7,4 @@ rofi.icon-theme : Papirus-Dark
 rofi.kb-mode-next: Control+o
 rofi.kb-mode-previous: Control+i
 rofi.terminal: /usr/bin/alacritty
+columns: 4

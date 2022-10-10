@@ -23,7 +23,7 @@ border_top=2
 border_bottom=2
 
 [Kernel]
-label= 
+label= 
 command=uname -r
 interval=once
 color=#eceff4

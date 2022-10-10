@@ -5,7 +5,7 @@ declare -A menu_list=(
   ["Shutdown"]="systemctl poweroff"
   ["Reboot"]="systemctl reboot"
   ["Suspend"]="systemctl suspend"
-  ["Lock Screen"]="blurlock"
+  ["Lock Screen"]="light-locker-command -l"
   ["Logout"]="i3-msg exit"
 )
 

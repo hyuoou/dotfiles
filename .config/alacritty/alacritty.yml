@@ -32,37 +32,69 @@ schemes:
             cyan:    '#8FBCBB'
             white:   '#ECEFF4'
 
-    tokyonight: &storm
+    tokyonight: &night
         # Default colors
         primary:
-            background: '0x24283b'
-            foreground: '0xc0caf5'
+            background: '#1A1B26'
+            foreground: '#C0CAF5'
 
         # Normal colors
         normal:
-            black:   '0x1D202F'
-            red:     '0xf7768e'
-            green:   '0x9ece6a'
-            yellow:  '0xe0af68'
-            blue:    '0x7aa2f7'
-            magenta: '0xbb9af7'
-            cyan:    '0x7dcfff'
-            white:   '0xa9b1d6'
+            black:   '#15161E'
+            red:     '#F7768E'
+            green:   '#9ECE6A'
+            yellow:  '#E0AF68'
+            blue:    '#7AA2F7'
+            magenta: '#BB9AF7'
+            cyan:    '#7DCFFF'
+            white:   '#A9B1D6'
 
         # Bright colors
         bright:
-            black:   '0x414868'
-            red:     '0xf7768e'
-            green:   '0x9ece6a'
-            yellow:  '0xe0af68'
-            blue:    '0x7aa2f7'
-            magenta: '0xbb9af7'
-            cyan:    '0x7dcfff'
-            white:   '0xc0caf5'
+            black:   '#414868'
+            red:     '#F7768E'
+            green:   '#9ECE6A'
+            yellow:  '#E0AF68'
+            blue:    '#7AA2F7'
+            magenta: '#BB9AF7'
+            cyan:    '#7DCFFF'
+            white:   '#C0CAF5'
 
         indexed_color:
-          - { index: 16, color: '0xff9e64' }
-          - { index: 17, color: '0xdb4b4b' }
+          - { index: 16, color: '#FF9E64' }
+          - { index: 17, color: '#DB4B4B' }
+
+    tokyonight: &storm
+        # Default colors
+        primary:
+            background: '#24283B'
+            foreground: '#C0CAF5'
+
+        # Normal colors
+        normal:
+            black:   '#1D202F'
+            red:     '#F7768E'
+            green:   '#9ECE6A'
+            yellow:  '#E0AF68'
+            blue:    '#7AA2F7'
+            magenta: '#BB9AF7'
+            cyan:    '#7DCFFF'
+            white:   '#A9B1D6'
+
+        # Bright colors
+        bright:
+            black:   '#414868'
+            red:     '#F7768E'
+            green:   '#9ECE6A'
+            yellow:  '#E0AF68'
+            blue:    '#7AA2F7'
+            magenta: '#BB9AF7'
+            cyan:    '#7DCFFF'
+            white:   '#C0CAF5'
+
+        indexed_color:
+          - { index: 16, color: '#FF9E64' }
+          - { index: 17, color: '#DB4B4B' }
 
 colors:
     *storm

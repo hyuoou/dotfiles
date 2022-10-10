@@ -51,6 +51,10 @@ alias tk='tmux kill-session -t'
 alias tka='tmux kill-server'
 alias ts='tmux source ~/.tmux.conf'
 
+# skim + tools
+alias fzcd='cd "$(exa --no-icons --only-dirs | sk)"'
+alias fzghq='cd "$(ghq list -p | sk)"'
+
 clone() {
 	git clone https://github.com/"$1".git
 }
@@ -65,9 +69,4 @@ mkcd() {
 }
 qrcode() {
 	curl qrcode.show/"$1"
-}
-fzghq() {
-	local dir
-	dir=$(ghq list -p | fzf +m)
-	cd "${dir}" || return
 }

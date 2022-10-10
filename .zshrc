@@ -220,7 +220,7 @@ if [[ ! -n $TMUX ]]; then
   fi
   create_new_session="Create New Session"
   ID="$ID\n${create_new_session}:"
-  ID="`echo $ID | fzf | cut -d: -f1`"
+  ID="`echo $ID | sk | cut -d: -f1`"
   if [[ "$ID" = "${create_new_session}" ]]; then
     tmux new-session
   elif [[ -n "$ID" ]]; then
