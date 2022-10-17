@@ -1,26 +1,47 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-on_ft = ['c', 'cpp', 'dart', 'go', 'python', 'rust', 'sh', 'tex', 'typescript', 'vim']
+depends = ['mason.nvim', 'mason-lspconfig.nvim']
+on_event = ['VimEnter']
 lua_source = '''
-  local opts = { noremap=true, silent=true }
-  vim.keymap.set('n', '<C-h>', vim.diagnostic.goto_prev, opts)
-  vim.keymap.set('n', '<C-l>', vim.diagnostic.goto_next, opts)
-
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-  local on_attach = function(client, bufnr)
-    local bufopts = { noremap=true, silent=true, buffer=bufnr }
-    vim.keymap.set('n', 'ge', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', '<Space>r', vim.lsp.buf.rename, bufopts)
-  end
-
-  local servers = { 'bashls', 'clangd', 'dartls', 'denols', 'golangci_lint_ls', 'gopls', 'pyright', 'rust_analyzer', 'texlab', 'vimls' }
-  for _, lsp in pairs(servers) do
-    require('lspconfig')[lsp].setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
+  require('mason').setup({
+    ui = {
+      icons = {
+        package_installed = "✓",
+        package_pending = "➜",
+        package_uninstalled = "✗"
+      }
     }
-  end
+  })
+  require('mason-lspconfig').setup({
+    ensure_installed = { 'bashls', 'clangd', 'golangci_lint_ls', 'gopls', 'rust_analyzer', 'vimls' }
+  })
+  require('mason-lspconfig').setup_handlers({
+    function(server_name)
+      local opts = { noremap=true, silent=true }
+      vim.keymap.set('n', '<C-h>', vim.diagnostic.goto_prev, opts)
+      vim.keymap.set('n', '<C-l>', vim.diagnostic.goto_next, opts)
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+      local on_attach = function(client, bufnr)
+        local bufopts = { noremap=true, silent=true, buffer=bufnr }
+        vim.keymap.set('n', 'ge', vim.lsp.buf.definition, bufopts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+        vim.keymap.set('n', '<Space>r', vim.lsp.buf.rename, bufopts)
+      end
+
+      require('lspconfig')[server_name].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+    end,
+  })
 '''
+
+[[plugins]]
+repo = 'williamboman/mason.nvim'
+
+[[plugins]]
+repo = 'williamboman/mason-lspconfig.nvim'
+

@@ -42,7 +42,7 @@ on_cmd = ['ColorizerToggle']
 
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
-on_ft = ['rust']
+on_if = '&expandtab'
 lua_source = '''
   require('indent_blankline').setup {
     show_and_of_line = true,
