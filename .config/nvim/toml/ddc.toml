@@ -1,11 +1,12 @@
 [[plugins]]
 repo = 'Shougo/ddc.vim'
+rev = 'cfe07b3d3191769a88d06916366e3e54d6d614e7'
 depends = ['denops.vim', 'pum.vim', 'lexima.vim']
 on_event = ['InsertEnter', 'CursorHold']
 hook_source = '''
   call ddc#custom#patch_global({
     \ 'backspaceCompletion': v:true,
-    \ 'completionMenu': 'pum.vim',
+    \ 'ui': 'pum',
     \ })
 
   call ddc#custom#patch_global(
@@ -114,6 +115,7 @@ hook_source = '''
 
   nnoremap : <Cmd>call CommandlinePre()<CR>:
   function! CommandlinePre() abort
+    set laststatus=0
     cnoremap <expr> <Tab>   pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<Tab>'
     cnoremap <expr> <S-Tab> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<S-Tab>'
     cnoremap <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
@@ -146,8 +148,8 @@ hook_source = '''
     else
       call ddc#custom#set_buffer({})
     endif
+    set laststatus=3
   endfunction
-
 
   inoremap <silent><expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
   inoremap <silent><expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
@@ -155,11 +157,17 @@ hook_source = '''
   imap     <silent><expr> <Esc> pum#visible() ? '<Cmd>call pum#map#cancel()<CR>'  : '<Plug>(lexima-escape)'
 '''
 
+# ddc UI
 [[plugins]]
 repo = 'Shougo/pum.vim'
 hook_source = '''
+  " call pum#set_option('border', 'single')
   call pum#set_option('scrollbar_char', '')
 '''
+
+[[plugins]]
+repo = 'Shougo/ddc-ui-pum'
+on_source = 'ddc.vim'
 
 # ddc filters
 [[plugins]]
@@ -172,15 +180,23 @@ on_source = 'ddc.vim'
 
 # ddc sources
 [[plugins]]
-repo = 'Shougo/ddc-around'
+repo = 'Shougo/ddc-source-around'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-nvim-lsp'
+repo = 'Shougo/ddc-source-nvim-lsp'
 on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-mocword'
+repo = 'Shougo/ddc-source-mocword'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-cmdline'
+on_source = 'ddc.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-source-cmdline-history'
 on_source = 'ddc.vim'
 
 [[plugins]]
@@ -197,14 +213,6 @@ on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'delphinus/ddc-tmux'
-on_source = 'ddc.vim'
-
-[[plugins]]
-repo = 'Shougo/ddc-cmdline'
-on_source = 'ddc.vim'
-
-[[plugins]]
-repo = 'Shougo/ddc-cmdline-history'
 on_source = 'ddc.vim'
 
 # show completion doc
@@ -232,7 +240,8 @@ hook_add = '''
 [[plugins]]
 repo = 'hrsh7th/vim-vsnip-integ'
 on_source = 'ddc.vim'
-hook_source = ''' autocmd MyAutoCmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
+hook_source = '''
+  autocmd MyAutoCmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
 '''
 
 # autopairs

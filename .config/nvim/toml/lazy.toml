@@ -2,7 +2,7 @@
 repo = 'skywind3000/asyncrun.vim'
 on_cmd = 'AsyncRun'
 hook_add = '''
-  autocmd MyAutoCmd User AsyncRunStart call asyncrun#quickfix_toggle(20, 1)
+  autocmd MyAutoCmd User AsyncRunStart call asyncrun#quickfix_toggle(25, 1)
 '''
 
 [[plugins]]
@@ -16,10 +16,11 @@ hook_add = '''
 repo = 'segeljakt/vim-silicon'
 on_cmd = 'Silicon'
 hook_add = '''
-  let g:silicon = {}
-  let g:silicon['theme'] = 'Nord'
-  let g:silicon['font'] = 'SauceCodePro Nerd Font'
-  let g:silicon['output'] = '~/Pictures/silicon/silicon-{time:%Y-%m-%d-%H:%M:%S}.png'
+  let g:silicon = {
+    \ 'theme': 'Nord',
+    \ 'font': 'SauceCodePro Nerd Font',
+    \ 'output': '~/Pictures/silicon/silicon-{time:%Y-%m-%d-%H:%M:%S}.png',
+    \ }
 '''
 
 [[plugins]]

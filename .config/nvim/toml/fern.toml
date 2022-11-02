@@ -12,9 +12,10 @@ fern = '''
   nmap <buffer><silent> m <Plug>(fern-action-clipboard-move)
   nmap <buffer><silent> P <Plug>(fern-action-clipboard-paste)
   nmap <buffer><silent> D <Plug>(fern-action-remove)
+  nmap <buffer><silent> <Del> <Plug>(fern-action-remove)
   nmap <buffer><silent> r <Plug>(fern-action-rename:bottom)
   nmap <buffer><silent> x <Plug>(fern-action-mark)<Down>
-  nmap <buffer><silent> q <Cmd>bdelete<CR>
+  nnoremap <buffer><silent> q <Cmd>Fern . -reveal=% -drawer -toggle -width=40<CR>
 '''
 
 [[plugins]]
@@ -29,6 +30,7 @@ repo = 'lambdalisue/fern-renderer-nerdfont.vim'
 on_source = 'fern.vim'
 hook_add = '''
   let g:fern#renderer = 'nerdfont'
+  let g:fern#renderer#nerdfont#indent_markers = 1
 '''
 
 [[plugins]]
