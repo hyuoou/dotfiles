@@ -13,7 +13,13 @@ hook_add = '''
   nnoremap <silent> <C-f> <Cmd>1ToggleTerm direction=float<CR>
 '''
 lua_source = '''
-  require('toggleterm').setup{}
+  require('toggleterm').setup{
+    highlights = {
+      FloatBorder = {
+        guifg = "#2ac3de",
+      },
+    }
+  }
 '''
 [plugins.ftplugin]
 toggleterm = '''
