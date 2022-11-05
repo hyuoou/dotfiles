@@ -1,7 +1,12 @@
-set fenc=utf-8
+" Encoding
+set encoding=utf-8
+set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+
+" Disable backup
 set nobackup
 set nowritebackup
 set noswapfile
+
 set autoread
 set hidden
 set showcmd
@@ -31,7 +36,10 @@ set hlsearch
 
 set pumheight=15
 set clipboard+=unnamedplus
+
+" Mouse option
 set mouse=""
 
+" CursorHold time
 set updatetime=100
 
