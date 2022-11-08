@@ -1,6 +1,6 @@
 " Encoding
 set encoding=utf-8
-set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+set fileencoding=utf-8
 
 " Disable backup
 set nobackup
