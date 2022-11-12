@@ -1,0 +1,47 @@
+[[plugins]]
+repo = 'vim-denops/denops.vim'
+on_event = ['CursorHold']
+# hook_add = '''
+#   let g:denops_server_addr = '127.0.0.1:32123'
+# '''
+
+[[plugins]]
+repo = 'vim-skk/skkeleton'
+on_source = 'ddc.vim'
+on_map = {ic = '<Plug>(skkeleton-toggle)'}
+hook_add = '''
+  imap <C-Space> <Plug>(skkeleton-toggle)
+  cmap <C-Space> <Plug>(skkeleton-toggle)
+'''
+hook_source = '''
+  call skkeleton#config({
+    \ 'eggLikeNewline': v:true,
+    \ })
+  call skkeleton#register_kanatable('rom', {
+    \ 'jj': 'escape',
+    \ ';': 'henkanPoint',
+    \ })
+'''
+
+[[plugins]]
+repo = 'skanehira/denops-translate.vim'
+depends = 'denops.vim'
+on_event = ['BufNewFile', 'BufRead']
+hook_add = '''
+  nmap <C-t> <Plug>(Translate)
+  vmap <C-t> <Plug>(Translate)
+'''
+
+[[plugins]]
+repo = 'skanehira/denops-twihi.vim'
+depends = 'denops.vim'
+on_cmd = ['Twihi*']
+
+[[plugins]]
+repo = 'yuki-yano/fuzzy-motion.vim'
+depends = ['denops.vim', 'vim-auto-hide-cmdline']
+on_map = ['<Plug>(ahc)']
+hook_add = '''
+  nmap <Space><Space> <Plug>(ahc)<Cmd>FuzzyMotion<CR>
+'''
+

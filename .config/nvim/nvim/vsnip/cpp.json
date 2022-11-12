@@ -1,0 +1,38 @@
+{
+  "std": {
+    "prefix": ["std"],
+    "body": ["std::"]
+  },
+  "cout": {
+    "prefix": ["cout"],
+    "body": ["std::cout << $1 << std::endl;"]
+  },
+  "header": {
+    "prefix": ["header"],
+    "body": [
+      "#ifndef ${1:name}",
+      "#define ${2:name}",
+      "",
+      "${3:main}",
+      "",
+      "#endif"
+    ]
+  },
+  "mainfn": {
+    "prefix": ["main"],
+    "body": [
+      "int main(int argc, char* argv[]) {",
+      "\t$1",
+      "\treturn 0;",
+      "}"
+    ]
+  },
+  "function": {
+    "prefix": ["fn"],
+    "body": [
+      "${1:type} ${2:funcName}(${3:args}) {",
+      "\t${4:body}",
+      "}"
+    ]
+  }
+}

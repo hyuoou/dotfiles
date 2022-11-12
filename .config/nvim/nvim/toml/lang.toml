@@ -1,0 +1,31 @@
+# rust
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+hook_add = '''
+  let g:rustfmt_autosave = 1
+'''
+
+# golang
+[[plugins]]
+repo = 'mattn/vim-goimports'
+on_ft = 'go'
+
+# shellscript
+# [[plugins]]
+# repo = 'z0mbix/vim-shfmt'
+# on_ft = 'sh'
+# hook_add = '''
+#   let g:shfmt_fmt_on_save = 1
+# '''
+
+# markdown
+[[plugins]]
+repo = 'iamcco/markdown-preview.nvim'
+on_cmd = ['MarkdownPreview']
+build = 'sh -c "cd app && yarn install"'
+
+[[plugins]]
+repo = 'mattn/vim-maketable'
+on_cmd = 'MakeTable'
+
