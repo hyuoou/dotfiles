@@ -99,6 +99,10 @@ hook_source = '''
     \ 'sources': ['mocword', 'around', 'file'],
     \ })
 
+  call ddc#custom#patch_filetype(['toml'], {
+    \ 'sources': ['vsnip', 'buffer', 'tmux', 'around'],
+    \ })
+
   call ddc#enable()
 
   autocmd MyAutoCmd User skkeleton-enable-pre call s:skkeleton_pre()

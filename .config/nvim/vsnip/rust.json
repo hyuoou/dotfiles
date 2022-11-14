@@ -1,5 +1,5 @@
 {
-  "fn": {
+  "function": {
     "prefix": ["fnr"],
     "body": [
       "fn $1($2) -> $3 {",
@@ -12,6 +12,14 @@
     "body": [
       "fn main() {",
       "\t$1",
+      "}"
+    ]
+  },
+  "main_fnr": {
+    "prefix": ["mainr"],
+    "body": [
+      "fn main() -> $1 {",
+      "\t$2",
       "}"
     ]
   }

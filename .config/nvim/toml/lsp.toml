@@ -1,8 +1,8 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-depends = ['mason.nvim', 'mason-lspconfig.nvim', 'lsp_lines.nvim']
+depends = ['mason.nvim', 'mason-lspconfig.nvim', 'null-ls.nvim', 'lsp_lines.nvim']
 # use nvim-cmp
-# depends = ['mason.nvim', 'mason-lspconfig.nvim', 'lsp_lines.nvim', 'nvim-cmp']
+# depends = ['mason.nvim', 'mason-lspconfig.nvim', 'null-ls.nvim', 'nvim-cmp', 'lsp_lines.nvim']
 on_event = ['VimEnter']
 lua_source = '''
   local opts = { noremap=true, silent=true }
@@ -16,12 +16,17 @@ lua_source = '''
   -- nvim-cmp
   -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+  -- null-ls
+  capabilities.offsetEncoding = { "utf-16" }
+
   local on_attach = function(client, bufnr)
     local bufopts = { noremap=true, silent=true, buffer=bufnr }
     vim.keymap.set('n', 'ge', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', '<Space>r', vim.lsp.buf.rename, bufopts)
   end
+
+  require('lspconfig.ui.windows').default_options.border = 'single'
 
   require('mason').setup({
     ui = {
@@ -58,6 +63,38 @@ lua_source = '''
   require('lsp_lines').setup()
   vim.diagnostic.config({
     virtual_text = false,
+  })
+'''
+
+[[plugins]]
+repo = 'jose-elias-alvarez/null-ls.nvim'
+depends = ['plenary.nvim']
+lua_source = '''
+  local null_ls = require('null-ls')
+  local sources = {
+    -- formatter
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.clang_format,
+    null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.rustfmt,
+    null_ls.builtins.formatting.shfmt,
+  }
+  local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+  require("null-ls").setup({
+    sources = sources,
+    on_attach = function(client, bufnr)
+      if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.format({ bufnr = bufnr })
+          end,
+        })
+      end
+    end,
   })
 '''
 
