@@ -184,13 +184,9 @@ border_top=2
 border_bottom=2
 
 [time]
-command=$HOME/.config/i3blocks/scripts/time
+command=date '+%m/%d'
 label= 
 interval=1
-#TZ_FILE=~/.tz
-STRFTIME_FORMAT=%m/%d
-TZONES=$DEFAULT_TZ
-TZ_LABELS=
 color=#2e3440
 background=#81a1c1
 border=#2e3440
@@ -198,7 +194,6 @@ border_left=0
 border_right=0
 border_top=2
 border_bottom=2
-
 
 [separator]
 color=#81a1c1
@@ -228,13 +223,9 @@ border_top=2
 border_bottom=2
 
 [time]
-command=$HOME/.config/i3blocks/scripts/time
+command=date | awk '{print $5}' | awk -F '[:]' -v 'OFS=:' '{print $1,$2}'
 label= 
 interval=1
-#TZ_FILE=~/.tz
-STRFTIME_FORMAT=%H:%M
-TZONES=$DEFAULT_TZ
-TZ_LABELS=
 color=#2e3440
 background=#88c0d0
 border=#2e3440
@@ -242,7 +233,6 @@ border_left=0
 border_right=0
 border_top=2
 border_bottom=2
-
 
 [separator]
 color=#88c0d0
