@@ -3,7 +3,7 @@ repo = 'neovim/nvim-lspconfig'
 depends = ['mason.nvim', 'mason-lspconfig.nvim', 'null-ls.nvim', 'lsp_lines.nvim']
 # use nvim-cmp
 # depends = ['mason.nvim', 'mason-lspconfig.nvim', 'null-ls.nvim', 'nvim-cmp', 'lsp_lines.nvim']
-on_event = ['VimEnter']
+on_event = ['CursorHold']
 lua_source = '''
   local opts = { noremap=true, silent=true }
   vim.keymap.set('n', '<C-h>', vim.diagnostic.goto_prev, opts)
@@ -60,6 +60,11 @@ repo = 'williamboman/mason-lspconfig.nvim'
 [[plugins]]
 repo = 'ErichDonGubler/lsp_lines.nvim'
 lua_source = '''
+  vim.api.nvim_create_user_command(
+    'LspLinesToggle',
+    'lua require("lsp_lines").toggle { desc = "Toggle lsp_lines" }',
+    {}
+  )
   require('lsp_lines').setup()
   vim.diagnostic.config({
     virtual_text = false,
@@ -97,4 +102,3 @@ lua_source = '''
     end,
   })
 '''
-

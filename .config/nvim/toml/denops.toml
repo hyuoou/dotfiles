@@ -26,7 +26,7 @@ hook_source = '''
 [[plugins]]
 repo = 'skanehira/denops-translate.vim'
 depends = 'denops.vim'
-on_event = ['BufNewFile', 'BufRead']
+on_map = ['<Plug>(Translate)']
 hook_add = '''
   nmap <C-t> <Plug>(Translate)
   vmap <C-t> <Plug>(Translate)
@@ -44,4 +44,3 @@ on_map = ['<Plug>(ahc)']
 hook_add = '''
   nmap <Space><Space> <Plug>(ahc)<Cmd>FuzzyMotion<CR>
 '''
-

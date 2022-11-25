@@ -22,7 +22,7 @@ let g:skip_loading_mswin        = 1
 " autocmd
 augroup MyAutoCmd
   autocmd!
-  autocmd BufWritePre * %s/\s\+$//ge
+  " autocmd BufWritePre * %s/\s\+$//ge
   autocmd FileType qf setlocal nolist
   autocmd BufRead $HOME/.config/i3/config set filetype=i3config
 augroup END
@@ -59,7 +59,7 @@ execute 'set runtimepath+=' .. s:dein_repo_dir
 
 let g:dein#install_github_api_token = $GITHUB_GRAPHQL_API
 
-let g:dein#inline_vimrcs = ['sets.vim', 'keys.vim']
+let g:dein#inline_vimrcs = ['opts.vim', 'keys.vim']
 call map(g:dein#inline_vimrcs, {_, val -> s:base_dir . val})
 
 let g:dein#auto_recache          = v:true
@@ -95,4 +95,3 @@ command! DeinUpdate call dein#check_update(v:true)
 
 filetype plugin indent on
 syntax enable
-

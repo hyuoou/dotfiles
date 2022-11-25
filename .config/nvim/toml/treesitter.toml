@@ -38,3 +38,11 @@ on_source = 'nvim-treesitter'
 repo = 'yioneko/nvim-yati'
 on_source = 'nvim-treesitter'
 
+[[plugins]]
+repo = 'windwp/nvim-ts-autotag'
+depends = ['nvim-treesitter']
+on_ft = ['html']
+lua_source = '''
+  require('nvim-ts-autotag').setup()
+'''
+

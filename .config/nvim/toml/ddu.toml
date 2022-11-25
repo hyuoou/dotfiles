@@ -61,9 +61,15 @@ hook_source = '''
     \   },
     \ },
     \ 'sourceParams': {
-    \   'file_rec': {'ignoredDirectories': ['.git', 'target']},
-    \   'file_external': {'cmd': ['git', 'ls-files', '-co', '--exclude-standard']},
-    \   'rg': {'args': ['--column', '--no-heading', '--color', 'never', '--json']}
+    \   'file_rec' : {
+    \     'ignoredDirectories': ['.git', 'target'],
+    \   },
+    \   'file_external': {
+    \     'cmd': ['git', 'ls-files', '-co', '--exclude-standard'],
+    \   },
+    \   'rg': {
+    \     'args': ['--column', '--no-heading', '--color', 'never', '--json'],
+    \   },
     \ },
     \ 'kindOptions': {
     \   'file': {
@@ -117,6 +123,7 @@ ddu-ff = '''
   nnoremap <buffer><silent> p     <Cmd>call ddu#ui#ff#do_action('preview')<CR>
   nnoremap <buffer><silent> c     <Cmd>call ddu#ui#ff#do_action('chooseAction')<CR>
   nnoremap <buffer><silent> D     <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
+  nnoremap <buffer><silent> <Del> <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
   nnoremap <buffer><silent> e     <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<CR>
   nnoremap <buffer><silent> q     <Cmd>call ddu#ui#ff#do_action('quit')<CR>
   nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#ff#do_action('quit')<CR>

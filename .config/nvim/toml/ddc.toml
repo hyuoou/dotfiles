@@ -100,7 +100,7 @@ hook_source = '''
     \ })
 
   call ddc#custom#patch_filetype(['toml'], {
-    \ 'sources': ['vsnip', 'buffer', 'tmux', 'around'],
+    \ 'sources': ['vsnip', 'buffer', 'tmux', 'around', 'mocword'],
     \ })
 
   call ddc#enable()
@@ -158,7 +158,7 @@ hook_source = '''
     \ "\<C-r>=lexima#expand('<LT>CR>', 'i')\<CR>"
   inoremap <silent><expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
   inoremap <silent><expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
-  imap     <silent><expr> <Esc> pum#visible() ? '<Cmd>call pum#map#cancel()<CR>'  : '<Plug>(lexima-escape)'
+  imap     <silent><expr> <Esc> pum#visible() ? '<Cmd>call pum#map#cancel()<CR><Esc>'  : '<Plug>(lexima-escape)'
 '''
 
 # ddc UI
@@ -266,4 +266,3 @@ hook_source = '''
   call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
   call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
 '''
-

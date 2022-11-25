@@ -68,15 +68,14 @@ hook_add = '''
   let g:lightline#bufferline#unnamed = '[No Name]'
   let g:lightline#bufferline#icon_position = 'right'
 
-  nmap <Space>1 <Plug>lightline#bufferline#delete(1)
-  nmap <Space>2 <Plug>lightline#bufferline#delete(2)
-  nmap <Space>3 <Plug>lightline#bufferline#delete(3)
-  nmap <Space>4 <Plug>lightline#bufferline#delete(4)
-  nmap <Space>5 <Plug>lightline#bufferline#delete(5)
-  nmap <Space>6 <Plug>lightline#bufferline#delete(6)
-  nmap <Space>7 <Plug>lightline#bufferline#delete(7)
-  nmap <Space>8 <Plug>lightline#bufferline#delete(8)
-  nmap <Space>9 <Plug>lightline#bufferline#delete(9)
-  nmap <Space>0 <Plug>lightline#bufferline#delete(10)
+  nmap <Space>1 <Plug>lightline#bufferline#go(1)
+  nmap <Space>2 <Plug>lightline#bufferline#go(2)
+  nmap <Space>3 <Plug>lightline#bufferline#go(3)
+  nmap <Space>4 <Plug>lightline#bufferline#go(4)
+  nmap <Space>5 <Plug>lightline#bufferline#go(5)
+  nmap <Space>6 <Plug>lightline#bufferline#go(6)
+  nmap <Space>7 <Plug>lightline#bufferline#go(7)
+  nmap <Space>8 <Plug>lightline#bufferline#go(8)
+  nmap <Space>9 <Plug>lightline#bufferline#go(9)
+  nmap <Space>0 <Plug>lightline#bufferline#go(10)
 '''
-

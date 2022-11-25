@@ -31,4 +31,3 @@ hook_add = '''
 
 [[plugins]]
 repo = 'utubo/vim-auto-hide-cmdline'
-
