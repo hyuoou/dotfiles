@@ -245,7 +245,7 @@ hook_add = '''
 repo = 'hrsh7th/vim-vsnip-integ'
 on_source = 'ddc.vim'
 hook_source = '''
-  autocmd MyAutoCmd User PumCompleteDone call vsnip_integ#on_complete_done(g:pum#completed_item)
+  autocmd MyAutoCmd CompleteDone * call vsnip_integ#on_complete_done(g:pum#completed_item)
 '''
 
 # autopairs

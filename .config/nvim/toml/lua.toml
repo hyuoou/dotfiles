@@ -3,7 +3,6 @@ repo = 'kyazdani42/nvim-web-devicons'
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
-on_event = ['CursorHold']
 
 [[plugins]]
 repo = 'akinsho/toggleterm.nvim'
@@ -58,7 +57,7 @@ lua_source = '''
 
 [[plugins]]
 repo = 'famiu/bufdelete.nvim'
-on_event = ['VimEnter']
+on_event = ['CursorHold']
 
 [[plugins]]
 repo = 'lewis6991/gitsigns.nvim'
