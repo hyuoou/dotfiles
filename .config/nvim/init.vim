@@ -94,7 +94,7 @@ if !getenv($GITHUB_GRAPHQL_API)
   let g:dein#install_github_api_token = $GITHUB_GRAPHQL_API
   command! DeinUpdate call dein#check_update(v:true)
 else
-  command! DeinUpdate call dein#check_update()
+  command! DeinUpdate call dein#update()
 endif
 
 filetype plugin indent on
