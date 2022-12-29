@@ -9,4 +9,3 @@ function! s:atcoder_submit() abort
   1ToggleTerm size=25 direction="horizontal"
   execute 'TermExec cmd="cargo atcoder submit ' . l:filename . '"'
 endfunction
-

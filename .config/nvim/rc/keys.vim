@@ -26,4 +26,3 @@ vnoremap <C-a> ^
 vnoremap <C-e> $
 
 tnoremap <Esc> <C-\><C-n>
-

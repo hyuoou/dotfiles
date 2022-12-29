@@ -8,4 +8,3 @@ nnoremap <silent> <C-n> <Cmd>Template atcoder<CR>
 set expandtab
 set tabstop=2
 set shiftwidth=2
-

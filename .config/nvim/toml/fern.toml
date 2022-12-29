@@ -54,4 +54,3 @@ fern = '''
   nmap <buffer><silent> <C-n>   <Plug>(fern-action-preview:scroll:down:half)
   nmap <buffer><silent> <C-p>   <Plug>(fern-action-preview:scroll:up:half)
 '''
-

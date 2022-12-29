@@ -8,8 +8,7 @@ repo = 'nvim-lua/plenary.nvim'
 repo = 'akinsho/toggleterm.nvim'
 on_cmd = ['*ToggleTerm', 'TermExec']
 hook_add = '''
-  " nnoremap <silent> <C-p> <Cmd>1ToggleTerm size=25 direction=horizontal<CR>
-  nnoremap <silent> <C-p> <Cmd>1ToggleTerm size=80 direction=vertical<CR>
+  nnoremap <silent> <C-p> <Cmd>1ToggleTerm size=25 direction=horizontal<CR>
   nnoremap <silent> <C-f> <Cmd>1ToggleTerm direction=float<CR>
 '''
 lua_source = '''
@@ -113,4 +112,3 @@ require('skkeleton_indicator').setup {
     fadeOutMs = 1000,
   }
 '''
-

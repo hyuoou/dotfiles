@@ -9,7 +9,7 @@ let g:loaded_man                = 1
 let g:loaded_matchit            = 1
 let g:loaded_matchparen         = 1
 let g:loaded_netrwPlugin        = 1
-" let g:loaded_remote_plugins     = 1
+let g:loaded_remote_plugins     = 1
 let g:loaded_shada_plugin       = 1
 let g:loaded_spellfile_plugin   = 1
 let g:loaded_tarPlugin          = 1
@@ -22,7 +22,7 @@ let g:skip_loading_mswin        = 1
 " autocmd
 augroup MyAutoCmd
   autocmd!
-  " autocmd BufWritePre * %s/\s\+$//ge
+  autocmd BufWritePre * %s/\s\+$//ge
   autocmd FileType qf setlocal nolist
   autocmd BufRead $HOME/.config/i3/config set filetype=i3config
 augroup END
@@ -57,6 +57,7 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath+=' .. s:dein_repo_dir
 
+let g:dein#install_github_api_token = $GITHUB_GRAPHQL_API
 
 let g:dein#inline_vimrcs = ['opts.vim', 'keys.vim']
 call map(g:dein#inline_vimrcs, {_, val -> s:base_dir . val})
@@ -65,6 +66,7 @@ let g:dein#auto_recache          = v:true
 let g:dein#lazy_rplugins         = v:true
 let g:dein#install_check_diff    = v:true
 let g:dein#install_progress_type = 'floating'
+let g:dein#types#git#enable_partial_clone = v:true
 
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
@@ -90,13 +92,7 @@ if dein#check_install()
   call dein#install()
 endif
 
-if !getenv($GITHUB_GRAPHQL_API)
-  let g:dein#install_github_api_token = $GITHUB_GRAPHQL_API
-  command! DeinUpdate call dein#check_update(v:true)
-else
-  command! DeinUpdate call dein#update()
-endif
+command! DeinUpdate call dein#check_update(v:true)
 
 filetype plugin indent on
 syntax enable
-

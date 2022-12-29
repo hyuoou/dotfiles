@@ -5,4 +5,3 @@ command! ShellCheck AsyncRun shellcheck %
 
 " Template
 nnoremap <silent> <C-n> <Cmd>Template shebang<CR>
-

@@ -42,4 +42,3 @@ set mouse=""
 
 " CursorHold time
 set updatetime=100
-

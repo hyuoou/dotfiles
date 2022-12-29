@@ -12,4 +12,3 @@ build = 'sh -c "cd app && yarn install"'
 [[plugins]]
 repo = 'mattn/vim-maketable'
 on_cmd = 'MakeTable'
-

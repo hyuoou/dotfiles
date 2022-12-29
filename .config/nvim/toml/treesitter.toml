@@ -45,4 +45,3 @@ on_ft = ['html']
 lua_source = '''
   require('nvim-ts-autotag').setup()
 '''
-
