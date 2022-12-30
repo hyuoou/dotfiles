@@ -35,22 +35,22 @@ endif
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-let s:toml_dir = expand('~/.config/nvim/toml')
+let s:nvim_config_dir = fnamemodify(expand('<sfile>'), ':h')
+let s:rc_dir = s:nvim_config_dir . '/rc/'
+let s:toml_dir = s:nvim_config_dir . '/toml/'
 
-let s:base_dir = fnamemodify(expand('<sfile>'), ':h') . '/rc/'
-
-let s:cmp_toml        = s:toml_dir .. '/cmp.toml'
-let s:ddc_toml        = s:toml_dir .. '/ddc.toml'
-let s:ddu_toml        = s:toml_dir .. '/ddu.toml'
-let s:dein_toml       = s:toml_dir .. '/dein.toml'
-let s:denops_toml     = s:toml_dir .. '/denops.toml'
-let s:fern_toml       = s:toml_dir .. '/fern.toml'
-let s:lang_toml       = s:toml_dir .. '/lang.toml'
-let s:lazy_toml       = s:toml_dir .. '/lazy.toml'
-let s:lightline_toml  = s:toml_dir .. '/lightline.toml'
-let s:lsp_toml        = s:toml_dir .. '/lsp.toml'
-let s:lua_toml        = s:toml_dir .. '/lua.toml'
-let s:treesitter_toml = s:toml_dir .. '/treesitter.toml'
+let s:cmp_toml        = s:toml_dir .. 'cmp.toml'
+let s:ddc_toml        = s:toml_dir .. 'ddc.toml'
+let s:ddu_toml        = s:toml_dir .. 'ddu.toml'
+let s:dein_toml       = s:toml_dir .. 'dein.toml'
+let s:denops_toml     = s:toml_dir .. 'denops.toml'
+let s:fern_toml       = s:toml_dir .. 'fern.toml'
+let s:lang_toml       = s:toml_dir .. 'lang.toml'
+let s:lazy_toml       = s:toml_dir .. 'lazy.toml'
+let s:lightline_toml  = s:toml_dir .. 'lightline.toml'
+let s:lsp_toml        = s:toml_dir .. 'lsp.toml'
+let s:lua_toml        = s:toml_dir .. 'lua.toml'
+let s:treesitter_toml = s:toml_dir .. 'treesitter.toml'
 
 if !isdirectory(s:dein_repo_dir)
   call system('git clone https://github.com/Shougo/dein.vim ' .. s:dein_repo_dir)
@@ -60,7 +60,7 @@ execute 'set runtimepath+=' .. s:dein_repo_dir
 let g:dein#install_github_api_token = $GITHUB_GRAPHQL_API
 
 let g:dein#inline_vimrcs = ['opts.vim', 'keys.vim']
-call map(g:dein#inline_vimrcs, {_, val -> s:base_dir . val})
+call map(g:dein#inline_vimrcs, {_, val -> s:rc_dir . val})
 
 let g:dein#auto_recache          = v:true
 let g:dein#lazy_rplugins         = v:true
