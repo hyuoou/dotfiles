@@ -1,0 +1,114 @@
+[[plugins]]
+repo = 'kyazdani42/nvim-web-devicons'
+
+[[plugins]]
+repo = 'nvim-lua/plenary.nvim'
+
+[[plugins]]
+repo = 'akinsho/toggleterm.nvim'
+on_cmd = ['*ToggleTerm', 'TermExec']
+hook_add = '''
+  nnoremap <silent> <C-p> <Cmd>1ToggleTerm size=25 direction=horizontal<CR>
+  nnoremap <silent> <C-f> <Cmd>1ToggleTerm direction=float<CR>
+'''
+lua_source = '''
+  require('toggleterm').setup{
+    highlights = {
+      FloatBorder = {
+        guifg = "#2ac3de",
+      },
+    }
+  }
+'''
+[plugins.ftplugin]
+toggleterm = '''
+  tnoremap <buffer><silent> <C-p> <Cmd>ToggleTerm<CR>
+  nnoremap <buffer><silent> <C-p> <Cmd>ToggleTerm<CR>
+  nnoremap <buffer><silent> <Esc> <Cmd>ToggleTerm<CR>
+'''
+
+[[plugins]]
+repo = 'kylechui/nvim-surround'
+on_event = ['CursorHold']
+lua_source = '''
+  require('nvim-surround').setup()
+'''
+
+[[plugins]]
+repo = 'numToStr/Comment.nvim'
+on_event = ['CursorHold']
+lua_source = '''
+  require('Comment').setup()
+'''
+
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'
+on_cmd = ['ColorizerToggle']
+
+[[plugins]]
+repo = 'lukas-reineke/indent-blankline.nvim'
+on_if = '&expandtab'
+lua_source = '''
+  require('indent_blankline').setup {
+    show_and_of_line = true,
+  }
+'''
+
+[[plugins]]
+repo = 'famiu/bufdelete.nvim'
+on_event = ['CursorHold']
+
+[[plugins]]
+repo = 'lewis6991/gitsigns.nvim'
+on_event = ['CursorHold']
+lua_source = '''
+  require('gitsigns').setup()
+'''
+
+[[plugins]]
+repo = 'TimUntersberger/neogit'
+depends = ['plenary.nvim']
+on_cmd = ['Neogit']
+hook_source = '''
+lua << EOF
+  require('neogit').setup {
+    integrations = {
+      diffview = true,
+    },
+  }
+EOF
+  autocmd MyAutoCmd FileType Neogit* setlocal nolist
+'''
+
+[[plugins]]
+repo = 'sindrets/diffview.nvim'
+depends = ['plenary.nvim']
+on_source = ['neogit']
+lua_source = '''
+  local actions = require('diffview.actions')
+  require('diffview').setup({
+    keymaps = {
+      file_panel = {
+        ["j"] = actions.select_next_entry,
+        ["k"] = actions.select_prev_entry,
+      },
+    },
+  })
+'''
+
+[[plugins]]
+repo = 'delphinus/skkeleton_indicator.nvim'
+on_source = 'skkeleton'
+lua_source = '''
+  vim.api.nvim_exec([[
+    hi SkkeletonIndicatorEiji guifg=#000000 guibg=#24283b gui=bold
+    hi SkkeletonIndicatorHira guifg=#000000 guibg=#7aa2f7 gui=bold
+    hi SkkeletonIndicatorKata guifg=#000000 guibg=#f7768e gui=bold
+    hi SkkeletonIndicatorHankata guifg=#000000 guibg=#bb9af7 gui=bold
+    hi SkkeletonIndicatorZenkaku guifg=#000000 guibg=#89ddff gui=bold
+  ]], false)
+require('skkeleton_indicator').setup {
+    alwaysShown = false,
+    fadeOutMs = 1000,
+  }
+'''

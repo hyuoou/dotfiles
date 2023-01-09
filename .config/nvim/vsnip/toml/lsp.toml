@@ -1,0 +1,104 @@
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
+depends = ['mason.nvim', 'mason-lspconfig.nvim', 'null-ls.nvim', 'lsp_lines.nvim']
+# use nvim-cmp
+# depends = ['mason.nvim', 'mason-lspconfig.nvim', 'null-ls.nvim', 'nvim-cmp', 'lsp_lines.nvim']
+on_event = ['CursorHold']
+lua_source = '''
+  local opts = { noremap=true, silent=true }
+  vim.keymap.set('n', '<C-h>', vim.diagnostic.goto_prev, opts)
+  vim.keymap.set('n', '<C-l>', vim.diagnostic.goto_next, opts)
+
+  -- ddc.vim
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+  -- nvim-cmp
+  -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+  -- null-ls
+  capabilities.offsetEncoding = { "utf-16" }
+
+  local on_attach = function(client, bufnr)
+    local bufopts = { noremap=true, silent=true, buffer=bufnr }
+    vim.keymap.set('n', 'ge', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', '<Space>r', vim.lsp.buf.rename, bufopts)
+  end
+
+  require('lspconfig.ui.windows').default_options.border = 'single'
+
+  require('mason').setup({
+    ui = {
+      border = 'single',
+      icons = {
+        package_installed = "✓",
+        package_pending = "➜",
+        package_uninstalled = "✗",
+      }
+    }
+  })
+  require('mason-lspconfig').setup({
+    ensure_installed = { 'bashls', 'clangd', 'gopls', 'rust_analyzer', 'vimls' }
+  })
+  require('mason-lspconfig').setup_handlers({
+    function(server_name)
+      require('lspconfig')[server_name].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+    end,
+  })
+'''
+
+[[plugins]]
+repo = 'williamboman/mason.nvim'
+
+[[plugins]]
+repo = 'williamboman/mason-lspconfig.nvim'
+
+[[plugins]]
+repo = 'ErichDonGubler/lsp_lines.nvim'
+lua_source = '''
+  vim.api.nvim_create_user_command(
+    'LspLinesToggle',
+    'lua require("lsp_lines").toggle { desc = "Toggle lsp_lines" }',
+    {}
+  )
+  require('lsp_lines').setup()
+  vim.diagnostic.config({
+    virtual_text = false,
+  })
+'''
+
+[[plugins]]
+repo = 'jose-elias-alvarez/null-ls.nvim'
+depends = ['plenary.nvim']
+lua_source = '''
+  local null_ls = require('null-ls')
+  local sources = {
+    -- formatter
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.clang_format,
+    null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.rustfmt,
+    null_ls.builtins.formatting.shfmt,
+  }
+  local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+  require("null-ls").setup({
+    sources = sources,
+    on_attach = function(client, bufnr)
+      if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.format({ bufnr = bufnr })
+          end,
+        })
+      end
+    end,
+  })
+'''
