@@ -57,7 +57,13 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath+=' .. s:dein_repo_dir
 
-let g:dein#install_github_api_token = $GITHUB_GRAPHQL_API
+if getenv('GITHUB_GRAPHQL_API') != v:null
+  let g:dein#install_github_api_token = $GITHUB_GRAPHQL_API
+  command! DeinUpdate call dein#check_update(v:true)
+else
+  command! DeinUpdate call dein#update()
+endif
+
 
 let g:dein#inline_vimrcs = ['opts.vim', 'keys.vim']
 call map(g:dein#inline_vimrcs, {_, val -> s:rc_dir . val})
@@ -92,7 +98,7 @@ if dein#check_install()
   call dein#install()
 endif
 
-command! DeinUpdate call dein#check_update(v:true)
 
 filetype plugin indent on
 syntax enable
+

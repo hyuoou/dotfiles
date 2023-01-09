@@ -30,8 +30,12 @@ hook_post_update = '''
   TSUpdate
 '''
 
+# [[plugins]]
+# repo = 'p00f/nvim-ts-rainbow'
+# on_source = 'nvim-treesitter'
+
 [[plugins]]
-repo = 'p00f/nvim-ts-rainbow'
+repo = 'mrjones2014/nvim-ts-rainbow'
 on_source = 'nvim-treesitter'
 
 [[plugins]]
