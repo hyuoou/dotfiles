@@ -32,6 +32,7 @@ alias cl='cd && clear'
 alias :q='exit'
 alias mkdir='mkdir -p'
 alias i3config='nvim $XDG_CONFIG_HOME/i3/config'
+alias dot='chezmoi'
 
 # skim + ghq
 alias fzghq='cd "$(ghq list -p | sk)"'
