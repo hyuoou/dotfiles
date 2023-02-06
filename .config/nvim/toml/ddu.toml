@@ -49,7 +49,7 @@ hook_source = '''
     \ },
     \ 'sourceOptions': {
     \   '_': {
-    \     'matchers': ["matcher_substring"],
+    \     'matchers': ['matcher_substring'],
     \     'ignoreCase': v:true,
     \   },
     \   'command_history': {

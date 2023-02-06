@@ -19,6 +19,8 @@ hook_add = '''
   colorscheme tokyonight
 '''
 lua_add = '''
+  -- vim.cmd([[colorscheme tokyonight]])
+
   require('tokyonight').setup({
     style = "storm",
     sidebars = { "qf", "help", "ddu-ff", "ddu-ff-filter", "diff", "fern" },

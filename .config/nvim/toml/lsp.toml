@@ -1,8 +1,5 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-depends = ['mason.nvim', 'mason-lspconfig.nvim', 'null-ls.nvim', 'lsp_lines.nvim']
-# use nvim-cmp
-# depends = ['mason.nvim', 'mason-lspconfig.nvim', 'null-ls.nvim', 'nvim-cmp', 'lsp_lines.nvim']
 on_event = ['CursorHold']
 lua_source = '''
   local opts = { noremap=true, silent=true }
@@ -53,12 +50,15 @@ lua_source = '''
 
 [[plugins]]
 repo = 'williamboman/mason.nvim'
+on_source = 'nvim-lspconfig'
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
+on_source = 'nvim-lspconfig'
 
 [[plugins]]
 repo = 'ErichDonGubler/lsp_lines.nvim'
+on_source = 'nvim-lspconfig'
 lua_source = '''
   vim.api.nvim_create_user_command(
     'LspLinesToggle',
@@ -73,6 +73,7 @@ lua_source = '''
 
 [[plugins]]
 repo = 'jose-elias-alvarez/null-ls.nvim'
+on_source = 'nvim-lspconfig'
 depends = ['plenary.nvim']
 lua_source = '''
   local null_ls = require('null-ls')
@@ -81,6 +82,8 @@ lua_source = '''
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.clang_format,
     null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.rustfmt,
     null_ls.builtins.formatting.shfmt,
   }
@@ -101,4 +104,11 @@ lua_source = '''
       end
     end,
   })
+'''
+
+[[plugins]]
+repo = 'j-hui/fidget.nvim'
+on_source = 'nvim-lspconfig'
+lua_source = '''
+  require('fidget').setup()
 '''
