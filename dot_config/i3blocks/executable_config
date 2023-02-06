@@ -224,6 +224,7 @@ border_bottom=2
 
 [time]
 command=date | awk '{print $5}' | awk -F '[:]' -v 'OFS=:' '{print $1,$2}'
+# command=date | awk '{print $5}'
 label= 
 interval=1
 color=#2e3440

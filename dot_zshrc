@@ -82,8 +82,8 @@ bindkey '^[[B' history-substring-search-down
 
 # Offer to install missing package if command is not found
 if [[ -r /usr/share/zsh/functions/command-not-found.zsh ]]; then
-    source /usr/share/zsh/functions/command-not-found.zsh
-    export PKGFILE_PROMPT_INSTALL_MISSING=1
+  source /usr/share/zsh/functions/command-not-found.zsh
+  export PKGFILE_PROMPT_INSTALL_MISSING=1
 fi
 
 # Set terminal window and tab/icon title
@@ -190,20 +190,20 @@ add-zsh-hook preexec mzc_termsupport_preexec
 # Apply different settigns for different terminals
 case $(basename "$(cat "/proc/$PPID/comm")") in
   login)
-    	alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
+    alias x='startx ~/.xinitrc'      # Type name of desired desktop after x, xinitrc is configured for it
     ;;
   *)
-	# Use autosuggestion
-	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-	ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
-  	ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
-    ;;
+    # Use autosuggestion
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+  ;;
 esac
 
 ### my config ###
 
 # aliases
-[ -f ~/.aliases ] && source ~/.aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
 export BAT_THEME="Nord"
 
 ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=blue,underline
@@ -212,7 +212,7 @@ ZSH_HIGHLIGHT_STYLES[arg0]=fg=blue
 ZSH_HIGHLIGHT_STYLES[path]=fg=cyan
 
 # tmux
-if [[ ! -n $TMUX ]]; then
+if [[ -z $TMUX ]]; then
   # get the IDs
   ID="`tmux list-sessions`"
   if [[ -z "$ID" ]]; then

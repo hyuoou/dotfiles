@@ -1,4 +1,4 @@
-#xprop | grep WM_CLASS Set mod key (Mod1=<Alt>, Mod4=<Super>)
+# xprop | grep WM_CLASS Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod1
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
@@ -29,6 +29,7 @@ bindsym $mod+q kill
 # Rofi
 bindsym $mod+d       exec --no-startup-id rofi -show drun
 bindsym $mod+Tab     exec --no-startup-id rofi -show window
+bindsym $mod+t       exec --no-startup-id rofi -show window
 bindsym $mod+Shift+e exec --no-startup-id rofi -show power
 bindsym $mod+c       exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
 

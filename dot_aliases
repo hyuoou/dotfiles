@@ -1,22 +1,11 @@
 #!/usr/bin/env bash
 
-# vim alias
+# vim aliases
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
 alias vimdiff='nvim -R -d'
 alias cnf='cd $HOME/.config/nvim'
-
-# cd alias
-alias cd....='cd ../..'
-
-# git alias
-alias g='git'
-alias ga='git add'
-alias gaa='git add -A'
-alias gcm='git commit'
-alias gps='git push'
-alias gpl='git pull'
 
 # rust command
 alias ls='exa --icons'
@@ -29,12 +18,12 @@ alias cat='bat'
 alias yay='paru'
 alias grep='rg'
 alias find='fd'
+alias fzf='sk'
 
 # aliases
 alias rm='gomi'
 alias cp='cp -i'
 alias mv='mv -i'
-alias yd='youtube-dl -o "$HOME/Downloads/youtube-dl/%(title)s.%(ext)s" -f bestvideo+bestaudio --merge-output-format mp4'
 alias mozc='/usr/lib/mozc/mozc_tool --mode=config_dialog'
 alias w3md='w3m duckduckgo.com'
 alias w3ma='w3m aur.archlinux.org'
@@ -42,31 +31,32 @@ alias c='clear'
 alias cl='cd && clear'
 alias :q='exit'
 alias mkdir='mkdir -p'
+alias i3config='nvim $XDG_CONFIG_HOME/i3/config'
 
-# tmux alias
-alias t='tmux'
-alias tls='tmux ls'
-alias ta='tmux a -t'
-alias tk='tmux kill-session -t'
-alias tka='tmux kill-server'
-alias ts='tmux source ~/.tmux.conf'
-
-# skim + tools
-alias fzcd='cd "$(exa --no-icons --only-dirs | sk)"'
+# skim + ghq
 alias fzghq='cd "$(ghq list -p | sk)"'
 
+# git alias
 clone() {
 	git clone https://github.com/"$1".git
 }
+
+# ghq alias
 get() {
 	ghq get https://github.com/"$1"
 }
+
+# get weather
 wttr() {
 	curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-Tokyo}"
 }
+
+# mkdir and cd
 mkcd() {
 	mkdir -p "$1" && cd "$1" || return
 }
+
+# create qrcode from url
 qrcode() {
 	curl qrcode.show/"$1"
 }

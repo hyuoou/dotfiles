@@ -1,0 +1,6 @@
+.config/Thunar/accels.scm
+
+.config/ranger/__pycache__/*
+.config/ranger/plugins/__pycache__/*
+
+README.md
