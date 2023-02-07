@@ -1,9 +1,9 @@
 [[plugins]]
 repo = 'nvim-treesitter/nvim-treesitter'
-on_event = 'BufRead'
+on_event = ['BufRead', 'BufNewFile']
 lua_source = '''
   local rainbow = { "#E8BA36", "#54A857", "#359FF4", "#5060BB", "#179387", "#88C0D0", "#5E81AC" }
-  require'nvim-treesitter.configs'.setup {
+  require("nvim-treesitter.configs").setup {
     ensure_installed = "all",
     highlight = {
       enable = true,
