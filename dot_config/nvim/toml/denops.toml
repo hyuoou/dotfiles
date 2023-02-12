@@ -8,6 +8,9 @@ on_event = ['CursorHold']
 # '''
 
 [[plugins]]
+repo = 'lambdalisue/kensaku.vim'
+
+[[plugins]]
 repo = 'vim-skk/skkeleton'
 on_source = 'ddc.vim'
 on_map = {ic = '<Plug>(skkeleton-toggle)'}
@@ -41,8 +44,10 @@ on_cmd = ['Twihi*']
 
 [[plugins]]
 repo = 'yuki-yano/fuzzy-motion.vim'
-depends = ['denops.vim', 'vim-auto-hide-cmdline']
+depends = ['denops.vim', 'vim-auto-hide-cmdline', 'kensaku.vim']
 on_map = ['<Plug>(ahc)']
 hook_add = '''
   nmap <Space><Space> <Plug>(ahc)<Cmd>FuzzyMotion<CR>
+
+  let g:fuzzy_motion_matchers = ['fzf', 'kensaku']
 '''
