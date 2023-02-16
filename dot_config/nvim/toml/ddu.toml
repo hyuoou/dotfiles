@@ -1,6 +1,6 @@
 [[plugins]]
 repo = 'Shougo/ddu.vim'
-depends = ['denops.vim', 'nvim-treesitter']
+depends = ['denops.vim', 'nvim-treesitter', 'kensaku.vim']
 on_func = 'ddu#start'
 hook_add = '''
   command! Cnf execute 'Ddu file_rec -ui-param-startFilter=v:true -source-option-path=' . expand('~/.config/nvim')
@@ -33,7 +33,7 @@ hook_source = '''
     \     'floatingBorder': 'single',
     \     'previewFloating': v:true,
     \     'previewFloatingBorder': 'single',
-    \     'previewVertical': v:true,
+    \     'previewSplit': 'vertical',
     \     'previewHeight': height,
     \     'previewWidth': width + 12,
     \     'winCol': col,
@@ -46,11 +46,17 @@ hook_source = '''
     \   'matcher_substring': {
     \     'highlightMatched': 'Search',
     \   },
+    \   'matcher_kensaku': {
+    \     'highlightMatched': 'Search',
+    \   },
     \ },
     \ 'sourceOptions': {
     \   '_': {
     \     'matchers': ['matcher_substring'],
     \     'ignoreCase': v:true,
+    \   },
+    \   'line': {
+    \     'matchers': ['matcher_kensaku'],
     \   },
     \   'command_history': {
     \     'defaultAction': 'execute',
@@ -68,6 +74,7 @@ hook_source = '''
     \   },
     \   'rg': {
     \     'args': ['--column', '--no-heading', '--color', 'never', '--json'],
+    \     'inputType': 'migemo'
     \   },
     \ },
     \ 'kindOptions': {
@@ -88,12 +95,10 @@ hook_source = '''
       \   'name': 'rg',
       \   'options': {'matchers': []},
       \ }],
-      \ 'ui{arams}': {'ff': {
-      \   'ignoreEmpty': v:false,
-      \   'autoResize': v:false,
-      \ }},
       \ 'uiParams': {
       \   'ff': {
+      \     'autoResize': v:false,
+      \     'ignoreEmpty': v:false,
       \     'startFilter': v:true,
       \   }},
       \ })
@@ -144,6 +149,10 @@ on_source = 'ddu.vim'
 # ddu filter
 [[plugins]]
 repo = 'Shougo/ddu-filter-matcher_substring'
+on_source = 'ddu.vim'
+
+[[plugins]]
+repo = 'Milly/ddu-filter-kensaku'
 on_source = 'ddu.vim'
 
 # ddu kind

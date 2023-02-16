@@ -28,10 +28,4 @@ repo = 'dstein64/vim-startuptime'
 on_cmd = 'StartupTime'
 
 [[plugins]]
-repo = 'antoinemadec/FixCursorHold.nvim'
-hook_add = '''
-  let g:cursorhold_updatetime = 100
-'''
-
-[[plugins]]
 repo = 'utubo/vim-auto-hide-cmdline'

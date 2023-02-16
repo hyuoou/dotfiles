@@ -1,6 +1,5 @@
 [[plugins]]
 repo = 'lambdalisue/fern.vim'
-depends = ['FixCursorHold.nvim']
 on_cmd = 'Fern'
 hook_add = '''
   nnoremap <silent> sf <Cmd>Fern .<CR>

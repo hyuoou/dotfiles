@@ -9,6 +9,7 @@ on_event = ['CursorHold']
 
 [[plugins]]
 repo = 'lambdalisue/kensaku.vim'
+depends = 'denops.vim'
 
 [[plugins]]
 repo = 'vim-skk/skkeleton'
