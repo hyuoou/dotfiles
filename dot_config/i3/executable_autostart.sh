@@ -11,11 +11,10 @@ nm-applet &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 "$HOME/.config/i3/gufw_icon.sh" &
 light-locker --lock-on-suspend &
-pulseaudio --start &
 /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets &
 blueman-applet &
+pulseaudio
 
-if ! pgrep clipit; then
+if [[ ! $(pgrep clipit) ]]; then
 	clipit
 fi
-

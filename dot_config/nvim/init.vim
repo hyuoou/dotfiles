@@ -27,6 +27,9 @@ augroup MyAutoCmd
   autocmd BufRead $HOME/.config/i3/config set filetype=i3config
 augroup END
 
+" my command
+command! Filepath echo expand("%:p")
+
 " dein.vim config
 if &compatible
   set nocompatible

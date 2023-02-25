@@ -41,7 +41,7 @@ on_source = 'nvim-treesitter'
 [[plugins]]
 repo = 'windwp/nvim-ts-autotag'
 depends = ['nvim-treesitter']
-on_ft = ['html']
+on_ft = ['html', 'vue', 'typescriptreact']
 lua_source = '''
   require('nvim-ts-autotag').setup()
 '''

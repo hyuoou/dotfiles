@@ -50,6 +50,6 @@ on_source = 'fern.vim'
 [plugins.ftplugin]
 fern = '''
   nmap <buffer><silent> p       <Plug>(fern-action-preview:toggle)
-  nmap <buffer><silent> <C-d>   <Plug>(fern-action-preview:scroll:down:half)
-  nmap <buffer><silent> <C-u>   <Plug>(fern-action-preview:scroll:up:half)
+  nmap <buffer><silent> <C-n>   <Plug>(fern-action-preview:scroll:down:half)
+  nmap <buffer><silent> <C-p>   <Plug>(fern-action-preview:scroll:up:half)
 '''
