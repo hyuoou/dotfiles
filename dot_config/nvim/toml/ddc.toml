@@ -175,7 +175,7 @@ on_source = 'ddc.vim'
 
 # ddc filters
 [[plugins]]
-repo = 'Shougo/ddc-converter_remove_overlap'
+repo = 'Shougo/ddc-filter-converter_remove_overlap'
 on_source = 'ddc.vim'
 
 [[plugins]]
@@ -207,9 +207,9 @@ on_source = 'ddc.vim'
 repo = 'LumaKernel/ddc-source-file'
 on_source = 'ddc.vim'
 
-[[plugins]]
-repo = 'LumaKernel/ddc-tabnine'
-on_source = 'ddc.vim'
+# [[plugins]]
+# repo = 'LumaKernel/ddc-tabnine'
+# on_source = 'ddc.vim'
 
 [[plugins]]
 repo = 'matsui54/ddc-buffer'

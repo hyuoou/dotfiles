@@ -112,3 +112,34 @@ require('skkeleton_indicator').setup {
     fadeOutMs = 1000,
   }
 '''
+
+[[plugins]]
+repo = 'akinsho/flutter-tools.nvim'
+depends = ['nvim-lspconfig', 'plenary.nvim']
+on_ft = ['dart']
+lua_source = '''
+  local autocmd = vim.api.nvim_create_autocmd
+  autocmd("FileType", {
+    group = "MyAutoCmd",
+    pattern = "flutterToolsOutline",
+    callback = function()
+      vim.cmd([[setlocal nolist]])
+    end,
+    once = false,
+  })
+
+  local on_attach = function(client, bufnr)
+    local bufopts = { noremap=true, silent=true, buffer=bufnr }
+    vim.keymap.set('n', 'ge', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', '<Space>r', vim.lsp.buf.rename, bufopts)
+  end
+  require("flutter-tools").setup {
+    widget_guides = {
+      enabled = false
+    },
+    lsp = {
+      on_attach = on_attach
+    }
+  }
+'''

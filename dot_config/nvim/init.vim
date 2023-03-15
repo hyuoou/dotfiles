@@ -36,11 +36,11 @@ if &compatible
 endif
 
 let s:dein_dir = expand('~/.cache/dein')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let s:dein_repo_dir = s:dein_dir .. '/repos/github.com/Shougo/dein.vim'
 
 let s:nvim_config_dir = fnamemodify(expand('<sfile>'), ':h')
-let s:rc_dir = s:nvim_config_dir . '/rc/'
-let s:toml_dir = s:nvim_config_dir . '/toml/'
+let s:rc_dir = s:nvim_config_dir .. '/rc/'
+let s:toml_dir = s:nvim_config_dir .. '/toml/'
 
 let s:cmp_toml        = s:toml_dir .. 'cmp.toml'
 let s:ddc_toml        = s:toml_dir .. 'ddc.toml'
@@ -68,7 +68,7 @@ else
 endif
 
 let g:dein#inline_vimrcs = ['opts.vim', 'keys.vim']
-call map(g:dein#inline_vimrcs, {_, val -> s:rc_dir . val})
+call map(g:dein#inline_vimrcs, {_, val -> s:rc_dir .. val})
 
 let g:dein#auto_recache          = v:true
 let g:dein#lazy_rplugins         = v:true
