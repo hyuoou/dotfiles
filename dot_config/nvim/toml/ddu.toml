@@ -120,25 +120,25 @@ hook_source = '''
 
 [plugins.ftplugin]
 ddu-ff = '''
-  nnoremap <buffer><silent> <CR>  <Cmd>call ddu#ui#ff#do_action('itemAction')<CR>
-  nnoremap <buffer><silent> x     <Cmd>call ddu#ui#ff#do_action('toggleSelectItem')<CR>j
-  nnoremap <buffer><silent> *     <Cmd>call ddu#ui#ff#do_action('toggleAllItems')<CR>
-  nnoremap <buffer><silent> i     <Cmd>call ddu#ui#ff#do_action('openFilterWindow')<CR>
-  nnoremap <buffer><silent> p     <Cmd>call ddu#ui#ff#do_action('preview')<CR>
-  nnoremap <buffer><silent> c     <Cmd>call ddu#ui#ff#do_action('chooseAction')<CR>
-  nnoremap <buffer><silent> D     <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
-  nnoremap <buffer><silent> <Del> <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'delete'})<CR>
-  nnoremap <buffer><silent> e     <Cmd>call ddu#ui#ff#do_action('itemAction', {'name': 'edit'})<CR>
-  nnoremap <buffer><silent> q     <Cmd>call ddu#ui#ff#do_action('quit')<CR>
-  nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#ff#do_action('quit')<CR>
+  nnoremap <buffer><silent> <CR>  <Cmd>call ddu#ui#do_action('itemAction')<CR>
+  nnoremap <buffer><silent> x     <Cmd>call ddu#ui#do_action('toggleSelectItem')<CR>j
+  nnoremap <buffer><silent> *     <Cmd>call ddu#ui#do_action('toggleAllItems')<CR>
+  nnoremap <buffer><silent> i     <Cmd>call ddu#ui#do_action('openFilterWindow')<CR>
+  nnoremap <buffer><silent> p     <Cmd>call ddu#ui#do_action('preview')<CR>
+  nnoremap <buffer><silent> c     <Cmd>call ddu#ui#do_action('chooseAction')<CR>
+  nnoremap <buffer><silent> D     <Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>
+  nnoremap <buffer><silent> <Del> <Cmd>call ddu#ui#do_action('itemAction', {'name': 'delete'})<CR>
+  nnoremap <buffer><silent> e     <Cmd>call ddu#ui#do_action('itemAction', {'name': 'edit'})<CR>
+  nnoremap <buffer><silent> q     <Cmd>call ddu#ui#do_action('quit')<CR>
+  nnoremap <buffer><silent> <Esc> <Cmd>call ddu#ui#do_action('quit')<CR>
 '''
 ddu-ff-filter = '''
-  inoremap <buffer><silent> <CR> <Esc><Cmd>call ddu#ui#ff#close()<CR>
-  nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#ff#close()<CR>
+  inoremap <buffer><silent> <CR> <Esc><Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
+  nnoremap <buffer><silent> <CR> <Cmd>call ddu#ui#do_action('closeFilterWindow')<CR>
   nnoremap <buffer><silent> <Esc>
-    \ <Cmd>call ddu#ui#ff#close()<CR><Cmd>call ddu#ui#ff#do_action('quit')<CR>
+    \ <Cmd>call ddu#ui#multi_actions([['closeFilterWindow'], ['quit']])<CR>
   nnoremap <buffer><silent> q
-    \ <Cmd>call ddu#ui#ff#close()<CR><Cmd>call ddu#ui#ff#do_action('quit')<CR>
+    \ <Cmd>call ddu#ui#multi_actions([['closeFilterWindow'], ['quit']])<CR>
 '''
 
 # ddu UI

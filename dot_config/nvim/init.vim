@@ -53,6 +53,7 @@ let s:lazy_toml       = s:toml_dir .. 'lazy.toml'
 let s:lightline_toml  = s:toml_dir .. 'lightline.toml'
 let s:lsp_toml        = s:toml_dir .. 'lsp.toml'
 let s:lua_toml        = s:toml_dir .. 'lua.toml'
+let s:lualine_toml    = s:toml_dir .. 'lualine.toml'
 let s:treesitter_toml = s:toml_dir .. 'treesitter.toml'
 
 if !isdirectory(s:dein_repo_dir)
@@ -90,6 +91,7 @@ if dein#load_state(s:dein_dir)
   call dein#load_toml(s:lightline_toml,  {'lazy': 1})
   call dein#load_toml(s:lsp_toml,        {'lazy': 1})
   call dein#load_toml(s:lua_toml,        {'lazy': 1})
+  " call dein#load_toml(s:lualine_toml,    {'lazy': 1})
   call dein#load_toml(s:treesitter_toml, {'lazy': 1})
 
   call dein#end()

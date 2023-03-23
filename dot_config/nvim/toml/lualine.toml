@@ -1,0 +1,42 @@
+[[plugins]]
+repo = 'nvim-lualine/lualine.nvim'
+on_event = 'VimEnter'
+lua_source = '''
+  require('lualine').setup {
+    sections = {
+      lualine_a = { 'mode' },
+      lualine_b = {
+        'branch',
+        {
+          'filename',
+          symbols = {
+            modified = '+',
+            readonly = 'RO',
+            unnamed = '[No Name]',
+            newfile = '[New]',
+          },
+        },
+      },
+      lualine_c = {
+        {
+          'diagnostics',
+          symbols = { error = 'E:', warn = 'W:', info = 'I:', hint = 'H:' },
+        },
+      },
+      lualine_x = {
+        {
+          'fileformat',
+          symbols = {
+            unix = 'unix',
+            dos = 'dos',
+            mac = 'mac',
+          },
+        },
+        'encoding',
+        'filetype',
+      },
+      lualine_y = { 'location', 'progress' },
+      lualine_z = {},
+    },
+  }
+'''
