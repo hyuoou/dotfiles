@@ -60,7 +60,7 @@ on_event = ['CursorHold']
 
 [[plugins]]
 repo = 'lewis6991/gitsigns.nvim'
-on_event = ['CursorHold']
+on_source = ['nvim-scrollbar']
 lua_source = '''
   require('gitsigns').setup()
 '''
@@ -82,7 +82,7 @@ EOF
 
 [[plugins]]
 repo = 'sindrets/diffview.nvim'
-depends = ['plenary.nvim']
+depends = ['plenary.nvim', 'nvim-web-devicons']
 on_source = ['neogit']
 lua_source = '''
   local actions = require('diffview.actions')
@@ -114,32 +114,35 @@ require('skkeleton_indicator').setup {
 '''
 
 [[plugins]]
-repo = 'akinsho/flutter-tools.nvim'
-depends = ['nvim-lspconfig', 'plenary.nvim']
-on_ft = ['dart']
+repo = 'petertriho/nvim-scrollbar'
+on_event = ['CursorHold']
 lua_source = '''
-  local autocmd = vim.api.nvim_create_autocmd
-  autocmd("FileType", {
-    group = "MyAutoCmd",
-    pattern = "flutterToolsOutline",
-    callback = function()
-      vim.cmd([[setlocal nolist]])
-    end,
-    once = false,
-  })
-
-  local on_attach = function(client, bufnr)
-    local bufopts = { noremap=true, silent=true, buffer=bufnr }
-    vim.keymap.set('n', 'ge', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', '<Space>r', vim.lsp.buf.rename, bufopts)
-  end
-  require("flutter-tools").setup {
-    widget_guides = {
-      enabled = false
+  local colors = require('tokyonight.colors').setup()
+  require('scrollbar').setup({
+    handle = {
+      color = colors.bg_highlight,
     },
-    lsp = {
-      on_attach = on_attach
-    }
-  }
+    marks = {
+      Cursor = { text = " " },
+      Search = { color = colors.orange },
+      Error = { color = colors.error },
+      Warn = { color = colors.warning },
+      Info = { color = colors.info },
+      Hint = { color = colors.hint },
+      Misc = { color = colors.purple },
+    },
+    excluded_filetypes = {
+      "prompt",
+      "TelescopePrompt",
+      "noice",
+      "ddu-ff-filter",
+      "fern",
+    },
+  })
+  require('scrollbar.handlers.search').setup()
+  require('scrollbar.handlers.gitsigns').setup()
 '''
+
+[[plugins]]
+repo = 'kevinhwang91/nvim-hlslens'
+on_source = ['nvim-scrollbar']

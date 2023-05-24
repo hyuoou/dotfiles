@@ -8,21 +8,43 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'lewis6991/impatient.nvim'
-lua_add = '''
-  require('impatient')
-'''
-
-[[plugins]]
 repo = 'folke/tokyonight.nvim'
-hook_add = '''
-  colorscheme tokyonight
-'''
 lua_add = '''
-  -- vim.cmd([[colorscheme tokyonight]])
-
   require('tokyonight').setup({
-    style = "storm",
+    style = "night",
     sidebars = { "qf", "help", "ddu-ff", "ddu-ff-filter", "diff", "fern" },
+    on_highlights = function(hl, c)
+      local colors = require("tokyonight.colors").setup({ transform = true })
+      local prompt = "#2d3149"
+      hl.TelescopeNormal = {
+        bg = c.bg_dark,
+        fg = c.fg_dark,
+      }
+      hl.TelescopeBorder = {
+        bg = c.bg_dark,
+        fg = c.bg_dark,
+      }
+      hl.TelescopePromptNormal = {
+        bg = prompt,
+      }
+      hl.TelescopePromptBorder = {
+        bg = prompt,
+        fg = prompt,
+      }
+      hl.TelescopePromptTitle = {
+        bg = colors.magenta,
+        fg = colors.black,
+      }
+      hl.TelescopePreviewTitle = {
+        bg = colors.blue,
+        fg = colors.black,
+      }
+      hl.TelescopeResultsTitle = {
+        bg = c.bg_dark,
+        fg = c.bg_dark,
+      }
+    end,
   })
+
+  vim.cmd.colorscheme("tokyonight")
 '''
