@@ -17,7 +17,9 @@ hook_source = '''
     \ )
 
   call ddc#custom#patch_global('filterParams', {
-    \ 'splitMode': 'word'
+    \ 'matcher_fuzzy': {
+    \   'splitMode': 'word'
+    \ },
     \ })
 
   call ddc#custom#patch_global('sourceOptions', {
@@ -32,10 +34,12 @@ hook_source = '''
     \   'dup': 'keep',
     \   'isVolatile': v:true,
     \   'forceCompletionPattern': '\.\w*|:\w*|->\w*',
+    \   'minAutoCompleteLength': 1,
     \ },
     \ 'vsnip': {
     \   'mark': '[vsnip]',
     \   'dup': 'keep',
+    \   'minAutoCompleteLength': 1,
     \ },
     \ 'tabnine': {
     \   'mark': '[tabnine]',
@@ -45,17 +49,14 @@ hook_source = '''
     \ 'buffer': {
     \   'mark': '[buffer]',
     \   'maxItems': 5,
-    \   'minAutoCompleteLength': 3,
     \ },
     \ 'tmux': {
     \   'mark': '[tmux]',
     \   'maxItems': 5,
-    \   'minAutoCompleteLength': 3,
     \ },
     \ 'around': {
     \   'mark': '[around]',
     \   'isVolatile': v:true,
-    \   'minAutoCompleteLength': 3,
     \ },
     \ 'file': {
     \   'mark': '[file]',
@@ -71,7 +72,6 @@ hook_source = '''
     \ 'mocword': {
     \   'mark': '[mocword]',
     \   'isVolatile': v:true,
-    \   'minAutoCompleteLength': 3,
     \ },
     \ 'cmdline': {
     \   'mark': '[cmdline]',
@@ -154,11 +154,16 @@ hook_source = '''
     set laststatus=3
   endfunction
 
-  inoremap <silent><expr> <CR> pum#visible() ? "\<Cmd>call pum#map#confirm()\<CR>" :
-    \ "\<C-r>=lexima#expand('<LT>CR>', 'i')\<CR>"
-  inoremap <silent><expr> <C-n> pum#visible() ? '<Cmd>call pum#map#insert_relative(+1)<CR>' : '<C-n>'
-  inoremap <silent><expr> <C-p> pum#visible() ? '<Cmd>call pum#map#insert_relative(-1)<CR>' : '<C-p>'
-  imap     <silent><expr> <Esc> pum#visible() ? '<Cmd>call pum#map#cancel()<CR><Esc>'  : '<Plug>(lexima-escape)'
+  " inoremap <silent><expr> <CR> pum#visible() ? "\<Cmd>call pum#map#confirm()\<CR>" :
+  "   \ "\<C-r>=lexima#expand('<LT>CR>', 'i')\<CR>"
+  " imap     <silent><expr> <Esc> pum#visible() ? '<Cmd> call pum#map#cancel()<CR><Esc>'  : '<Plug>(lexima-escape)'
+
+  inoremap <silent><expr> <CR> pum#visible() ? pum#map#confirm() :
+    \ "<C-g>u\<C-r>=v:lua.require'nvim-autopairs'.autopairs_cr()\<CR>"
+  inoremap <silent><expr> <C-n> pum#visible() ? pum#map#insert_relative(+1) : '<C-n>'
+  inoremap <silent><expr> <C-p> pum#visible() ? pum#map#insert_relative(-1) : '<C-p>'
+  inoremap <silent><expr> <C-e> pum#visible() ? '<Cmd> call pum#map#cancel()<CR><End>' : '<End>'
+  inoremap <silent><expr> <C-c> pum#visible() ? pum#map#cancel() : '<C-c>'
 '''
 
 # ddc UI
@@ -250,20 +255,29 @@ hook_source = '''
 
 # autopairs
 [[plugins]]
-repo = 'cohama/lexima.vim'
+repo = 'windwp/nvim-autopairs'
 on_source = 'ddc.vim'
-hook_add = '''
-  let g:lexima_map_escape = '<Plug>(lexima-escape)'
-  let g:lexima_no_default_rules = 1
+lua_source = '''
+  require('nvim-autopairs').setup({
+    map_cf = false,
+  })
 '''
-hook_source = '''
-  call lexima#set_default_rules()
-  " markdown
-  call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'markdown'})
-  call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'markdown'})
-  call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'markdown'})
-  " tex
-  call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
-  call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
-  call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
-'''
+
+# [[plugins]]
+# repo = 'cohama/lexima.vim'
+# on_source = 'ddc.vim'
+# hook_add = '''
+#   let g:lexima_map_escape = '<Plug>(lexima-escape)'
+#   let g:lexima_no_default_rules = 1
+# '''
+# hook_source = '''
+#   call lexima#set_default_rules()
+#   " markdown
+#   call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'markdown'})
+#   call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'markdown'})
+#   call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'markdown'})
+#   " tex
+#   call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
+#   call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
+#   call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
+# '''

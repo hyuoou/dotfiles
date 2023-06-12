@@ -1,6 +1,7 @@
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
-on_event = ['CursorHold']
+depends = ['mason.nvim', 'mason-lspconfig.nvim']
+on_event = ['BufRead', 'BufNewFile']
 lua_source = '''
   local opts = { noremap=true, silent=true }
   vim.keymap.set('n', '<C-h>', vim.diagnostic.goto_prev, opts)
@@ -16,7 +17,7 @@ lua_source = '''
   -- null-ls
   capabilities.offsetEncoding = { "utf-16" }
 
-  local on_attach = function(client, bufnr)
+  local on_attach = function(_, bufnr)
     local bufopts = { noremap=true, silent=true, buffer=bufnr }
     vim.keymap.set('n', 'ge', vim.lsp.buf.definition, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
@@ -40,9 +41,29 @@ lua_source = '''
   })
   require('mason-lspconfig').setup_handlers({
     function(server_name)
+      local node_root_dir = require('lspconfig').util.root_pattern("package.json")
+      local is_node_repo = node_root_dir(vim.api.nvim_buf_get_name(0)) ~= nil
+
+      if server_name == "tsserver" or server_name == "eslint" then
+        if not is_node_repo then
+          return
+        end
+      elseif server_name == "denols" then
+        if is_node_repo then
+          return
+        end
+      end
+
       require('lspconfig')[server_name].setup {
         on_attach = on_attach,
         capabilities = capabilities,
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = "Replace"
+            }
+          }
+        }
       }
     end,
   })
@@ -50,20 +71,18 @@ lua_source = '''
 
 [[plugins]]
 repo = 'williamboman/mason.nvim'
-on_source = 'nvim-lspconfig'
 
 [[plugins]]
 repo = 'williamboman/mason-lspconfig.nvim'
-on_source = 'nvim-lspconfig'
 
 [[plugins]]
 repo = 'ErichDonGubler/lsp_lines.nvim'
-on_source = 'nvim-lspconfig'
+on_event = 'LspAttach'
 lua_source = '''
   vim.api.nvim_create_user_command(
     'LspLinesToggle',
-    'lua require("lsp_lines").toggle { desc = "Toggle lsp_lines" }',
-    {}
+    'lua require("lsp_lines").toggle({ desc = "Toggle lsp_lines" })',
+    {},
   )
   require('lsp_lines').setup()
   vim.diagnostic.config({
@@ -73,8 +92,8 @@ lua_source = '''
 
 [[plugins]]
 repo = 'jose-elias-alvarez/null-ls.nvim'
-on_source = 'nvim-lspconfig'
 depends = ['plenary.nvim']
+on_event = 'LspAttach'
 lua_source = '''
   local null_ls = require('null-ls')
   local sources = {
@@ -98,7 +117,7 @@ lua_source = '''
           group = augroup,
           buffer = bufnr,
           callback = function()
-            vim.lsp.buf.format({ bufnr = bufnr })
+            vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 2000 })
           end,
         })
       end
@@ -108,7 +127,15 @@ lua_source = '''
 
 [[plugins]]
 repo = 'j-hui/fidget.nvim'
-on_source = 'nvim-lspconfig'
+on_event = 'LspAttach'
+rev = 'legacy'
 lua_source = '''
   require('fidget').setup()
+'''
+
+[[plugins]]
+repo = 'folke/neodev.nvim'
+on_source = 'nvim-lspconfig'
+lua_source = '''
+  require('neodev').setup()
 '''

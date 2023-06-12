@@ -66,7 +66,7 @@ repo = 'mengelbrecht/lightline-bufferline'
 on_source = 'lightline.vim'
 hook_add = '''
   let g:lightline#bufferline#show_number = 2
-  let g:lightline#bufferline#enable_devicons = 1
+  let g:lightline#bufferline#enable_devicons = 0
   let g:lightline#bufferline#unnamed = '[No Name]'
   let g:lightline#bufferline#icon_position = 'right'
 

@@ -4,7 +4,16 @@ depends = ['plenary.nvim', 'nvim-treesitter', 'nvim-web-devicons']
 on_cmd = 'Telescope'
 on_lua = 'telescope'
 hook_add = '''
-  command! Cnft lua require('telescope.builtin').find_files({ cwd = vim.fn.expand('~/.config/nvim') })
+  command! Cnf lua require('telescope.builtin').find_files({ cwd = vim.fn.expand('~/.config/nvim') })
+
+  nnoremap <silent> ;t <Cmd>Telescope<CR>
+  nnoremap <silent> ff <Cmd>Telescope find_files<CR>
+  nnoremap <silent> ;o <Cmd>Telescope oldfiles<CR>
+  nnoremap <silent> ;d <Cmd>Telescope diagnostics<CR>
+  nnoremap <silent> ;b <Cmd>Telescope buffers<CR>
+  nnoremap <silent> ;g <Cmd>Telescope live_grep<CR>
+  nnoremap <silent> ;h <Cmd>Telescope help_tags<CR>
+  nnoremap <silent> ;; <Cmd>Telescope command_history<CR>
 '''
 lua_source = '''
   local actions = require('telescope.actions')
@@ -44,11 +53,6 @@ lua_source = '''
       fzy_native = {
         override_generic_sorter = false,
         override_file_sorter = true,
-      },
-      repo = {
-        search_dirs = {
-          "~/Develop/git/github.com/"
-        },
       },
     },
   })

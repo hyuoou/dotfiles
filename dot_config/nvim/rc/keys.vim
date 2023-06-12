@@ -5,8 +5,8 @@ nnoremap <C-e> $
 nnoremap - <C-x>
 nnoremap + <C-a>
 nnoremap ;/ /
-nnoremap <silent> <C-k> <Cmd>bnext<CR>
-nnoremap <silent> <C-j> <Cmd>bprevious<CR>
+nnoremap <silent> <C-j> <Cmd>bnext<CR>
+nnoremap <silent> <C-k> <Cmd>bprevious<CR>
 nnoremap <silent> <space>q <Cmd>nohlsearch<CR>
 
 nnoremap <Space>h 5<C-w><

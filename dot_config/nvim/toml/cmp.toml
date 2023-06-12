@@ -3,6 +3,8 @@ repo = 'hrsh7th/nvim-cmp'
 on_event = ['InsertEnter', 'CursorHold']
 lua_source = '''
   local cmp = require('cmp')
+  local keymap = require('cmp.utils.keymap')
+  local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
   cmp.setup({
     snippet = {
@@ -16,12 +18,15 @@ lua_source = '''
     mapping = cmp.mapping.preset.insert({
       ['<C-u>'] = cmp.mapping.scroll_docs(-4),
       ['<C-d>'] = cmp.mapping.scroll_docs(4),
+      ['<C-c>'] = cmp.mapping.abort(),
+      ['<C-e>'] = cmp.mapping(function()
+        vim.api.nvim_feedkeys(keymap.t('<End>'), 'i', false)
+      end),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
     }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'vsnip' },
-      { name = 'cmp_tabnine' },
       { name = 'buffer' },
       { name = 'tmux' },
       { name = 'path' },
@@ -30,9 +35,10 @@ lua_source = '''
 
   cmp.setup.filetype({ 'NeogitCommitMessage', 'gitcommit', 'markdown' }, {
     sources = cmp.config.sources({
-      { name = 'mocword' },
       { name = 'buffer' },
+      { name = 'tmux' },
       { name = 'path' },
+      { name = 'mocword' },
     })
   })
 
@@ -44,17 +50,17 @@ lua_source = '''
       { name = 'path' }
     })
   })
+
+  cmp.event:on(
+    'confirm_done',
+    cmp_autopairs.on_confirm_done()
+  )
 '''
 
 # cmp sources
 [[plugins]]
 repo = 'hrsh7th/cmp-nvim-lsp'
 on_source = 'nvim-cmp'
-
-[[plugins]]
-repo = 'tzachar/cmp-tabnine'
-on_source = 'nvim-cmp'
-build = './install.sh'
 
 [[plugins]]
 repo = 'yutkat/cmp-mocword'
@@ -99,15 +105,8 @@ on_source = 'nvim-cmp'
 
 # autopairs
 [[plugins]]
-repo = 'cohama/lexima.vim'
+repo = 'windwp/nvim-autopairs'
 on_source = 'nvim-cmp'
-hook_source = '''
-  " markdown
-  call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'markdown'})
-  call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'markdown'})
-  call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'markdown'})
-  " tex
-  call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
-  call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
-  call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
+lua_source = '''
+  require('nvim-autopairs').setup()
 '''

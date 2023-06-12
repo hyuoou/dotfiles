@@ -10,15 +10,25 @@ on_cmd = ['*ToggleTerm', 'TermExec']
 hook_add = '''
   nnoremap <silent> <C-p> <Cmd>1ToggleTerm size=25 direction=horizontal<CR>
   nnoremap <silent> <C-f> <Cmd>1ToggleTerm direction=float<CR>
+
+  command! -nargs=? VerticalTerm call s:open_term(<f-args>)
+  function! s:open_term(...) abort
+    if a:0 >= 1
+      execute a:1 .. 'ToggleTerm size=80 direction=vertical'
+    else
+      1ToggleTerm size=80 direction=vertical
+    end
+  endfunction
 '''
 lua_source = '''
-  require('toggleterm').setup{
+  require("toggleterm").setup({
+    size = 25,
     highlights = {
       FloatBorder = {
         guifg = "#2ac3de",
       },
     }
-  }
+  })
 '''
 [plugins.ftplugin]
 toggleterm = '''
@@ -29,14 +39,14 @@ toggleterm = '''
 
 [[plugins]]
 repo = 'kylechui/nvim-surround'
-on_event = ['CursorHold']
+on_map = ['cs', 'S']
 lua_source = '''
   require('nvim-surround').setup()
 '''
 
 [[plugins]]
 repo = 'numToStr/Comment.nvim'
-on_event = ['CursorHold']
+on_map = ['gc', 'gcc']
 lua_source = '''
   require('Comment').setup()
 '''
@@ -67,23 +77,18 @@ lua_source = '''
 
 [[plugins]]
 repo = 'TimUntersberger/neogit'
-depends = ['plenary.nvim']
+depends = ['plenary.nvim', 'diffview.nvim', 'nvim-web-devicons']
 on_cmd = ['Neogit']
-hook_source = '''
-lua << EOF
+lua_source = '''
   require('neogit').setup {
     integrations = {
       diffview = true,
     },
   }
-EOF
-  autocmd MyAutoCmd FileType Neogit* setlocal nolist
 '''
 
 [[plugins]]
 repo = 'sindrets/diffview.nvim'
-depends = ['plenary.nvim', 'nvim-web-devicons']
-on_source = ['neogit']
 lua_source = '''
   local actions = require('diffview.actions')
   require('diffview').setup({
@@ -107,10 +112,10 @@ lua_source = '''
     hi SkkeletonIndicatorHankata guifg=#000000 guibg=#bb9af7 gui=bold
     hi SkkeletonIndicatorZenkaku guifg=#000000 guibg=#89ddff gui=bold
   ]], false)
-require('skkeleton_indicator').setup {
+  require('skkeleton_indicator').setup({
     alwaysShown = false,
     fadeOutMs = 1000,
-  }
+  })
 '''
 
 [[plugins]]
@@ -137,6 +142,8 @@ lua_source = '''
       "noice",
       "ddu-ff-filter",
       "fern",
+      "cmp_menu",
+      "cmp_docs",
     },
   })
   require('scrollbar.handlers.search').setup()

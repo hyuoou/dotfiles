@@ -8,6 +8,7 @@ let g:loaded_gzip               = 1
 let g:loaded_man                = 1
 let g:loaded_matchit            = 1
 let g:loaded_matchparen         = 1
+let g:loaded_netrw              = 1
 let g:loaded_netrwPlugin        = 1
 let g:loaded_remote_plugins     = 1
 let g:loaded_shada_plugin       = 1
@@ -29,6 +30,9 @@ augroup END
 
 " my command
 command! Filepath echo expand("%:p")
+
+" lua cache
+lua vim.loader.enable()
 
 " dein.vim config
 if &compatible
@@ -54,6 +58,7 @@ let s:lightline_toml  = s:toml_dir .. 'lightline.toml'
 let s:lsp_toml        = s:toml_dir .. 'lsp.toml'
 let s:lua_toml        = s:toml_dir .. 'lua.toml'
 let s:lualine_toml    = s:toml_dir .. 'lualine.toml'
+let s:telescope_toml  = s:toml_dir .. 'telescope.toml'
 let s:treesitter_toml = s:toml_dir .. 'treesitter.toml'
 
 if !isdirectory(s:dein_repo_dir)
@@ -61,8 +66,8 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath+=' .. s:dein_repo_dir
 
-if getenv('GITHUB_GRAPHQL_API') != v:null
-  let g:dein#install_github_api_token = $GITHUB_GRAPHQL_API
+if getenv('GITHUB_API') != v:null
+  let g:dein#install_github_api_token = $GITHUB_API
   command! DeinUpdate call dein#check_update(v:true)
 else
   command! DeinUpdate call dein#update()
@@ -82,7 +87,7 @@ if dein#load_state(s:dein_dir)
 
   " call dein#load_toml(s:cmp_toml,        {'lazy': 1})
   call dein#load_toml(s:ddc_toml,        {'lazy': 1})
-  call dein#load_toml(s:ddu_toml,        {'lazy': 1})
+  " call dein#load_toml(s:ddu_toml,        {'lazy': 1})
   call dein#load_toml(s:dein_toml,       {'lazy': 0})
   call dein#load_toml(s:denops_toml,     {'lazy': 1})
   call dein#load_toml(s:fern_toml,       {'lazy': 1})
@@ -92,6 +97,7 @@ if dein#load_state(s:dein_dir)
   call dein#load_toml(s:lsp_toml,        {'lazy': 1})
   call dein#load_toml(s:lua_toml,        {'lazy': 1})
   " call dein#load_toml(s:lualine_toml,    {'lazy': 1})
+  call dein#load_toml(s:telescope_toml,  {'lazy': 1})
   call dein#load_toml(s:treesitter_toml, {'lazy': 1})
 
   call dein#end()

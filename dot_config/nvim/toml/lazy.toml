@@ -41,3 +41,14 @@ hook_add = '''
 
 [[plugins]]
 repo = 'utubo/vim-auto-hide-cmdline'
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+on_cmd = 'help'
+hook_add = '''
+  set helplang=ja
+'''
+
+[[plugins]]
+repo = 'thinca/vim-partedit'
+on_cmd = 'Partedit'
