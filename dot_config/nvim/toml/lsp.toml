@@ -7,12 +7,14 @@ lua_source = '''
   vim.keymap.set('n', '<C-h>', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', '<C-l>', vim.diagnostic.goto_next, opts)
 
-  -- ddc.vim
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  local status = pcall(require, "cmp_nvim_lsp")
+  local capabilities = status and require("cmp_nvim_lsp").default_capabilities()
+    or vim.lsp.protocol.make_client_capabilities()
 
-  -- nvim-cmp
-  -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  -- ddc.vim
+  if not status then
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+  end
 
   -- null-ls
   capabilities.offsetEncoding = { "utf-16" }
