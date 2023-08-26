@@ -1,11 +1,11 @@
 [[plugins]]
 repo = 'vim-denops/denops.vim'
 on_event = ['CursorHold']
-# hook_add = '''
-#   let g:denops_server_addr = '127.0.0.1:32123'
-#   let g:denops#debug = 1
-#   command! DenopsRestart call denops#server#restart()
-# '''
+hook_add = '''
+  let g:denops_server_addr = '127.0.0.1:32123'
+  " let g:denops#debug = 1
+  " command! DenopsRestart call denops#server#restart()
+'''
 
 [[plugins]]
 repo = 'lambdalisue/kensaku.vim'
@@ -13,7 +13,7 @@ depends = 'denops.vim'
 
 [[plugins]]
 repo = 'vim-skk/skkeleton'
-on_source = 'ddc.vim'
+on_source = ['ddc.vim', 'nvim-cmp']
 on_map = {ic = '<Plug>(skkeleton-toggle)'}
 hook_add = '''
   imap <C-Space> <Plug>(skkeleton-toggle)

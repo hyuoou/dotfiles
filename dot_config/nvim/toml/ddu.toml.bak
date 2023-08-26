@@ -2,20 +2,20 @@
 repo = 'Shougo/ddu.vim'
 depends = ['denops.vim', 'nvim-treesitter', 'kensaku.vim']
 on_func = 'ddu#start'
-# hook_add = '''
-#   command! Cnf execute 'Ddu file_rec -ui-param-startFilter=v:true -source-option-path=' . expand('~/.config/nvim')
-#
-#   nnoremap <silent> ff <Cmd>Ddu file_rec<CR>
-#   nnoremap <silent> ;f <Cmd>Ddu file<CR>
-#   nnoremap <silent> ;o <Cmd>Ddu file_old<CR>
-#   nnoremap <silent> ;d <Cmd>Ddu nvim_lsp_diagnostic_all<CR>
-#   nnoremap <silent> ;b <Cmd>Ddu buffer<CR>
-#   nnoremap <silent> ;g <Cmd>DduLiveRg<CR>
-#   nnoremap <silent> ;h <Cmd>Ddu help -ui-param-startFilter=v:true<CR>
-#   nnoremap <silent> fg <Cmd>Ddu file_external<CR>
-#   nnoremap <silent> /  <Cmd>Ddu line -ui-param-startFilter=v:true<CR>
-#   nnoremap <silent> ;; <Cmd>Ddu command_history<CR>
-# '''
+hook_add = '''
+  command! Cnf execute 'Ddu file_rec -ui-param-startFilter=v:true -source-option-path=' . expand('~/.config/nvim')
+
+  nnoremap <silent> ff <Cmd>Ddu file_rec<CR>
+  nnoremap <silent> ;f <Cmd>Ddu file<CR>
+  nnoremap <silent> ;o <Cmd>Ddu file_old<CR>
+  nnoremap <silent> ;d <Cmd>Ddu nvim_lsp_diagnostic_all<CR>
+  nnoremap <silent> ;b <Cmd>Ddu buffer<CR>
+  nnoremap <silent> ;g <Cmd>DduLiveRg<CR>
+  nnoremap <silent> ;h <Cmd>Ddu help -ui-param-startFilter=v:true<CR>
+  nnoremap <silent> fg <Cmd>Ddu file_external<CR>
+  nnoremap <silent> /  <Cmd>Ddu line -ui-param-startFilter=v:true<CR>
+  nnoremap <silent> ;; <Cmd>Ddu command_history<CR>
+'''
 hook_source = '''
   let column = &columns
   let line = &lines
@@ -28,9 +28,7 @@ hook_source = '''
     \ 'ui': 'ff',
     \ 'uiParams': {
     \   'ff': {
-    \     'prompt': ">",
     \     'autoAction': {'name': 'preview'},
-    \     'startAutoAction': v:true,
     \     'split': 'floating',
     \     'floatingBorder': 'single',
     \     'previewFloating': v:true,
@@ -38,10 +36,6 @@ hook_source = '''
     \     'previewSplit': 'vertical',
     \     'previewHeight': height,
     \     'previewWidth': width + 12,
-    \     'previewFloatingTitle': "Preview",
-    \     'previewFloatingTitlePos': "center",
-    \     'floatingTitle': "Find",
-    \     'floatingTitlePos': "center",
     \     'winCol': col,
     \     'winRow': row - 1,
     \     'winWidth': width - 10,
@@ -122,35 +116,8 @@ hook_source = '''
       \ },
       \ })
   endfunction
-
-  command! DduFiler call s:ddu_filer()
-  function! s:ddu_filer() abort
-    call ddu#start({
-      \ 'ui': 'filer',
-      \ 'uiParams': {
-      \   'filer': {
-      \     'sort': 'filename',
-      \     'sortTreesFirst': v:true,
-      \     'split': 'vertical',
-      \     'splitDirection': 'topleft',
-      \     'winWidth': 40,
-      \     'previewFloating': v:true,
-      \   },
-      \ },
-      \ 'sources': [{'name': 'file', 'params': {}}],
-      \ 'sourceOptions': {
-      \   '_': {
-      \     'columns': ['filename'],
-      \   },
-      \ },
-      \ 'kindOptions': {
-      \   'file': {
-      \     'defaultAction': 'open',
-      \   },
-      \ }
-      \ })
-  endfunction
 '''
+
 [plugins.ftplugin]
 ddu-ff = '''
   nnoremap <buffer><silent> <CR>  <Cmd>call ddu#ui#do_action('itemAction')<CR>
@@ -173,30 +140,10 @@ ddu-ff-filter = '''
   nnoremap <buffer><silent> q
     \ <Cmd>call ddu#ui#multi_actions([['closeFilterWindow'], ['quit']])<CR>
 '''
-ddu-filer = '''
-  nnoremap <buffer><expr> <CR>
-    \ ddu#ui#get_item()->get('isTree', v:false) ?
-    \ "<Cmd>call ddu#ui#do_action('expandItem', {'mode': 'toggle'})<CR>" :
-    \ "<Cmd>call ddu#ui#do_action('itemAction', {'name': 'open'})<CR>"
-
-  nnoremap <buffer><silent> x    <Cmd>call ddu#ui#filer#do_action('toggleSelectItem')<CR>
-  nnoremap <buffer><silent> *    <Cmd>call ddu#ui#filer#do_action('toggleAllItems')<CR>
-  nnoremap <buffer><silent> p    <Cmd>call ddu#ui#filer#do_action('preview')<CR>
-  nnoremap <buffer><silent> q    <Cmd>call ddu#ui#filer#do_action('quit')<CR>
-'''
 
 # ddu UI
 [[plugins]]
 repo = 'Shougo/ddu-ui-ff'
-on_source = 'ddu.vim'
-
-[[plugins]]
-repo = 'Shougo/ddu-ui-filer'
-on_source = 'ddu.vim'
-
-# ddu column
-[[plugins]]
-repo = 'Shougo/ddu-column-filename'
 on_source = 'ddu.vim'
 
 # ddu filter

@@ -87,7 +87,7 @@ if dein#load_state(s:dein_dir)
 
   " call dein#load_toml(s:cmp_toml,        {'lazy': 1})
   call dein#load_toml(s:ddc_toml,        {'lazy': 1})
-  " call dein#load_toml(s:ddu_toml,        {'lazy': 1})
+  call dein#load_toml(s:ddu_toml,        {'lazy': 1})
   call dein#load_toml(s:dein_toml,       {'lazy': 0})
   call dein#load_toml(s:denops_toml,     {'lazy': 1})
   call dein#load_toml(s:fern_toml,       {'lazy': 1})

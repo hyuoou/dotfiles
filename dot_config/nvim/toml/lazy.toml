@@ -28,18 +28,6 @@ repo = 'dstein64/vim-startuptime'
 on_cmd = 'StartupTime'
 
 [[plugins]]
-repo = 'tyru/open-browser.vim'
-on_cmd = ['OpenBrowser', 'OpenBrowserSearch']
-on_map = ['<Plug>(openbrowser-']
-hook_add = '''
-  let g:openbrowser_default_search = 'duckduckgo'
-  let g:openbrowser_message_verbosity = 0
-
-  nmap <Space>i <Plug>(openbrowser-smart-search)
-  vmap <Space>i <Plug>(openbrowser-smart-search)
-'''
-
-[[plugins]]
 repo = 'utubo/vim-auto-hide-cmdline'
 
 [[plugins]]

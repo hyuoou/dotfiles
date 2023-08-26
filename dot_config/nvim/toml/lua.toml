@@ -1,5 +1,5 @@
 [[plugins]]
-repo = 'kyazdani42/nvim-web-devicons'
+repo = 'nvim-tree/nvim-web-devicons'
 
 [[plugins]]
 repo = 'nvim-lua/plenary.nvim'
@@ -11,7 +11,7 @@ hook_add = '''
   nnoremap <silent> <C-p> <Cmd>1ToggleTerm size=25 direction=horizontal<CR>
   nnoremap <silent> <C-f> <Cmd>1ToggleTerm direction=float<CR>
 
-  command! -nargs=? VerticalTerm call s:open_term(<f-args>)
+  command! -nargs=? Vt call s:open_term(<f-args>)
   function! s:open_term(...) abort
     if a:0 >= 1
       execute a:1 .. 'ToggleTerm size=80 direction=vertical'
@@ -39,14 +39,14 @@ toggleterm = '''
 
 [[plugins]]
 repo = 'kylechui/nvim-surround'
-on_map = ['cs', 'S']
+on_map = {n = 'cs', v = 'S'}
 lua_source = '''
   require('nvim-surround').setup()
 '''
 
 [[plugins]]
 repo = 'numToStr/Comment.nvim'
-on_map = ['gc', 'gcc']
+on_map = {n = 'gcc', v = 'gc'}
 lua_source = '''
   require('Comment').setup()
 '''
@@ -66,7 +66,7 @@ lua_source = '''
 
 [[plugins]]
 repo = 'famiu/bufdelete.nvim'
-on_event = ['CursorHold']
+on_cmd = ['Bd', "Bdelete"]
 
 [[plugins]]
 repo = 'lewis6991/gitsigns.nvim'
@@ -89,13 +89,14 @@ lua_source = '''
 
 [[plugins]]
 repo = 'sindrets/diffview.nvim'
+on_cmd = ['DiffviewOpen']
 lua_source = '''
   local actions = require('diffview.actions')
   require('diffview').setup({
     keymaps = {
       file_panel = {
-        ["j"] = actions.select_next_entry,
-        ["k"] = actions.select_prev_entry,
+        { "n", "j", actions.select_next_entry, { desc = "Open the diff for the next file" } },
+        { "n", "k", actions.select_prev_entry, { desc = "Open the diff for the previous file" } },
       },
     },
   })
@@ -128,7 +129,7 @@ lua_source = '''
       color = colors.bg_highlight,
     },
     marks = {
-      Cursor = { text = " " },
+      Cursor = { text = "-" },
       Search = { color = colors.orange },
       Error = { color = colors.error },
       Warn = { color = colors.warning },
@@ -153,3 +154,15 @@ lua_source = '''
 [[plugins]]
 repo = 'kevinhwang91/nvim-hlslens'
 on_source = ['nvim-scrollbar']
+
+[[plugins]]
+repo = 'Bekaboo/dropbar.nvim'
+depends = ['nvim-web-devicons']
+on_source = ['nvim-lspconfig', 'nvim-treesitter']
+
+[[plugins]]
+repo = 'stevearc/dressing.nvim'
+on_event = ['CursorHold']
+lua_source = '''
+  require('dressing').setup()
+'''

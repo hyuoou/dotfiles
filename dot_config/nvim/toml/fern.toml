@@ -20,9 +20,7 @@ fern = '''
 [[plugins]]
 repo = 'lambdalisue/fern-git-status.vim'
 on_source = 'fern.vim'
-hook_post_source = '''
-  call fern_git_status#init()
-'''
+hook_post_source = 'call fern_git_status#init()'
 
 [[plugins]]
 repo = 'lambdalisue/fern-renderer-nerdfont.vim'
