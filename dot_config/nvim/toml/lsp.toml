@@ -12,9 +12,6 @@ lua_source = '''
   local capabilities = status and require("cmp_nvim_lsp").default_capabilities()
     or require("ddc_nvim_lsp").make_client_capabilities()
 
-  -- null-ls
-  capabilities.offsetEncoding = { "utf-16" }
-
   vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
@@ -101,42 +98,6 @@ lua_source = '''
   require('lsp_lines').setup()
   vim.diagnostic.config({
     virtual_text = false,
-  })
-'''
-
-[[plugins]]
-repo = 'jose-elias-alvarez/null-ls.nvim'
-depends = ['plenary.nvim']
-on_event = 'LspAttach'
-lua_source = '''
-  local null_ls = require('null-ls')
-  local sources = {
-    -- formatter
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.dart_format,
-    null_ls.builtins.formatting.clang_format,
-    null_ls.builtins.formatting.goimports,
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.rustfmt,
-    null_ls.builtins.formatting.shfmt,
-  }
-  local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-  require("null-ls").setup({
-    sources = sources,
-    on_attach = function(client, bufnr)
-      if client.supports_method("textDocument/formatting") then
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          group = augroup,
-          buffer = bufnr,
-          callback = function()
-            vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 2000 })
-          end,
-        })
-      end
-    end,
   })
 '''
 

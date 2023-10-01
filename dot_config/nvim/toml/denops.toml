@@ -44,6 +44,5 @@ depends = ['denops.vim', 'vim-auto-hide-cmdline', 'kensaku.vim']
 on_map = ['<Plug>(ahc)']
 hook_add = '''
   nmap <Space><Space> <Plug>(ahc)<Cmd>FuzzyMotion<CR>
-
   let g:fuzzy_motion_matchers = ['fzf', 'kensaku']
 '''

@@ -59,9 +59,10 @@ on_cmd = ['ColorizerToggle']
 repo = 'lukas-reineke/indent-blankline.nvim'
 on_if = '&expandtab'
 lua_source = '''
-  require('indent_blankline').setup {
-    show_and_of_line = true,
-  }
+  require('ibl').setup({
+    indent = { char = "│" },
+    scope = { enabled = false },
+  })
 '''
 
 [[plugins]]
@@ -165,4 +166,33 @@ repo = 'stevearc/dressing.nvim'
 on_event = ['CursorHold']
 lua_source = '''
   require('dressing').setup()
+'''
+
+[[plugins]]
+repo = 'stevearc/conform.nvim'
+on_event = 'VimEnter'
+lua_source = '''
+  require('conform').setup({
+    formatters_by_ft = {
+      c = { "clang_format" },
+      cpp = { "clang_format" },
+      dart = { "dart_format" },
+      go = { "goimports" },
+      python = { "black" },
+      rust = { "rustfmt" },
+      sh = { "shfmt" },
+      tsx = { "prettier" },
+      typescript = { "prettier" },
+      lua = { "stylua" },
+    }
+  })
+
+  local augroup = vim.api.nvim_create_augroup("Format", {})
+  vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = "*",
+    group = augroup,
+    callback = function (args)
+      require("conform").format({ bufnr = args.buf })
+    end,
+  })
 '''
