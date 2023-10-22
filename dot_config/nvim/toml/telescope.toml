@@ -60,10 +60,6 @@ lua_source = '''
       timeout = 3000,
     },
     extensions = {
-      -- fzy_native = {
-      --   override_generic_sorter = false,
-      --   override_file_sorter = true,
-      -- },
       fzf = {
         fuzzy = true,
         override_generic_sorter = true,
@@ -82,16 +78,11 @@ lua_source = '''
     },
   })
 
-  -- require('telescope').load_extension('fzy_native')
   require('telescope').load_extension('fzf')
   require('telescope').load_extension('ghq')
   require('telescope').load_extension('ui-select')
   require('telescope').load_extension('file_browser')
 '''
-
-# [[plugins]]
-# repo = 'nvim-telescope/telescope-fzy-native.nvim'
-# on_source = 'telescope.nvim'
 
 [[plugins]]
 repo = 'nvim-telescope/telescope-fzf-native.nvim'

@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-xrandr --output HDMI-0 --mode 3440x1440 --rate 99.99 &
 nitrogen --restore &
 sleep 1 &
 picom -b &
@@ -13,7 +12,7 @@ nm-applet &
 light-locker --lock-on-suspend &
 /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets &
 blueman-applet &
-pulseaudio
+xmodmap ~/.Xmodmap &
 
 if [[ ! $(pgrep clipit) ]]; then
 	clipit

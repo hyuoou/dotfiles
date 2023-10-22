@@ -45,6 +45,8 @@ lua_source = '''
           path = "[path]",
           cmdline = "[cmdline]",
           cmdline_history = "[history]",
+          mocword = "[mocword]",
+          skkeleton = "[skkeleton]",
         })
       })
     },

@@ -1,5 +1,5 @@
 # xprop | grep WM_CLASS Set mod key (Mod1=<Alt>, Mod4=<Super>)
-set $mod Mod1
+set $mod Mod4
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 1
@@ -20,7 +20,7 @@ font pango:IBM Plex Sans JP Regular 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec $TERMINAL
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+q kill
@@ -34,6 +34,9 @@ bindsym $mod+c       exec --no-startup-id rofi -show calc -modi calc -no-show-ma
 
 # sound section
 bindsym Shift+Ctrl+m exec alacritty -e pulsemixer
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Start Applications
 bindsym $mod+o       exec firefox
@@ -205,7 +208,7 @@ bindsym $mod+i exec --no-startup-id $HOME/.config/i3/setup.sh
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
     # position top
-    font pango:SauceCodePro Nerd Font 9
+    font pango:SauceCodePro Nerd Font 11
     status_command i3blocks -c ~/.config/i3blocks/config
     colors {
         separator           #2e3440
