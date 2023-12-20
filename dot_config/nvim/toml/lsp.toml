@@ -22,11 +22,11 @@ lua_source = '''
       vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
       vim.keymap.set('n', '<Space>r', vim.lsp.buf.rename, bufopts)
 
-      -- vim.lsp.inlay_hint(bufnr, true)
+      -- vim.lsp.inlay_hint.enable(bufnr, true)
       vim.api.nvim_create_user_command(
         'InlayhintToggle',
         function()
-          vim.lsp.inlay_hint(bufnr)
+          vim.lsp.inlay_hint.enable(bufnr, vim.lsp.inlay_hint.is_enabled() == false)
         end,
         {}
       )

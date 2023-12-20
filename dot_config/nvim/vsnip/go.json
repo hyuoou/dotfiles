@@ -5,7 +5,7 @@
   },
   "main function": {
     "prefix": "main",
-    "body": "package main\n\nfunc main() {\n\t$1\n}"
+    "body": "func main() {\n\t$1\n}"
   },
   "function": {
     "prefix": "fn",

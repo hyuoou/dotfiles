@@ -58,6 +58,7 @@ on_cmd = ['ColorizerToggle']
 [[plugins]]
 repo = 'lukas-reineke/indent-blankline.nvim'
 on_if = '&expandtab'
+on_ft = ['rust']
 lua_source = '''
   require('ibl').setup({
     indent = { char = "│" },
@@ -179,12 +180,12 @@ lua_source = '''
       dart = { "dart_format" },
       go = { "goimports" },
       javascript = { "prettier" },
-      jsx = { "prettier" },
+      javascriptreact = { "prettier" },
       python = { "black" },
       rust = { "rustfmt" },
       sh = { "shfmt" },
-      tsx = { "prettier" },
       typescript = { "prettier" },
+      typescriptreact = { "prettier" },
       lua = { "stylua" },
     }
   })

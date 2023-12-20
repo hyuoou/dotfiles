@@ -8,8 +8,11 @@ hook_source = '''
     \ 'ui': 'pum',
     \ })
 
+  " call ddc#custom#patch_global(
+  "   \ 'sources', ['nvim-lsp', 'vsnip', 'buffer', 'tmux', 'around', 'file']
+  "   \ )
   call ddc#custom#patch_global(
-    \ 'sources', ['nvim-lsp', 'vsnip', 'buffer', 'tmux', 'around', 'file']
+    \ 'sources', ['nvim-lsp', 'vsnip', 'buffer', 'around', 'file']
     \ )
 
   call ddc#custom#patch_global(
