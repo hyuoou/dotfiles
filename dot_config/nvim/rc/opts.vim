@@ -21,6 +21,7 @@ set showtabline=2
 set cmdheight=0
 set noshowmode
 set background=dark
+set termguicolors
 
 set list
 set listchars=tab:>-,space:·

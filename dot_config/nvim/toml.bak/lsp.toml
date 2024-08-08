@@ -87,7 +87,7 @@ repo = 'williamboman/mason.nvim'
 repo = 'williamboman/mason-lspconfig.nvim'
 
 [[plugins]]
-repo = 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+repo = 'ErichDonGubler/lsp_lines.nvim'
 on_event = 'LspAttach'
 lua_source = '''
   vim.api.nvim_create_user_command(
@@ -154,37 +154,4 @@ lua_source = '''
     root_dir = vim.fs.dirname(vim.fs.find({'gradlew', '.git', 'mvnw'}, { upward = true })[1]),
   }
   require('jdtls').start_or_attach(config)
-'''
-
-[[plugins]]
-repo = 'nvimtools/none-ls.nvim'
-on_source = 'nvim-lspconfig'
-depends = ['plenary.nvim']
-lua_source = '''
-  local null_ls = require('null-ls')
-  local sources = {
-    -- formatter
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.clang_format,
-    null_ls.builtins.formatting.goimports,
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.shfmt,
-  }
-  local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-  require("null-ls").setup({
-    sources = sources,
-    on_attach = function(client, bufnr)
-      if client.supports_method("textDocument/formatting") then
-        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          group = augroup,
-          buffer = bufnr,
-          callback = function()
-            vim.lsp.buf.format({ bufnr = bufnr })
-          end,
-        })
-      end
-    end,
-  })
 '''

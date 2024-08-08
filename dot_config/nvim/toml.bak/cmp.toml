@@ -52,17 +52,9 @@ lua_source = '''
     },
   })
 
-  cmp.setup.filetype({ 'NeogitCommitMessage', 'gitcommit' }, {
+  cmp.setup.filetype({ 'NeogitCommitMessage', 'gitcommit', 'markdown' }, {
     sources = cmp.config.sources({
       { name = 'mocword' },
-      { name = 'path' },
-      { name = 'skkeleton' },
-    })
-  })
-
-  cmp.setup.filetype({ 'markdown' }, {
-    sources = cmp.config.sources({
-      { name = 'vsnip' },
       { name = 'path' },
       { name = 'skkeleton' },
     })
@@ -136,7 +128,7 @@ on_source = 'nvim-cmp'
 repo = 'hrsh7th/vim-vsnip'
 on_source = 'nvim-cmp'
 hook_add = '''
-  let g:vsnip_snippet_dir = '$HOME/.config/nvim/snippets'
+  let g:vsnip_snippet_dir = '$HOME/.config/nvim/vsnip'
   imap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
   smap <expr> <Tab>   vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<Tab>'
   imap <expr> <S-Tab> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<S-Tab>'

@@ -13,7 +13,10 @@ lua_source = '''
     },
     indent = {
       enable = false,
-    }
+    },
+    autotag = {
+      enable = true,
+    },
   }
 '''
 hook_post_update = 'TSUpdate'
@@ -25,15 +28,6 @@ on_source = 'nvim-treesitter'
 [[plugins]]
 repo = 'windwp/nvim-ts-autotag'
 on_source = 'nvim-treesitter'
-lua_source = '''
-require('nvim-ts-autotag').setup({
-  opts = {
-    enable_close = true,
-    enable_rename = true,
-    enalbe_close_on_slash = false,
-  },
-})
-'''
 
 [[plugins]]
 repo = 'HiPhish/rainbow-delimiters.nvim'

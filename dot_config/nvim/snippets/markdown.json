@@ -1,0 +1,14 @@
+{
+  "lang": {
+    "prefix": ["lang"],
+    "body": ["``` ${1:lang}", "${2:body}", "```"]
+  },
+  "url": {
+    "prefix": ["url"],
+    "body": ["[${1:name}](${2:url})"]
+  },
+  "img": {
+    "prefix": ["img"],
+    "body": ["![${1:text}](${2:path})"]
+  }
+}

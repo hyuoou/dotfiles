@@ -1,0 +1,102 @@
+[[plugins]]
+repo = 'nvim-telescope/telescope.nvim'
+depends = ['plenary.nvim', 'nvim-treesitter', 'nvim-web-devicons']
+on_cmd = 'Telescope'
+on_lua = 'telescope'
+hook_add = '''
+  command! Cnf lua require('telescope.builtin').find_files({ cwd = vim.fn.expand('~/.config/nvim') })
+
+  nnoremap <silent> ;t <Cmd>Telescope<CR>
+  nnoremap <silent> ff <Cmd>Telescope find_files<CR>
+  nnoremap <silent> ;f <Cmd>Telescope file_browser<CR>
+  nnoremap <silent> ;o <Cmd>Telescope oldfiles<CR>
+  nnoremap <silent> ;d <Cmd>Telescope diagnostics<CR>
+  nnoremap <silent> ;b <Cmd>Telescope buffers<CR>
+  nnoremap <silent> ;g <Cmd>Telescope live_grep<CR>
+  nnoremap <silent> ;h <Cmd>Telescope help_tags<CR>
+  nnoremap <silent> fg <Cmd>Telescope ghq list<CR>
+  nnoremap <silent> ;/  <Cmd>Telescope current_buffer_fuzzy_find<CR>
+  nnoremap <silent> ;; <Cmd>Telescope command_history<CR>
+  nnoremap <silent> ;c <Cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.expand('~/.config/nvim') })<CR>
+'''
+lua_source = '''
+  local actions = require('telescope.actions')
+  local fb_actions = require('telescope').extensions.file_browser.actions
+
+  require('telescope').setup({
+    defaults = {
+      sorting_strategy = "ascending",
+      prompt_prefix = "  ",
+      layout_config = {
+        horizontal = {
+          prompt_position = "top",
+          preview_width = 0.5,
+          results_width = 0.8,
+        },
+      },
+      mappings = {
+        i = {
+          ["jj"] = { "<Esc><Right>", type = "command" },
+          ["<Esc>"] = actions.close,
+          ["<C-j>"] = actions.move_selection_next,
+          ["<C-k>"] = actions.move_selection_previous,
+          ["<C-n>"] = actions.preview_scrolling_down,
+          ["<C-p>"] = actions.preview_scrolling_up,
+        },
+        n = {
+          ["q"] = actions.close,
+          ["x"] = actions.toggle_selection + actions.move_selection_worse,
+          ["*"] = actions.toggle_all,
+          ["h"] = actions.results_scrolling_left,
+          ["l"] = actions.results_scrolling_right,
+          ["H"] = actions.preview_scrolling_left,
+          ["L"] = actions.preview_scrolling_right,
+          ["<C-n>"] = actions.preview_scrolling_down,
+          ["<C-p>"] = actions.preview_scrolling_up,
+        },
+      },
+    },
+    preview = {
+      timeout = 3000,
+    },
+    extensions = {
+      fzf = {
+        fuzzy = true,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = "smart_case",
+      },
+      file_browser = {
+        initial_mode = "normal",
+        mappings = {
+          n = {
+            ["<BS>"] = fb_actions.goto_parent_dir,
+            ["!"] = fb_actions.toggle_hidden,
+          },
+        },
+      },
+    },
+  })
+
+  require('telescope').load_extension('fzf')
+  require('telescope').load_extension('ghq')
+  require('telescope').load_extension('ui-select')
+  require('telescope').load_extension('file_browser')
+'''
+
+[[plugins]]
+repo = 'nvim-telescope/telescope-fzf-native.nvim'
+build = 'make'
+on_source = 'telescope.nvim'
+
+[[plugins]]
+repo = 'nvim-telescope/telescope-ghq.nvim'
+on_source = 'telescope.nvim'
+
+[[plugins]]
+repo = 'nvim-telescope/telescope-ui-select.nvim'
+on_source = 'telescope.nvim'
+
+[[plugins]]
+repo = 'nvim-telescope/telescope-file-browser.nvim'
+on_source = 'telescope.nvim'

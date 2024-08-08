@@ -40,8 +40,3 @@ hook_add = '''
 [[plugins]]
 repo = 'thinca/vim-partedit'
 on_cmd = 'Partedit'
-
-# [[plugins]]
-# repo = 'catppuccin/nvim'
-# name = 'catppuccin'
-# on_event = 'CursorHold'

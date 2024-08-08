@@ -6,11 +6,6 @@ repo = 'folke/tokyonight.nvim'
 lua_add = '''
   require('tokyonight').setup({
     style = "night",
-    -- transparent = true,
-    -- styles = {
-    --   sidebars = "transparent",
-    --   floats = "transparent",
-    -- },
     sidebars = { "qf", "help", "ddu-ff", "ddu-ff-filter", "ddu-filer", "diff", "fern" },
     on_highlights = function(hl, c)
       local colors = require("tokyonight.colors").setup({ transform = true })

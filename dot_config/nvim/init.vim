@@ -66,8 +66,8 @@ if !isdirectory(s:dein_repo_dir)
 endif
 execute 'set runtimepath+=' .. s:dein_repo_dir
 
-if getenv('GITHUB_API') != v:null
-  let g:dein#install_github_api_token = $GITHUB_API
+if getenv('GITHUB_API_TOKEN') != v:null
+  let g:dein#install_github_api_token = $GITHUB_API_TOKEN
   command! DeinUpdate call dein#check_update(v:true)
 else
   command! DeinUpdate call dein#update()
