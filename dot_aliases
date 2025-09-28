@@ -21,7 +21,9 @@ alias find='fd'
 alias fzf='sk'
 
 # aliases
-alias rm='gomi'
+alias lf='lfrun'
+alias ranger='lfrun'
+alias rm='trash-put'
 alias cp='cp -i'
 alias mv='mv -i'
 alias mozc='/usr/lib/mozc/mozc_tool --mode=config_dialog'
@@ -32,6 +34,7 @@ alias cl='cd && clear'
 alias :q='exit'
 alias mkdir='mkdir -p'
 alias i3config='nvim $XDG_CONFIG_HOME/i3/config'
+alias neofetch='fastfetch'
 
 # skim + ghq
 alias fzghq='cd "$(ghq list -p | sk)"'

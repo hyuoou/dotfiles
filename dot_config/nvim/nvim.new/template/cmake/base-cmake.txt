@@ -1,0 +1,2 @@
+CMAKE_MINIMUM_REQUIRED(VERSION {{_input_:Version}})
+project({{_input_:ProjectName}} CXX)
