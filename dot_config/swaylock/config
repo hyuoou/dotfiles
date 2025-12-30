@@ -1,0 +1,39 @@
+# --- 背景設定 (動的背景) ---
+screenshots
+
+# --- エフェクト ---
+effect-blur=20x5
+effect-vignette=0.5:0.5
+
+# --- 時計の設定 ---
+clock
+timestr=%H:%M
+datestr=%m月%d日
+font="IBM Plex Sans JP"
+font-size=24
+
+# --- インジケーター（サークル）設定 ---
+indicator
+indicator-radius=100
+indicator-thickness=10
+
+# --- Tokyo Night カラーテーマ設定 ---
+ring-color=15161e
+inside-color=15161e
+key-hl-color=7aa2f7
+bs-hl-color=f7768e
+
+inside-ver-color=7aa2f7
+inside-wrong-color=f7768e
+inside-clear-color=e0af68
+ring-ver-color=7aa2f7
+ring-wrong-color=f7768e
+ring-clear-color=e0af68
+
+text-color=c0caf5
+text-ver-color=15161e
+text-wrong-color=15161e
+text-clear-color=15161e
+
+line-color=00000000
+separator-color=00000000

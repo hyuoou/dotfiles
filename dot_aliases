@@ -1,65 +1,72 @@
 #!/usr/bin/env bash
 
-# vim aliases
+# --- 1. システム・基本操作 ---
+alias sudo='doas'
+alias rm='trash-put'
+alias cp='cp -i'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+alias c='clear'
+alias cl='cd && clear'
+alias :q='exit'
+alias neofetch='fastfetch'
+
+# --- 2. エディタ (Neovim) ---
 alias v='nvim'
 alias vi='nvim'
 alias vim='nvim'
 alias vimdiff='nvim -R -d'
-alias cnf='cd $HOME/.config/nvim'
+alias cnf='cd ${XDG_CONFIG_HOME:-$HOME/.config}/nvim'
 
-# rust command
-alias ls='exa --icons'
-alias la='exa --all --icons'
-alias ll='exa -hl --git'
-alias lla='exa --all -hl --git'
-alias lt='exa --tree --icons'
-alias lta='exa --all --tree --icons'
+# --- 3. Rust製モダンコマンドへの置換 ---
+# eza: lsの代替
+alias ls='eza --icons'
+alias la='eza --all --icons'
+alias ll='eza -hl --git'
+alias lla='eza --all -hl --git'
+alias lt='eza --tree --icons'
+alias lta='eza --all --tree --icons'
+
+# その他ツールの代替
 alias cat='bat'
-alias yay='paru'
 alias grep='rg'
 alias find='fd'
 alias fzf='sk'
 
-# aliases
-alias lf='lfrun'
-alias ranger='lfrun'
-alias rm='trash-put'
-alias cp='cp -i'
-alias mv='mv -i'
+# --- 4. ファイルマネージャ・ツール ---
+alias lf='yazi'
+alias ranger='yazi'
 alias mozc='/usr/lib/mozc/mozc_tool --mode=config_dialog'
-alias w3md='w3m duckduckgo.com'
-alias w3ma='w3m aur.archlinux.org'
-alias c='clear'
-alias cl='cd && clear'
-alias :q='exit'
-alias mkdir='mkdir -p'
-alias i3config='nvim $XDG_CONFIG_HOME/i3/config'
-alias neofetch='fastfetch'
 
-# skim + ghq
+# --- 5. 開発・インタラクティブ検索 ---
+# ghq + skim
 alias fzghq='cd "$(ghq list -p | sk)"'
 
-# git alias
+# ---------------------------------------------------------
+# 関数定義 (引数が必要なもの)
+# ---------------------------------------------------------
+
+# GitHubからクローン
 clone() {
-	git clone https://github.com/"$1".git
+    git clone git@github.com:"$1".git
 }
 
-# ghq alias
+# ghq経由でリポジトリを取得
 get() {
-	ghq get https://github.com/"$1"
+    ghq get https://github.com/"$1"
 }
 
-# get weather
+# 天気表示 (デフォルト: 東京)
 wttr() {
-	curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-Tokyo}"
+    curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-Tokyo}"
 }
 
-# mkdir and cd
+# ディレクトリ作成後に移動
 mkcd() {
-	mkdir -p "$1" && cd "$1" || return
+    mkdir -p "$1" && cd "$1" || return
 }
 
-# create qrcode from url
+# URLからQRコードを生成
 qrcode() {
-	curl qrcode.show/"$1"
+    curl qrcode.show/"$1"
 }

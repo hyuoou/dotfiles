@@ -1,0 +1,48 @@
+* {
+  font-family: "IBM Plex Sans JP";
+  font-size: 16px;
+}
+
+window {
+    margin: 0px;
+    border-radius: 10px;
+    /* Waybarと同じ背景色と透過度 */
+    background-color: rgba(21, 22, 30, 0.9);
+    /* Waybarのseparatorの色でボーダーを作成 */
+    border: 2px solid #7aa2f7;
+    color: #c0caf5;
+}
+
+#outer-box {
+    padding: 15px;
+}
+
+/* 検索入力欄: Waybarの背景より一段暗い色 */
+#input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #15161e;
+    color: #c0caf5;
+}
+
+/* 各アプリ項目 */
+#entry {
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* 選択時の挙動: Waybarの .focused と同じ配色 */
+#entry:selected {
+    background-color: #7aa2f7;
+}
+
+#text:selected {
+    color: #15161e; /* focused状態の文字色 */
+    font-weight: bold;
+}
+
+#img {
+    margin-right: 10px;
+}

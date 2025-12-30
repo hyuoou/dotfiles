@@ -1,0 +1,15 @@
+[opener]
+# VLCを定義（detach = true をつけると、VLCが開いた後もyaziを操作できます）
+vlc = [
+	{ run = 'vlc "$@"', orphan = true, desc = "VLC", for = "unix" },
+	{ run = 'vlc.exe "%1"', orphan = true, desc = "VLC", for = "windows" }
+]
+
+[open]
+rules = [
+	{ mime = "video/*", use = ["vlc", "reveal"] }
+]
+
+[mgr]
+ratio = [2, 3, 4]
+show_hidden = true

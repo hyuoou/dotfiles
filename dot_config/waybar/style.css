@@ -1,0 +1,40 @@
+* {
+    font-family: "SauceCodePro Nerd Font", "IBM Plex Sans JP", sans-serif;
+    font-size: 12px;
+}
+
+window#waybar {
+    background-color: rgba(21, 22, 30, 0.9);
+}
+
+#workspaces button {
+    padding: 0 10px;
+    color: #c0caf5;
+    background: transparent;
+}
+
+#workspaces button.focused {
+    color: #15161e;
+    background: #7aa2f7;
+}
+
+#mode {
+    padding: 0 10px;
+    color: #15161e;
+    background: #9ece6a;
+}
+
+#custom-spotify,
+#custom-kernel,
+#custom-ram,
+#custom-strage,
+#custom-audio,
+#custom-calendar,
+#clock,
+#tray {
+    margin: 0 6px;
+}
+
+#custom-separator {
+    color: #7aa2f7;
+}

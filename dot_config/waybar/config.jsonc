@@ -1,0 +1,121 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "sway/workspaces",
+        "sway/mode"
+    ],
+    "modules-right": [
+        "custom/spotify",
+        "custom/separator",
+        "custom/kernel",
+        "custom/separator",
+        "custom/ram",
+        "custom/separator",
+        "custom/strage",
+        "custom/separator",
+        "custom/audio",
+        "custom/separator",
+        "custom/calendar",
+        "custom/separator",
+        "clock",
+        "custom/separator",
+        "tray",
+        "custom/notification"
+    ],
+    // Modules configuration
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "warp-on-scroll": false,
+        "on-scroll-up": "swaymsg workspace next_on_output",
+        "on-scroll-down": "swaymsg workspace prev_on_output"
+    },
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+    "tray": {
+        "icon-size": 14,
+        "spacing": 10
+    },
+    "clock": {
+        "format": " {:%H:%M}",
+        "tooltip": false
+    },
+    "custom/calendar": {
+        "exec": "LANG=C date '+%m/%d(%a)'",
+        "interval": 1,
+        "format": " {}",
+        "tooltip": false
+    },
+    "custom/strage": {
+        "exec": "df --output=avail -BG /dev/sda2 | tail -n 1",
+        "interval": 60,
+        "on-click": "thunar",
+        "on-click-right": "baobab",
+        "format": "{}",
+        "tooltip": false
+    },
+    "custom/ram": {
+        "exec": "awk \"/MemTotal/{t=\\$2}/MemAvailable/{a=\\$2}END{printf \\\"%.1f/%.1f GB (%.1f%%)\\\\n\\\",(t-a)/1024/1024,t/1024/1024,(t-a)/t*100}\" /proc/meminfo",
+        "on-click": "gnome-system-monitor",
+        "interval": 60,
+        "format": " {}",
+        "tooltip": false
+    },
+    "custom/kernel": {
+        "exec": "uname -r",
+        "interval": 0,
+        "format": " {}",
+        "tooltip": false
+    },
+    "custom/spotify": {
+        "exec": "$HOME/.config/waybar/script/spotify",
+        "interval": 1,
+        "on-click": "playerctl --player=spotify play-pause",
+        "on-click-right": "swaymsg '[class=\"Spotify\"] focus'",
+        "on-scroll-up": "playerctl --player=spotify previous",
+        "on-scroll-down": "playerctl --player=spotify next",
+        "format": " {}",
+        "tooltip": false
+    },
+    "custom/audio": {
+        "exec": "wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '/MUTED/{print \"MUTE\";exit}{printf \"%.0f%%\\n\",$2*100}'",
+        "interval": 1,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+        "format": " {}",
+        "tooltip": false
+    },
+    "custom/separator": {
+        "format": "",
+        "interval": 0,
+        "tooltip": false
+    },
+    "custom/notification": {
+        "tooltip": true,
+        "format": "<span size='16pt'>{icon}</span>",
+        "format-icons": {
+            "notification": "󱅫 ",
+            "none": "󰂜 ",
+            "dnd-notification": "󰂠 ",
+            "dnd-none": "󰪓 ",
+            "inhibited-notification": "󰂛 ",
+            "inhibited-none": "󰪑 ",
+            "dnd-inhibited-notification": "󰂛 ",
+            "dnd-inhibited-none": "󰪑 "
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    }
+}

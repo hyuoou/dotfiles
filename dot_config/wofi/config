@@ -1,0 +1,7 @@
+style=/home/hyuoou/.config/wofi/style.css
+width=35%
+height=50%
+allow_images=true
+image_size=24
+term=alacritty
+insensitive=true
