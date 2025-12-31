@@ -11,7 +11,7 @@ return {
     "vim-jp/vimdoc-ja",
     event = "VeryLazy",
     config = function()
-      vim.opt.helplang = ja
+      vim.opt.helplang = "ja"
     end,
   },
 
@@ -33,7 +33,7 @@ return {
     dependencies = {
       "kana/vim-altercmd",
     },
-    cmd = { "Bd", "Bdelete" },
+    event = { "VeryLazy" },
     config = function()
       vim.cmd([[
         call altercmd#load()
