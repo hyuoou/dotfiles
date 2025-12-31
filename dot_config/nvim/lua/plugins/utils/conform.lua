@@ -10,6 +10,13 @@ return {
           cpp = { "clang_format" },
           lua = { "stylua" },
           rust = { "rustfmt" },
+          sh = { "shfmt" },
+          zsh = { "beautysh" },
+        },
+        formatters = {
+          beautysh = {
+            prepend_args = { "-i", "2" },
+          },
         },
       })
 

@@ -12,10 +12,9 @@ setopt nobeep              # ビープ音無効
 setopt appendhistory       # 履歴を上書きせず追記
 setopt histignorealldups   # 重複履歴を削除
 setopt inc_append_history  # 即座に履歴を保存
-
-HISTFILE=~/.zhistory 
-HISTSIZE=10000 
-SAVEHIST=10000 
+HISTFILE=~/.zhistory
+HISTSIZE=10000
+SAVEHIST=10000
 
 # --- 3. 補完設定 (zstyle) ---
 autoload -Uz compinit && compinit -C
@@ -26,6 +25,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 
 # --- 4. プラグイン管理 ---
 eval "$(sheldon source)"
+eval "$(zoxide init zsh --cmd cd)"
 eval "$(starship init zsh)"
 
 # --- 5. キーバインド設定 ---

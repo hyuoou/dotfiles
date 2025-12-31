@@ -10,6 +10,7 @@ default_floating_border pixel 2
 # output "*" background "$HOME/Downloads/137594693_p0.png" fill
 # output "*" background "$HOME/Downloads/129907388_p0.png" fill
 exec_always multibg-wayland "$HOME/Pictures/wallpaper"
+output HDMI-A-1 mode 3440x1440@99.994Hz
 
 # notify
 exec_always swaync

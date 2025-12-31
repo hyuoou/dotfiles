@@ -31,16 +31,39 @@ alias lta='eza --all --tree --icons'
 alias cat='bat'
 alias grep='rg'
 alias find='fd'
-alias fzf='sk'
+alias z='cd'
+alias zi='cdi'
 
 # --- 4. ファイルマネージャ・ツール ---
 alias lf='yazi'
 alias ranger='yazi'
+alias yay='paru'
 alias mozc='/usr/lib/mozc/mozc_tool --mode=config_dialog'
 
 # --- 5. 開発・インタラクティブ検索 ---
-# ghq + skim
-alias fzghq='cd "$(ghq list -p | sk)"'
+# ghq + fzf
+function fzghq() {
+  local ghq_root
+  ghq_root=$(ghq root)
+
+  local fzf_opts=(
+    --height=100%
+    --layout=reverse
+    --border
+    --info=inline
+    --prompt='❯ '
+    --pointer='▶'
+    --marker='✓'
+    --preview "eza --tree --color=always --icons --git --group-directories-first --level=2 $ghq_root/{}"
+    --preview-window="right:60%"
+  )
+
+  local repo
+  repo=$(ghq list | fzf "${fzf_opts[@]}") || return 1
+
+  cd "${ghq_root}/${repo}"
+}
+alias g='fzghq'
 
 # ---------------------------------------------------------
 # 関数定義 (引数が必要なもの)
@@ -48,25 +71,25 @@ alias fzghq='cd "$(ghq list -p | sk)"'
 
 # GitHubからクローン
 clone() {
-    git clone git@github.com:"$1".git
+  git clone git@github.com:"$1".git
 }
 
-# ghq経由でリポジトリを取得
+# ghq経由でGitHubリポジトリを取得
 get() {
-    ghq get https://github.com/"$1"
+  ghq get git@github.com:"$1".git
 }
 
 # 天気表示 (デフォルト: 東京)
 wttr() {
-    curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-Tokyo}"
+  curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-Tokyo}"
 }
 
 # ディレクトリ作成後に移動
 mkcd() {
-    mkdir -p "$1" && cd "$1" || return
+  mkdir -p "$1" && cd "$1" || return
 }
 
 # URLからQRコードを生成
 qrcode() {
-    curl qrcode.show/"$1"
+  curl qrcode.show/"$1"
 }
