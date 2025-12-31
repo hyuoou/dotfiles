@@ -25,3 +25,4 @@ vim.keymap.set("v", "<C-a>", "^", opts)
 vim.keymap.set("v", "<C-e>", "$", opts)
 
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>", opts)
+vim.keymap.set("t", "jj", "<C-\\><C-n>", opts)

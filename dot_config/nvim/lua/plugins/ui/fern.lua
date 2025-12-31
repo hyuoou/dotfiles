@@ -36,13 +36,6 @@ return {
           keys("<C-p>", "<Plug>(fern-action-preview:scroll:up:half)")
           keys("<C-r>", "<Plug>(fern-action-reload:all)")
           keys("q", "<Cmd>Fern . -reveal=% -drawer -toggle -width=40<CR>")
-
-          vim.api.nvim_create_autocmd("BufEnter", {
-            group = augroup.userftkeymap,
-            callback = function()
-              vim.cmd("filetype detect")
-            end,
-          })
         end,
       })
     end,

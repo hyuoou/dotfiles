@@ -14,6 +14,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 vim.opt.rtp:prepend(lazypath)
+vim.cmd("filetype plugin indent on")
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"

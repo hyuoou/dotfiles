@@ -14,7 +14,7 @@ return {
           FloatBorder = {
             guifg = "#2ac3de",
           },
-        }
+        },
       })
 
       vim.api.nvim_create_autocmd("FileType", {
@@ -22,7 +22,7 @@ return {
         pattern = "toggleterm",
         callback = function()
           vim.keymap.set({ "n", "t" }, "<C-p>", "<Cmd>ToggleTerm<CR>", { noremap = true, buffer = true, silent = true })
-          vim.keymap.set("t", "<Esc>", "<Cmd>ToggleTerm<CR>", { noremap = true, buffer = true, silent = true })
+          vim.keymap.set("t", "<Esc>", "<C-n><C-\\>", { noremap = true, buffer = true, silent = true })
         end,
       })
     end,

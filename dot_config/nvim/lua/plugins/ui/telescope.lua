@@ -48,12 +48,6 @@ return {
               ["<C-k>"] = actions.move_selection_previous,
               ["<C-n>"] = actions.preview_scrolling_down,
               ["<C-p>"] = actions.preview_scrolling_up,
-              ["<CR>"] = function(prompt_bufnr)
-                actions.select_default(prompt_bufnr)
-                vim.schedule(function()
-                  vim.cmd("filetype detect")
-                end)
-              end,
             },
             n = {
               ["q"] = actions.close,
@@ -65,12 +59,6 @@ return {
               ["L"] = actions.preview_scrolling_right,
               ["<C-n>"] = actions.preview_scrolling_down,
               ["<C-p>"] = actions.preview_scrolling_up,
-              ["<CR>"] = function(prompt_bufnr)
-                actions.select_default(prompt_bufnr)
-                vim.schedule(function()
-                  vim.cmd("filetype detect")
-                end)
-              end,
             },
           },
         },
