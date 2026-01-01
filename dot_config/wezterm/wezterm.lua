@@ -34,7 +34,7 @@ config.tab_bar_at_bottom = true
 
 -- 5. その他互換設定
 config.set_environment_variables = { TERM = "xterm-256color" }
-config.default_prog = { "/bin/zsh" }
+config.default_prog = { "/usr/bin/env", "zsh", "--login" }
 config.term = "xterm-256color"
 
 return config
