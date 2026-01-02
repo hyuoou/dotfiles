@@ -23,7 +23,7 @@ config.colors = {
   indexed = { [16] = "#ff9e64", [17] = "#db4b4b" },
 }
 
--- 2. 壁紙があるなら上書き
+-- 3. 壁紙があるなら上書き
 local wallpaper = wezterm.home_dir .. "/Pictures/lonetrail.png"
 local function file_exists(path)
   local f = io.open(path, "r")
