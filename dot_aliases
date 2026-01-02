@@ -61,7 +61,7 @@ function fzghq() {
   local repo
   repo=$(ghq list | fzf "${fzf_opts[@]}") || return 1
 
-  cd "${ghq_root}/${repo}"
+  cd "${ghq_root}/${repo}" || return 1
 }
 alias g='fzghq'
 

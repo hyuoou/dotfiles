@@ -1,5 +1,7 @@
 # --- 1. 外部設定の読み込み ---
-[[ -f ~/.profile ]] && source ~/.profile
+if [[ -f ~/.profile ]] && [[ "$(uname)" == "Linux" ]]; then
+  source ~/.profile
+fi
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 # --- 2. zsh挙動設定 (setopt) ---
