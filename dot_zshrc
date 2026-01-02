@@ -49,7 +49,7 @@ if [[ -z $TMUX ]]; then
     tmux new-session
   else
     create_new_session="Create New Session"
-    ID="$(echo -e "$ID\n${create_new_session}:" | sk | cut -d: -f1)"
+    ID="$(echo -e "$ID\n${create_new_session}:" | fzf | cut -d: -f1)"
     if [[ "$ID" = "${create_new_session}" ]]; then
       tmux new-session
     elif [[ -n "$ID" ]]; then
