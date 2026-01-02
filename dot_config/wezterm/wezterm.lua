@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
+local triple = wezterm.target_triple
 
 -- 1. フォント設定
 config.font = wezterm.font_with_fallback({
@@ -8,7 +9,11 @@ config.font = wezterm.font_with_fallback({
   { family = "IBM Plex Sans SC", weight = "Medium" },
   { family = "IBM Plex Sans KR", weight = "Medium" },
 })
-config.font_size = 10.0
+if triple:find("linux") then
+  config.font_size = 10.0
+else
+  config.font_size = 12.0
+end
 
 -- 2. 色の設定 (TokyoNight Night)
 config.colors = {
