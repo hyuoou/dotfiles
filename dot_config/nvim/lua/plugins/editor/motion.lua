@@ -6,7 +6,7 @@ return {
       "utubo/vim-auto-hide-cmdline",
     },
     keys = {
-      { "<Space><Space>", "<Plug>(ahc)<Cmd>FuzzyMotion<CR>" },
+      { "<leader><leader>", "<Plug>(ahc)<Cmd>FuzzyMotion<CR>" },
     },
   },
 }

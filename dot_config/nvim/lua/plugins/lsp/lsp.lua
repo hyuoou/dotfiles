@@ -31,7 +31,7 @@ return {
       end, { silent = true })
       vim.keymap.set("n", "ge", vim.lsp.buf.definition, { silent = true })
       vim.keymap.set("n", "K", vim.lsp.buf.hover, { silent = true })
-      vim.keymap.set("n", "<Space>r", vim.lsp.buf.rename, { silent = true })
+      vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { silent = true })
 
       vim.api.nvim_create_user_command(
         "LspLinesToggle",

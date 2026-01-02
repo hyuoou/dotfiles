@@ -3,7 +3,7 @@ return {
     "lambdalisue/vim-fern",
     keys = {
       { "sf", "<Cmd>Fern .<CR>" },
-      { "<Space>f", "<Cmd>Fern . -reveal=% -drawer -toggle -width=40<CR><CR>" },
+      { "<leader>f", "<Cmd>Fern . -reveal=% -drawer -toggle -width=40<CR><CR>" },
     },
     dependencies = {
       "lambdalisue/fern-git-status.vim",
