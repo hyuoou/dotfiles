@@ -3,6 +3,7 @@ return {
     "mfussenegger/nvim-lint",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
+      local augroup = require("utils.augroup")
       require("lint").linters_by_ft = {
         bash = { "shellcheck" },
         cpp = { "clangtidy" },
@@ -10,7 +11,7 @@ return {
       }
 
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-        pattern = "*",
+        group = augroup.userFormatting,
         callback = function()
           require("lint").try_lint()
         end,

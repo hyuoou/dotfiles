@@ -17,7 +17,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 
 # --- 3. 補完設定 (zstyle) ---
-autoload -Uz compinit && compinit -C
+autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' use-cache on
@@ -36,6 +36,9 @@ bindkey '^[[B' history-substring-search-down
 # 汎用的なHome/Endキー設定
 bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}" end-of-line
+# 単語間の移動
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 # --- 6. Tmux 自動起動ロジック ---
 if [[ -z $TMUX ]]; then

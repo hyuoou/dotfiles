@@ -1,8 +1,3 @@
-local augroup = require("utils.augroup")
-local function keys(key, action)
-  vim.keymap.set("n", key, action, { buffer = true, silent = true })
-end
-
 return {
   {
     "lambdalisue/fern.vim",
@@ -18,6 +13,11 @@ return {
       "yuki-yano/fern-preview.vim",
     },
     config = function()
+      local augroup = require("utils.augroup")
+      local function keys(key, action)
+        vim.keymap.set("n", key, action, { buffer = true, silent = true })
+      end
+
       vim.g["fern#renderer"] = "nerdfont"
       vim.g["fern#renderer#nerdfont#indent_markers"] = 1
 

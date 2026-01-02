@@ -1,5 +1,3 @@
-local augroup = require("utils/augroup")
-
 return {
   {
     "akinsho/toggleterm.nvim",
@@ -8,6 +6,7 @@ return {
       { "<C-f>", "<Cmd>ToggleTerm direction=float<CR>" },
     },
     config = function()
+      local augroup = require("utils.augroup")
       require("toggleterm").setup({
         size = 25,
         highlights = {
