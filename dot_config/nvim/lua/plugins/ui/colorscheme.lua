@@ -6,7 +6,7 @@ return {
     config = function()
       require("tokyonight").setup({
         style = "night",
-        sidebars = { "qf", "help", "diff", "fern" },
+        on_colors = function(_) end,
         on_highlights = function(hl, c)
           local colors = require("tokyonight.colors").setup({ transform = true })
           local prompt = "#2d3149"
