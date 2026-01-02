@@ -87,8 +87,8 @@ return {
           if vim.bo.filetype == "fern" then
             vim.api.nvim_set_hl(ns, "FernRootSymbol", { fg = colors.fg_dark })
             vim.api.nvim_set_hl(ns, "FernRootText", { fg = colors.fg_dark })
-            vim.api.nvim_set_hl(ns, "FernBranchSymbol", { fg = colors.fg })
-            vim.api.nvim_set_hl(ns, "FernBranchText", { fg = colors.fg })
+            vim.api.nvim_set_hl(ns, "FernBranchSymbol", { link = "Directory" })
+            vim.api.nvim_set_hl(ns, "FernBranchText", { link = "Directory" })
             vim.api.nvim_set_hl(ns, "FernLeafText", { fg = colors.fg })
             vim.api.nvim_win_set_hl_ns(0, ns)
             vim.api.nvim_set_hl(ns, "Normal", {
