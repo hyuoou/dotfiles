@@ -41,6 +41,11 @@ bindkey "${terminfo[kend]}" end-of-line
 # 単語間の移動
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+bindkey '^[[7~' beginning-of-line
+bindkey '^[[H' beginning-of-line
+bindkey '^[[8~' end-of-line
+bindkey '^[[F' end-of-line
+bindkey '^[[3~' delete-char
 
 # --- 6. Tmux 自動起動ロジック ---
 if [[ -z $TMUX ]]; then

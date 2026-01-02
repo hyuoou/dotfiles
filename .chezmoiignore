@@ -1,3 +1,13 @@
 README.md
 
 .config/yazi/plugins
+
+{{ if eq .chezmoi.os "darwin" }}
+.profile
+.config/libskk
+.config/sway
+.config/swaylock
+.config/swaync
+.config/waybar
+.config/wofi
+{{ end }}
