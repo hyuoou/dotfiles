@@ -77,6 +77,10 @@ return {
               fg = dark_colors.bg,
               bg = dark_colors.bg,
             })
+            vim.api.nvim_set_hl(ns, "CursorLine", {
+              fg = colors.fg,
+              bg = colors.blue7,
+            })
           end
         end,
       })
@@ -98,6 +102,10 @@ return {
               fg = dark_colors.bg,
               bg = dark_colors.bg,
             })
+            vim.api.nvim_set_hl(ns, "CursorLine", {
+              fg = colors.fg,
+              bg = colors.blue7,
+            })
           end
         end,
       })
@@ -111,6 +119,10 @@ return {
           vim.api.nvim_set_hl(ns, "FernBranchText", { link = "Directory" })
           vim.api.nvim_set_hl(ns, "FernRootSymbol", { fg = colors.fg_dark })
           vim.api.nvim_set_hl(ns, "FernRootText", { fg = colors.fg_dark })
+          vim.api.nvim_set_hl(ns, "CursorLine", {
+            fg = colors.fg,
+            bg = colors.blue7,
+          })
         end,
       })
     end,

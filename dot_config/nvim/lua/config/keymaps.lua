@@ -6,7 +6,7 @@ vim.keymap.set("n", "<C-a>", "^", opts)
 vim.keymap.set("n", "<C-e>", "$", opts)
 vim.keymap.set("n", "<C-j>", "<Cmd>bnext<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-k>", "<Cmd>bprevious<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<leader>q", "<Cmd>nohlsearch<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Space>q", "<Cmd>nohlsearch<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>h", "5<C-w><", opts)
 vim.keymap.set("n", "<leader>j", "3<C-w>+", opts)

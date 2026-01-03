@@ -29,7 +29,7 @@ config.colors = {
 }
 
 -- 3. 壁紙があるなら上書き
-local wallpaper = wezterm.home_dir .. "/Pictures/lonetrail.png"
+local wallpaper = wezterm.home_dir .. "/Pictures/15_amiya.png"
 local function file_exists(path)
   local f = io.open(path, "r")
   if f then

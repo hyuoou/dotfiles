@@ -14,7 +14,7 @@ return {
       })
 
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "bash", "c", "cpp", "lua" },
+        pattern = { "bash", "c", "cpp", "lua", "rust" },
         callback = function(args)
           vim.treesitter.start(args.buf)
           vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
