@@ -77,6 +77,7 @@ clone() {
 # ghq経由でGitHubリポジトリを取得
 get() {
   ghq get git@github.com:"$1".git
+  cd "$(ghq r00t)/$1" || return 1
 }
 
 # 天気表示 (デフォルト: 東京)
