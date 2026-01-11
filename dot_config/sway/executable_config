@@ -12,25 +12,6 @@ default_floating_border pixel 2
 exec_always multibg-wayland "$HOME/Pictures/wallpaper"
 output HDMI-A-1 mode 3440x1440@99.994Hz
 
-# notify
-exec_always swaync
-
-# clipboard
-exec wl-paste --type text --watch cliphist store -max-items 100
-exec wl-paste --type image --watch cliphist store
-
-# localsend
-exec localsend --hidden
-
-exec hash dbus-update-activation-environment 2>/dev/null && \
-     dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-
-# GTK theme settings
-exec_always ./import-gsettings.sh \
-              gtk-theme:Matcha-dark-azul \
-              icon-theme:Papirus-Dark \
-              cursor-theme:Breeze5
-
 # Hide borders
 hide_edge_borders none
 
@@ -174,8 +155,6 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 # Assign
 assign [app_id="spotify"] workspace $ws5
 assign [app_id="org.mozilla.Thunderbird"] workspace $ws6
-exec spotify
-exec thunderbird
 
 # Open specific applications in floating mode
 for_window [class="Tor Browser"] floating enable border normal
