@@ -1,5 +1,6 @@
-# --- 背景設定 (動的背景) ---
-screenshots
+# --- 背景設定  ---
+# screenshots
+image="$HOME/Pictures/wallpaper/WIP Dark Full.png"
 
 # --- エフェクト ---
 effect-blur=20x5

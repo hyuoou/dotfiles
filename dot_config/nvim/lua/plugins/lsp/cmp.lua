@@ -1,7 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
-    event = { "InsertEnter" },
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-cmdline",
@@ -17,6 +17,7 @@ return {
     config = function()
       local cmp = require("cmp")
       local keymap = require("cmp.utils.keymap")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       local lspkind = require("lspkind")
 
@@ -27,7 +28,15 @@ return {
           end,
         },
         window = {
-          documentation = cmp.config.window.bordered(),
+          completion = cmp.config.window.bordered({
+            border = "none",
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            col_offset = -3,
+            side_padding = 0,
+          }),
+          documentation = cmp.config.window.bordered({
+            border = "single",
+          }),
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-u>"] = cmp.mapping.scroll_docs(-4),
@@ -46,10 +55,9 @@ return {
           { name = "path" },
         }),
         formatting = {
-          format = lspkind.cmp_format({
-            mode = "symbol",
-            maxwidth = 50,
-            menu = {
+          fields = { "kind", "abbr", "menu" },
+          format = function(entry, vim_item)
+            local menu_labels = {
               copilot = "[Copilot]",
               nvim_lsp = "[LSP]",
               vsnip = "[vsnip]",
@@ -57,8 +65,19 @@ return {
               path = "[path]",
               cmdline = "[cmdline]",
               cmdline_history = "[history]",
-            },
-          }),
+            }
+
+            local kind = lspkind.cmp_format({
+              mode = "symbol_text",
+              maxwidth = 50,
+            })(entry, vim_item)
+
+            local icon, kind_text = kind.kind:match("^(%S+)%s+(.*)$")
+            vim_item.kind = " " .. icon .. " "
+            vim_item.menu = string.format("(%s) %s", kind_text, menu_labels[entry.source.name] or "")
+
+            return vim_item
+          end,
         },
       })
 
@@ -74,8 +93,10 @@ return {
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
       vim.lsp.config("*", {
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        capabilities = capabilities,
       })
+
+      require("config.highlights").nvim_cmp()
     end,
   },
 

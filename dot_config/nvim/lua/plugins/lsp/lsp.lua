@@ -1,13 +1,13 @@
 return {
   {
-    "neovim/nvim-lspconfig",
-    event = { "BufRead", "BufNewFile" },
-    cmd = { "Mason" },
+    "williamboman/mason-lspconfig.nvim",
     dependencies = {
-      "mason-org/mason.nvim",
-      "mason-org/mason-lspconfig.nvim",
+      "williamboman/mason.nvim",
+      "neovim/nvim-lspconfig",
     },
+    event = "VeryLazy",
     config = function()
+      local servers = { "bashls", "clangd", "lua_ls", "rust_analyzer" }
       require("lspconfig.ui.windows").default_options.border = "single"
       require("mason").setup({
         ui = {
@@ -20,7 +20,7 @@ return {
         },
       })
       require("mason-lspconfig").setup({
-        ensure_installed = { "bashls", "clangd", "gopls", "rust_analyzer" },
+        ensure_installed = servers,
       })
 
       vim.keymap.set("n", "<C-h>", function()
@@ -42,6 +42,8 @@ return {
         virtual_text = false,
         virtual_lines = true,
       })
+
+      -- vim.lsp.enable(servers)
     end,
   },
 

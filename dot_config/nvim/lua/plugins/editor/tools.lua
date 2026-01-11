@@ -10,6 +10,7 @@ return {
   {
     "vim-jp/vimdoc-ja",
     event = "VeryLazy",
+    pin = true,
     config = function()
       vim.opt.helplang = "ja"
     end,

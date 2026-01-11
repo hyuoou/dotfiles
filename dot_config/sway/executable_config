@@ -22,6 +22,9 @@ exec wl-paste --type image --watch cliphist store
 # localsend
 exec localsend --hidden
 
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 # GTK theme settings
 exec_always ./import-gsettings.sh \
               gtk-theme:Matcha-dark-azul \
@@ -51,6 +54,7 @@ bindsym $mod+q kill
 # Rofi
 bindsym $mod+d       exec --no-startup-id wofi --show drun
 bindsym $mod+c       exec --no-startup-id cliphist list | wofi --dmenu | cliphist decode | wl-copy
+bindsym $mod+Shift+c exec --no-startup-id wofi-calc
 bindsym $mod+Shift+e exec --no-startup-id "$HOME/.config/wofi/wofi-powermenu.sh"
 
 # Screenshot
@@ -176,6 +180,7 @@ exec thunderbird
 # Open specific applications in floating mode
 for_window [class="Tor Browser"] floating enable border normal
 for_window [class="Protonvpn"] floating enable
+for_window [app_id="xdg-desktop-portal-gtk"] floating enable, resize set 800 600
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus

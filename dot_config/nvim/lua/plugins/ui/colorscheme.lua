@@ -4,11 +4,18 @@ return {
     lazy = false,
     priority = 1000,
     config = function()
-      require("tokyonight").setup({
+      local tokyonight = require("tokyonight")
+      local colors = require("tokyonight.colors").setup({
+        transform = true,
+        on_colors = function(_) end,
+        on_highlights = function(_) end,
+      })
+      local isTransparent = true
+      local opts = {
         style = "night",
+        transparent = isTransparent,
         on_colors = function(_) end,
         on_highlights = function(hl, c)
-          local colors = require("tokyonight.colors").setup({ transform = true })
           local prompt = "#2d3149"
           hl.TelescopeNormal = {
             bg = c.bg_dark,
@@ -38,8 +45,32 @@ return {
             fg = c.bg_dark,
           }
         end,
-      })
-      vim.cmd("colorscheme tokyonight")
+      }
+
+      tokyonight.setup(opts)
+      vim.cmd.colorscheme("tokyonight")
+      require("config.highlights").setup()
+
+      vim.api.nvim_create_user_command("EnableTransparent", function()
+        isTransparent = true
+        opts.transparent = isTransparent
+        tokyonight.setup(opts)
+        vim.cmd.colorscheme("tokyonight")
+      end, {})
+
+      vim.api.nvim_create_user_command("DisableTransparent", function()
+        isTransparent = false
+        opts.transparent = isTransparent
+        tokyonight.setup(opts)
+        vim.cmd.colorscheme("tokyonight")
+      end, {})
+
+      vim.api.nvim_create_user_command("ToggleTransparent", function()
+        isTransparent = not isTransparent
+        opts.transparent = isTransparent
+        tokyonight.setup(opts)
+        vim.cmd.colorscheme("tokyonight")
+      end, {})
     end,
   },
 }

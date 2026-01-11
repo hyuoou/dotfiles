@@ -21,6 +21,7 @@ vim.opt.showtabline = 2
 vim.opt.cmdheight = 0
 vim.opt.showmode = false
 vim.opt.background = "dark"
+vim.opt.termguicolors = true
 
 vim.opt.list = true
 vim.opt.listchars = { tab = ">-", space = "·" }

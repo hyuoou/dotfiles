@@ -14,7 +14,7 @@ return {
       })
 
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "bash", "c", "cpp", "lua", "rust" },
+        pattern = { "bash", "c", "cpp", "lua", "rust", "typescript", "typescriptreact" },
         callback = function(args)
           vim.treesitter.start(args.buf)
           vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
@@ -61,19 +61,7 @@ return {
           "RainbowDelimiterCyan",
         },
       })
-
-      local rainbow_colors = {
-        RainbowDelimiterRed = "#E8BA36",
-        RainbowDelimiterOrange = "#54A857",
-        RainbowDelimiterYellow = "#359FF4",
-        RainbowDelimiterGreen = "#5060BB",
-        RainbowDelimiterCyan = "#179387",
-        RainbowDelimiterBlue = "#88C0D0",
-        RainbowDelimiterViolet = "#5E81AC",
-      }
-      for group, color in pairs(rainbow_colors) do
-        vim.api.nvim_set_hl(0, group, { fg = color })
-      end
+      require("config.highlights").rainbow_delimiters()
     end,
   },
 }
