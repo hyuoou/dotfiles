@@ -12,7 +12,7 @@ config.font = wezterm.font_with_fallback({
 if triple:find("linux") then
   config.font_size = 10.0
 else
-  config.font_size = 12.0
+  config.font_size = 13.0
 end
 
 -- 2. 色の設定 (TokyoNight Night)
