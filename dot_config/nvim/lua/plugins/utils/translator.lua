@@ -50,7 +50,7 @@ return {
       end
 
       pantran.setup({
-        default_engine = "deepl",
+        default_engine = "google",
         engines = {
           google = {
             fallback = {

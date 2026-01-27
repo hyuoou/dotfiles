@@ -67,13 +67,40 @@ return {
               cmdline_history = "[history]",
             }
 
+            local symbol_map = {
+              Text = "󰉿",
+              Method = "󰆧",
+              Function = "󰊕",
+              Constructor = "",
+              Field = "󰜢",
+              Variable = "󰀫",
+              Class = "󰠱",
+              Interface = "",
+              Module = "",
+              Property = "󰜢",
+              Unit = "󰑭",
+              Value = "󰎠",
+              Enum = "",
+              Keyword = "󰌋",
+              Snippet = "",
+              Color = "󰏘",
+              File = "󰈙",
+              Reference = "󰈇",
+              Folder = "󰉋",
+              EnumMember = "",
+              Constant = "󰏿",
+              Struct = "󰙅",
+              Event = "",
+              Operator = "󰆕",
+              TypeParameter = "",
+            }
+
             local kind = lspkind.cmp_format({
-              mode = "symbol_text",
               maxwidth = 50,
             })(entry, vim_item)
+            local kind_text = kind.kind
 
-            local icon, kind_text = kind.kind:match("^(%S+)%s+(.*)$")
-            vim_item.kind = " " .. icon .. " "
+            vim_item.kind = " " .. symbol_map[kind_text] .. " "
             vim_item.menu = string.format("(%s) %s", kind_text, menu_labels[entry.source.name] or "")
 
             return vim_item

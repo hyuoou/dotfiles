@@ -160,6 +160,7 @@ assign [app_id="org.mozilla.Thunderbird"] workspace $ws6
 for_window [class="Tor Browser"] floating enable border normal
 for_window [class="Protonvpn"] floating enable
 for_window [app_id="xdg-desktop-portal-gtk"] floating enable, resize set 800 600
+for_window [class="steam_app_0"] floating enable border enable
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus

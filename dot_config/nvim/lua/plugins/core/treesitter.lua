@@ -5,16 +5,13 @@ return {
     branch = "main",
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter").install({
-        "bash",
-        "c",
-        "cpp",
-        "go",
-        "rust",
-      })
+      local langs = { "bash", "c", "cpp", "elixir", "go", "lua", "rust", "typescript" }
+      local filetype = vim.iter({ langs, { "typescriptreact" } }):flatten():totable()
+
+      require("nvim-treesitter").install(langs)
 
       vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "bash", "c", "cpp", "lua", "rust", "typescript", "typescriptreact" },
+        pattern = filetype,
         callback = function(args)
           vim.treesitter.start(args.buf)
           vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
