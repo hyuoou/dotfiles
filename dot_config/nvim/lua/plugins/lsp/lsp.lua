@@ -8,6 +8,8 @@ return {
     event = "VeryLazy",
     config = function()
       local servers = { "bashls", "clangd", "lua_ls", "rust_analyzer" }
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
       require("lspconfig.ui.windows").default_options.border = "single"
       require("mason").setup({
         ui = {
@@ -43,7 +45,12 @@ return {
         virtual_lines = true,
       })
 
+      vim.lsp.config("*", {
+        capabilities = capabilities,
+      })
+
       -- vim.lsp.enable(servers)
+      vim.lsp.enable("sourcekit")
     end,
   },
 

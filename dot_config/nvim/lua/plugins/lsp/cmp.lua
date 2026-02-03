@@ -17,7 +17,6 @@ return {
     config = function()
       local cmp = require("cmp")
       local keymap = require("cmp.utils.keymap")
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
       local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       local lspkind = require("lspkind")
 
@@ -118,10 +117,6 @@ return {
       })
 
       cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
-      vim.lsp.config("*", {
-        capabilities = capabilities,
-      })
 
       require("config.highlights").nvim_cmp()
     end,

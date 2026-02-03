@@ -8,6 +8,8 @@ return {
         bash = { "shellcheck" },
         cpp = { "clangtidy" },
         lua = { "luacheck" },
+        rust = { "clippy" },
+        swift = { "swiftlint" },
       }
 
       vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {

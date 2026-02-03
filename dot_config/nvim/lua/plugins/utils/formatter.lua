@@ -12,6 +12,7 @@ return {
           lua = { "stylua" },
           rust = { "rustfmt" },
           sh = { "shfmt" },
+          swift = { "swiftformat" },
           zsh = { "beautysh" },
         },
         formatters = {

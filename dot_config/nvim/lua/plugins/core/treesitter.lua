@@ -5,7 +5,7 @@ return {
     branch = "main",
     build = ":TSUpdate",
     config = function()
-      local langs = { "bash", "c", "cpp", "elixir", "go", "lua", "rust", "typescript" }
+      local langs = { "bash", "c", "cpp", "elixir", "go", "lua", "rust", "swift", "typescript", "typst", "zsh" }
       local filetype = vim.iter({ langs, { "typescriptreact" } }):flatten():totable()
 
       require("nvim-treesitter").install(langs)
