@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
 # --- 1. システム・基本操作 ---
-alias sudo='doas'
+if command -v doas >/dev/null 2>&1; then
+  alias sudo='doas'
+fi
+
 alias rm='trash-put'
 alias cp='cp -i'
 alias mv='mv -i'
